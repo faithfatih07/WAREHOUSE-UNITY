@@ -8,6 +8,7 @@ Before every task in this repository:
 
 Non-negotiable project decisions:
 - Visual target: reference-level visual completeness, detail density and coherent industrial presentation. Photorealism is not required; avoid cartoonish style and avoid a primitive-looking final scene.
+- Budget is EUR 0: never purchase assets, plugins, subscriptions, credits, paid trials or initiate checkout. Use legally free assets (prefer CC0; CC BY 4.0 with attribution is acceptable) and procedural/local modelling for gaps.
 - Both camera modes are in scope: isometric overview and first-person exploration.
 - A configurable C# Warehouse Generator is in scope.
 - Preserve the existing Unity URP project and current package configuration.
@@ -16,7 +17,7 @@ Non-negotiable project decisions:
 Working rules:
 - Use Unity MCP to inspect and modify the running Unity Editor where available. Do not assume access; verify the MCP tools and active project first.
 - Do not invent successful imports, assets, animations, audio, tests, builds or visual results. Report only what was actually verified.
-- Use ready-made assets for major props where practical, and verify asset licences. Do not redistribute unlicensed assets.
+- Use zero-cost ready-made assets for major props where practical, and verify asset licences before download/import. Prefer CC0; maintain attribution for CC BY assets. Never purchase, enter checkout, use paid trials or download unauthorized copies of paid assets. Do not redistribute unlicensed assets.
 - Keep layout routes clear for forklifts and first-person movement.
 - Keep generated objects grouped and make editor generation idempotent; never delete or replace unrelated scene objects.
 - Preserve `SampleScene`; implement warehouse work in a dedicated scene.
