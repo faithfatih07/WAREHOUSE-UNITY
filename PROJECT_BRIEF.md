@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Authoritative Project Brief
 
-Version: 1.5  
+Version: 1.6  
 Status: Active project specification  
 Unity project: WAREHOUSE-UNITY  
 Unity pipeline: Universal Render Pipeline (URP)  
