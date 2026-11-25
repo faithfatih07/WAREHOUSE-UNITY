@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Phase 1 Layout Plan
 
-Status: Proposed baseline for Phase 1 blockout  
+Status: Implemented, visually checked in Unity and committed in Phase 1 (2026-11-25).  
 Coordinates: Unity X/Z plane; Y is height  
 Origin: Southwest/front-left corner of the warehouse floor at (0, 0, 0)  
 Units: metres  
@@ -102,3 +102,12 @@ Phase 1 is complete only when:
 6. The project changes are committed and pushed.
 
 At the end, report the real scene path, created scripts/materials, screenshots or visual checks actually performed, Console status, Git status, and any deviations from this layout.
+
+## 9. Actual Phase 1 result
+
+- Scene: Assets/Scenes/Warehouse_Blockout.unity
+- Builder: Assets/Editor/WarehouseBlockoutBuilder.cs
+- Materials: Assets/Materials/Blockout_*.mat (11 blockout materials)
+- Commit on main: c5a387d (feat: add Phase 1 warehouse blockout)
+- Verified through Codex/Unity MCP: two consecutive builder runs left one WAREHOUSE_ROOT and five rack rows; scene saved; SampleScene unchanged; URPProjectSettings had no diff; Unity Console reported no errors and one MCP WebSocket warning.
+- Note: the blockout uses primitive geometry and coloured zones intentionally. Phase 2/3 will replace major placeholders with selected licensed assets.
