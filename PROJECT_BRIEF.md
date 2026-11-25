@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Authoritative Project Brief
 
-Version: 1.3  
+Version: 1.4  
 Status: Active project specification  
 Unity project: WAREHOUSE-UNITY  
 Unity pipeline: Universal Render Pipeline (URP)  
@@ -198,4 +198,4 @@ Do not mark a phase complete based only on generated code or a successful MCP to
 
 Proceed with **Phase 2 — Free asset research and import (EUR 0 budget)**.
 
-Read ASSET_RESEARCH.md before selecting assets. The 40-prop CC0 Warehouse Essentials archive has now been downloaded at zero cost and statically inspected. Read section 11 of ASSET_RESEARCH.md for the reported inventory, category gaps and security limitations. No antivirus scan was run, no code was executed, and no assets were imported. Next, create an isolated temporary Unity 6000.6.10f1 URP preview project outside the main repository. Import only the six raw FBX candidates and their referenced textures; do not import the nested Unity package or open the Blender project. Verify URP materials, scale, pivots, colliders and actual animation playback. No payment, checkout, paid trial or unauthorized redistribution. Preserve the existing 60x40 blockout, project settings and URP configuration; do not begin Phase 3 until preview results are reviewed.
+Read ASSET_RESEARCH.md before selecting assets. The 40-prop CC0 Warehouse Essentials archive has now been downloaded at zero cost and statically inspected. Read section 11 of ASSET_RESEARCH.md for the reported inventory, category gaps and security limitations. No antivirus scan was run, no code was executed, and no assets were imported. The first isolated preview copy imported six raw FBX files but Unity failed to start it with 'Licensing initialization failed after 74.83s'. See section 13 of ASSET_RESEARCH.md. First inspect the exact log and try normal GUI launch via Unity Hub without changing licence settings. If that fails, use the already-running licensed Editor for a reversible local preview in one temporary folder/scene, with no commit or push; leave Warehouse_Blockout, SampleScene, Packages and ProjectSettings untouched and delete only the exact temporary preview files afterwards. Do not import the nested Unity package or open the Blender project. Verify materials, scale, pivots, colliders and actual animation playback. No payment, checkout or paid trials. Do not begin Phase 3 until preview results are verified.
