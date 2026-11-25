@@ -1,0 +1,1 @@
+40 interactive prefabs, 40 static LOD prefabs, 17 motion clips imported and sampled. Unity 6000.6.5f1. Built-in Standard shader.

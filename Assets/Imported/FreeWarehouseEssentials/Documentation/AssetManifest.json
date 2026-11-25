@@ -1,0 +1,2022 @@
+[
+  {
+    "asset": "Box_Medium",
+    "lod0_triangles": 624,
+    "lod1_triangles": 498,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Box_Medium__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Box_Small",
+    "lod0_triangles": 624,
+    "lod1_triangles": 498,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Cream_Atlas",
+    "parts": [
+      {
+        "name": "Box_Small__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Box_Tall",
+    "lod0_triangles": 624,
+    "lod1_triangles": 498,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Cream_Atlas",
+    "parts": [
+      {
+        "name": "Box_Tall__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Cable_Reel",
+    "lod0_triangles": 4988,
+    "lod1_triangles": 2992,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Cable_Reel__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Caution_Sign",
+    "lod0_triangles": 84,
+    "lod1_triangles": 66,
+    "moving_parts": 1,
+    "render_meshes": 2,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Caution_Sign__Front_Frame",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Caution_Sign__Rear_Frame",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.7200000286102295
+        ],
+        "rotation_euler_blender": [
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Crate_Large",
+    "lod0_triangles": 3248,
+    "lod1_triangles": 1948,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Cream_Atlas",
+    "parts": [
+      {
+        "name": "Crate_Large__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Crate_Long",
+    "lod0_triangles": 3248,
+    "lod1_triangles": 1948,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Crate_Long__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Crate_Small",
+    "lod0_triangles": 3248,
+    "lod1_triangles": 1948,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Navy_Atlas",
+    "parts": [
+      {
+        "name": "Crate_Small__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Double_Locker",
+    "lod0_triangles": 2588,
+    "lod1_triangles": 1552,
+    "moving_parts": 2,
+    "render_meshes": 3,
+    "base_color_texture": "Warehouse_Cream_Atlas",
+    "parts": [
+      {
+        "name": "Double_Locker__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Double_Locker__Door_L",
+        "location_blender": [
+          -0.38499999046325684,
+          -0.25999999046325684,
+          0.9700000286102295
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Double_Locker__Door_R",
+        "location_blender": [
+          0.38499999046325684,
+          -0.25999999046325684,
+          0.9700000286102295
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Electrical_Cabinet",
+    "lod0_triangles": 612,
+    "lod1_triangles": 488,
+    "moving_parts": 1,
+    "render_meshes": 2,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Electrical_Cabinet__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Electrical_Cabinet__Door",
+        "location_blender": [
+          -0.23999999463558197,
+          -0.1120000034570694,
+          0.41499999165534973
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Fire_Extinguisher",
+    "lod0_triangles": 660,
+    "lod1_triangles": 528,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Fire_Extinguisher__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Floor_Fan",
+    "lod0_triangles": 5072,
+    "lod1_triangles": 3042,
+    "moving_parts": 1,
+    "render_meshes": 2,
+    "base_color_texture": "Warehouse_Cream_Atlas",
+    "parts": [
+      {
+        "name": "Floor_Fan__Blades",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.8600000143051147
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Floor_Fan__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Furniture_Dolly",
+    "lod0_triangles": 1148,
+    "lod1_triangles": 688,
+    "moving_parts": 4,
+    "render_meshes": 5,
+    "base_color_texture": "Warehouse_Rust_Atlas",
+    "parts": [
+      {
+        "name": "Furniture_Dolly__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Furniture_Dolly__Wheel_L_Front",
+        "location_blender": [
+          -0.25,
+          -0.3199999928474426,
+          0.10000000149011612
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Furniture_Dolly__Wheel_L_Rear",
+        "location_blender": [
+          -0.25,
+          0.3199999928474426,
+          0.10000000149011612
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Furniture_Dolly__Wheel_R_Front",
+        "location_blender": [
+          0.25,
+          -0.3199999928474426,
+          0.10000000149011612
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Furniture_Dolly__Wheel_R_Rear",
+        "location_blender": [
+          0.25,
+          0.3199999928474426,
+          0.10000000149011612
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Gas_Cylinder",
+    "lod0_triangles": 1320,
+    "lod1_triangles": 792,
+    "moving_parts": 1,
+    "render_meshes": 2,
+    "base_color_texture": "Warehouse_Blue_Atlas",
+    "parts": [
+      {
+        "name": "Gas_Cylinder__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Gas_Cylinder__Valve",
+        "location_blender": [
+          0.0,
+          0.0,
+          1.1699999570846558
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Hand_Trolley",
+    "lod0_triangles": 1136,
+    "lod1_triangles": 680,
+    "moving_parts": 2,
+    "render_meshes": 3,
+    "base_color_texture": "Warehouse_Rust_Atlas",
+    "parts": [
+      {
+        "name": "Hand_Trolley__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Hand_Trolley__Wheel_L_Front",
+        "location_blender": [
+          -0.2200000286102295,
+          -0.039982881397008896,
+          0.18098722398281097
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Hand_Trolley__Wheel_R_Front",
+        "location_blender": [
+          0.2199999839067459,
+          -0.03998294472694397,
+          0.18098722398281097
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Industrial_Trash_Can",
+    "lod0_triangles": 1636,
+    "lod1_triangles": 980,
+    "moving_parts": 1,
+    "render_meshes": 2,
+    "base_color_texture": "Warehouse_Sage_Atlas",
+    "parts": [
+      {
+        "name": "Industrial_Trash_Can__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Industrial_Trash_Can__Lid",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.699999988079071
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Jerry_Can",
+    "lod0_triangles": 940,
+    "lod1_triangles": 564,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Sage_Atlas",
+    "parts": [
+      {
+        "name": "Jerry_Can__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Lidded_Transit_Tote",
+    "lod0_triangles": 816,
+    "lod1_triangles": 488,
+    "moving_parts": 1,
+    "render_meshes": 2,
+    "base_color_texture": "Warehouse_Cream_Atlas",
+    "parts": [
+      {
+        "name": "Lidded_Transit_Tote__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Lidded_Transit_Tote__Lid",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.47999998927116394
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Open_Carton",
+    "lod0_triangles": 588,
+    "lod1_triangles": 470,
+    "moving_parts": 4,
+    "render_meshes": 5,
+    "base_color_texture": "Warehouse_Cream_Atlas",
+    "parts": [
+      {
+        "name": "Open_Carton__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Open_Carton__Flap_1",
+        "location_blender": [
+          -0.24500000476837158,
+          0.0,
+          0.4000000059604645
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Open_Carton__Flap_2",
+        "location_blender": [
+          0.24500000476837158,
+          0.0,
+          0.4000000059604645
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Open_Carton__Flap_3",
+        "location_blender": [
+          0.0,
+          -0.19499999284744263,
+          0.4000000059604645
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Open_Carton__Flap_4",
+        "location_blender": [
+          0.0,
+          0.19499999284744263,
+          0.4000000059604645
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Packing_Tape_Roll",
+    "lod0_triangles": 768,
+    "lod1_triangles": 614,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Packing_Tape_Roll__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Pallet",
+    "lod0_triangles": 2052,
+    "lod1_triangles": 1230,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Pallet__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Pallet_Jack",
+    "lod0_triangles": 1964,
+    "lod1_triangles": 1178,
+    "moving_parts": 5,
+    "render_meshes": 6,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Pallet_Jack__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Pallet_Jack__Handle",
+        "location_blender": [
+          0.0,
+          0.15000000596046448,
+          0.5
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Pallet_Jack__Wheel_L_Front",
+        "location_blender": [
+          -0.23000000417232513,
+          -0.9100000262260437,
+          0.08500000834465027
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Pallet_Jack__Wheel_L_Rear",
+        "location_blender": [
+          -0.10000000894069672,
+          0.27000001072883606,
+          0.125
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Pallet_Jack__Wheel_R_Front",
+        "location_blender": [
+          0.22999998927116394,
+          -0.9100000262260437,
+          0.08500000834465027
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Pallet_Jack__Wheel_R_Rear",
+        "location_blender": [
+          0.10000000894069672,
+          0.27000001072883606,
+          0.125
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Parcel_Scale",
+    "lod0_triangles": 540,
+    "lod1_triangles": 432,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Blue_Atlas",
+    "parts": [
+      {
+        "name": "Parcel_Scale__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Pipe_Bundle",
+    "lod0_triangles": 3336,
+    "lod1_triangles": 2000,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Pipe_Bundle__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Plastic_Barrel",
+    "lod0_triangles": 580,
+    "lod1_triangles": 464,
+    "moving_parts": 1,
+    "render_meshes": 2,
+    "base_color_texture": "Warehouse_Blue_Atlas",
+    "parts": [
+      {
+        "name": "Plastic_Barrel__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Plastic_Barrel__Lid",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.7599999904632568
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Roller_Conveyor",
+    "lod0_triangles": 3100,
+    "lod1_triangles": 1860,
+    "moving_parts": 14,
+    "render_meshes": 15,
+    "base_color_texture": "Warehouse_Navy_Atlas",
+    "parts": [
+      {
+        "name": "Roller_Conveyor__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_10",
+        "location_blender": [
+          0.0,
+          -0.800000011920929,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_11",
+        "location_blender": [
+          0.0,
+          -0.6769999861717224,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_12",
+        "location_blender": [
+          0.0,
+          -0.5540000200271606,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_13",
+        "location_blender": [
+          0.0,
+          -0.4309999942779541,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_14",
+        "location_blender": [
+          0.0,
+          -0.30799999833106995,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_15",
+        "location_blender": [
+          0.0,
+          -0.1850000023841858,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_16",
+        "location_blender": [
+          0.0,
+          -0.06199999898672104,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_17",
+        "location_blender": [
+          0.0,
+          0.061000000685453415,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_18",
+        "location_blender": [
+          0.0,
+          0.18400000035762787,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_19",
+        "location_blender": [
+          0.0,
+          0.3070000112056732,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_20",
+        "location_blender": [
+          0.0,
+          0.4300000071525574,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_21",
+        "location_blender": [
+          0.0,
+          0.5529999732971191,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_22",
+        "location_blender": [
+          0.0,
+          0.6759999990463257,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Roller_Conveyor__Roller_23",
+        "location_blender": [
+          0.0,
+          0.7990000247955322,
+          0.8199999928474426
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Sack",
+    "lod0_triangles": 184,
+    "lod1_triangles": 146,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Sack__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Safety_Barrier",
+    "lod0_triangles": 600,
+    "lod1_triangles": 480,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Safety_Barrier__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Safety_Bollard",
+    "lod0_triangles": 492,
+    "lod1_triangles": 392,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Safety_Bollard__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Steel_Drum",
+    "lod0_triangles": 704,
+    "lod1_triangles": 562,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Rust_Atlas",
+    "parts": [
+      {
+        "name": "Steel_Drum__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Step_Ladder",
+    "lod0_triangles": 180,
+    "lod1_triangles": 144,
+    "moving_parts": 5,
+    "render_meshes": 6,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Step_Ladder__Front_Frame",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Step_Ladder__Rear_Frame",
+        "location_blender": [
+          0.0,
+          0.0,
+          1.600000023841858
+        ],
+        "rotation_euler_blender": [
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Step_Ladder__Spreader_-1_0",
+        "location_blender": [
+          -0.23999999463558197,
+          -0.2150000035762787,
+          0.800000011920929
+        ],
+        "rotation_euler_blender": [
+          1.3571898937225342,
+          -8.543589302689725e-08,
+          -3.1415927410125732
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Step_Ladder__Spreader_-1_1",
+        "location_blender": [
+          -0.23999999463558197,
+          0.0,
+          0.8466368913650513
+        ],
+        "rotation_euler_blender": [
+          -1.3571897745132446,
+          -3.141592502593994,
+          -1.853238806859281e-08
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Step_Ladder__Spreader_1_0",
+        "location_blender": [
+          0.23999999463558197,
+          -0.2150000035762787,
+          0.800000011920929
+        ],
+        "rotation_euler_blender": [
+          1.3571898937225342,
+          -8.543589302689725e-08,
+          -3.1415927410125732
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Step_Ladder__Spreader_1_1",
+        "location_blender": [
+          0.23999999463558197,
+          0.0,
+          0.8466368913650513
+        ],
+        "rotation_euler_blender": [
+          -1.3571897745132446,
+          -3.141592502593994,
+          -1.853238806859281e-08
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Storage_Bin",
+    "lod0_triangles": 908,
+    "lod1_triangles": 544,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Rust_Atlas",
+    "parts": [
+      {
+        "name": "Storage_Bin__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Storage_Shelf",
+    "lod0_triangles": 1944,
+    "lod1_triangles": 1166,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Navy_Atlas",
+    "parts": [
+      {
+        "name": "Storage_Shelf__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Toolbox",
+    "lod0_triangles": 600,
+    "lod1_triangles": 480,
+    "moving_parts": 1,
+    "render_meshes": 2,
+    "base_color_texture": "Warehouse_Rust_Atlas",
+    "parts": [
+      {
+        "name": "Toolbox__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Toolbox__Lid",
+        "location_blender": [
+          0.0,
+          0.13500000536441803,
+          0.27000001072883606
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Traffic_Cone",
+    "lod0_triangles": 260,
+    "lod1_triangles": 208,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Traffic_Cone__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Tripod_Worklight",
+    "lod0_triangles": 72,
+    "lod1_triangles": 56,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Tripod_Worklight__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Utility_Cart",
+    "lod0_triangles": 2336,
+    "lod1_triangles": 1400,
+    "moving_parts": 4,
+    "render_meshes": 5,
+    "base_color_texture": "Warehouse_Rust_Atlas",
+    "parts": [
+      {
+        "name": "Utility_Cart__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Utility_Cart__Wheel_L_Front",
+        "location_blender": [
+          -0.30000001192092896,
+          -0.3700000047683716,
+          0.06999999284744263
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Utility_Cart__Wheel_L_Rear",
+        "location_blender": [
+          -0.30000001192092896,
+          0.3700000047683716,
+          0.06999999284744263
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Utility_Cart__Wheel_R_Front",
+        "location_blender": [
+          0.30000001192092896,
+          -0.3700000047683716,
+          0.06999999284744263
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Utility_Cart__Wheel_R_Rear",
+        "location_blender": [
+          0.30000001192092896,
+          0.3700000047683716,
+          0.06999999284744263
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Wire_Basket",
+    "lod0_triangles": 3564,
+    "lod1_triangles": 2138,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_BaseColor",
+    "parts": [
+      {
+        "name": "Wire_Basket__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Wooden_Spool_Table",
+    "lod0_triangles": 468,
+    "lod1_triangles": 374,
+    "moving_parts": 0,
+    "render_meshes": 1,
+    "base_color_texture": "Warehouse_Cream_Atlas",
+    "parts": [
+      {
+        "name": "Wooden_Spool_Table__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "asset": "Workbench_Vise",
+    "lod0_triangles": 1628,
+    "lod1_triangles": 976,
+    "moving_parts": 2,
+    "render_meshes": 3,
+    "base_color_texture": "Warehouse_Navy_Atlas",
+    "parts": [
+      {
+        "name": "Workbench_Vise__Body",
+        "location_blender": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Workbench_Vise__Drawer",
+        "location_blender": [
+          -0.25,
+          -0.1599999964237213,
+          0.7200000286102295
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "Workbench_Vise__Vise_Jaw",
+        "location_blender": [
+          0.4399999976158142,
+          -0.33000001311302185,
+          1.059999942779541
+        ],
+        "rotation_euler_blender": [
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  }
+]
