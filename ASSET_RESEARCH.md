@@ -286,3 +286,62 @@ This is a Unity Editor licensing/startup blocker, **not evidence that the FBX as
 4. If both launch routes fail, stop and report the exact licence error and ask the user for the Unity Hub state screenshot. Do not start Phase 3.
 
 No Unity preview is considered complete until assets have visibly rendered and their actual properties have been checked in Unity.
+
+## 14. Successful isolated preview — six raw FBX models (2026-11-26)
+
+The follow-up Codex report and screenshots show that the preview was ultimately completed by using the already-running, licensed main Unity Editor after Unity Hub had successfully opened the temporary project but the separate MCP/batch startup route failed to initialize licensing. No licence was changed or deactivated.
+
+### What was actually verified
+- Unity rendered six selected models in the connected Unity 6000.6.10f1 Editor using custom URP Lit materials.
+- Models: `Storage_Shelf`, `Crate_Large`, `Pallet`, `Pallet_Jack`, `Roller_Conveyor`, `Workbench_Vise`.
+- The 128×128 colour atlases were assigned to scene instances. The metallic map and inverted roughness were combined for smoothness. Several original FBX materials had URP Lit shaders but no base texture assigned; the preview supplied explicit texture assignments.
+- The preview visually showed a coherent stylized low-poly prop set. This is suitable for asset inspection but is not itself a final warehouse scene or proof that the assets alone achieve the instructor reference's complete visual density.
+- FBX importer root transform was approximately 270° about X with scale 100; preserving it produced upright models with metre-scale bounds. The six models were positioned at floor level.
+- All selected textures and `MaterialMap.json` loaded; no selected texture was reported missing.
+
+### Measured model bounds and limitations
+
+| Model | Imported bounds (m) | Colliders | LODGroups | Embedded clips |
+|---|---:|---:|---:|---:|
+| Storage_Shelf | 1.45 × 1.90 × 0.62 | 0 | 0 | 0 |
+| Crate_Large | 1.01 × 0.90 × 0.93 | 0 | 0 | 0 |
+| Pallet | 1.20 × 0.20 × 1.00 | 0 | 0 | 0 |
+| Pallet_Jack | 0.65 × 1.23 × 1.47 | 0 | 0 | 0 |
+| Roller_Conveyor | 1.18 × 0.88 × 1.80 | 0 | 0 | 0 |
+| Workbench_Vise | 1.50 × 1.11 × 0.88 | 0 | 0 | 0 |
+
+- These six interactive FBX assets have no embedded animation clips. Conveyor or pallet-jack motion was not possible or claimed from this subset. The separate 17 animation-sample FBXs remain untested.
+- These raw interactive models contain no colliders or LODGroups. Add suitable simple colliders/project LODs later only where justified by gameplay, visibility or performance.
+- The preview confirmed a stylized low-poly aesthetic. The final target remains a coherent scene with reference-level composition and detail density, not photorealism.
+
+### Licensing startup and cleanup
+- The initial batch startup path failed because it could not find `LicenseClient-trade-1.19.0`; a later attempt timed out with `Licensing initialization failed after 74.83s`.
+- Unity Hub subsequently opened the temporary project in Unity 6000.6.10f1 and logged successful connection to the existing `LicenseClient-trade`. No licence was changed or deactivated.
+- That Hub-launched Editor was not connected to the existing Unity MCP session, so the preview was performed in the already-connected main Editor.
+- During preview, Unity added one field to `ProjectSettings/URPProjectSettings.asset`; Codex inspected the exact diff and restored the file byte-for-byte to HEAD.
+- The temporary preview folder and scene were deleted after screenshot capture. `Warehouse_Blockout.unity`, `SampleScene`, `Packages`, and other project settings were reported unchanged.
+- Unity Console: zero errors; one warning, `WebSocket is not initialised` from MCP.
+- Git reported clean `main...origin/main`; no preview assets were committed. Screenshot retained outside the repository at `/private/tmp/WarehouseAssetPreview_UnityMCP.png`.
+- Phase 3 has not started.
+
+## 15. Current next task — import the six verified free props into the main project
+
+The isolated visual preview is now successful. The next safe step is to copy only the six approved raw FBX files and their exact referenced textures/material maps from the existing review archive into a dedicated folder in the main project, without importing the nested Unity package.
+
+Suggested target:
+- `Assets/Imported/FreeWarehouseEssentials/Models/`
+- `Assets/Imported/FreeWarehouseEssentials/Textures/`
+- `Assets/Imported/FreeWarehouseEssentials/Materials/`
+- `Assets/Imported/FreeWarehouseEssentials/Documentation/`
+
+Requirements:
+1. Read current project docs and verify clean Git status and active project first.
+2. Copy only the six models and dependencies listed in section 12; do not copy the nested Unity package or Blender project.
+3. Preserve the FBX root rotation/scale that produced correct metre-scale upright models in the preview.
+4. Create project-owned URP Lit materials with the verified texture assignments. Do not depend on editor-only temporary materials.
+5. Add a `CREDITS.md` noting the creator, source URL and CC0 1.0 licence, and retain the included `LICENSE.txt` and relevant asset documentation.
+6. Keep assets grouped in the dedicated folder. Do not modify `Warehouse_Blockout.unity`, `SampleScene`, `Packages`, or project settings unless a specific, explained import requirement arises.
+7. Do not add colliders/LODs or create new gameplay features yet. Record that the imported raw assets have none; these can be added later only where required.
+8. Refresh/verify the actual six imported assets in Unity URP and confirm no missing textures or import errors.
+9. Commit and push only after verifying the cleanly scoped changes.
+10. Do not begin Phase 3 assembly yet. Next, inspect the remaining free model categories and the separate animation FBXs to close the missing forklift, high-bay pallet rack, truck, dock, freight container and other instructor-category gaps.
