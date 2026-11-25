@@ -144,3 +144,112 @@ Phase 2 — Free asset acquisition and validation only:
 - Compare the preview with the instructor's reference and the Phase 1 layout.
 - Do not pay, do not start checkout, do not use paid trials, and do not import unverified asset packs.
 - Report verified findings and remaining missing categories before assembling the final warehouse.
+
+## 11. Actual static inspection report — Warehouse Essentials archive (2026-11-25)
+
+Source of this section: Codex's report after static inspection of the downloaded archive at:
+`/private/tmp/WarehouseAssetReview/WarehouseEssentials_v1.0_CC0.zip`
+
+This is a record of the reported inspection, not an independent antivirus certification.
+
+### Download and licence evidence
+- Download was available using the creator's zero-cost option; no payment, donation or email entry was made.
+- Actual archive size reported: 25,442,024 bytes (about 24.3 MiB).
+- The archive includes a `LICENSE.txt` applying CC0 1.0 to the creator's original assets, to the extent of rights held by the creator. Attribution is optional. The licence does not waive third-party trademark or patent rights beyond the creator's control.
+- The included README and credits documentation repeat the licence information.
+- ZIP CRC checks passed; the 292 entries covered by the included SHA256SUMS.txt matched.
+- Static inspection found no executable files, symlinks, installer paths or source-script paths in the outer archive.
+- Static inspection of the nested Unity package reported zero C# scripts, DLLs, MonoBehaviour records or m_Script references.
+- No downloaded code was executed, no Blender file was opened, no Unity package was imported, and no antivirus scanner was run. **This is not a malware-free guarantee.**
+
+### Archive structure reported
+- 293 outer archive files: 227 FBX, 40 GLB, 1 Blender project, 1 Unity package, 9 PNG, 6 JSON and 9 text/documentation files.
+- The collection contains 40 prop types, interactive FBX/GLB models, static and lower-detail LOD FBX models, 90 individual-part FBXs, 17 animation FBXs, nine PNGs, six JSON files, documentation and a nested Unity package.
+- The archive contains material atlases/maps and per-prop metadata including filenames, formats, sizes, LOD and collider evidence.
+- All of these counts are from the static inspection report; they have not yet been confirmed by import into Unity.
+
+### Instructor requirement coverage based on the reported inventory
+
+| Instructor / project category | Reported matching props | Assessment |
+|---|---|---|
+| Rack | `Storage_Shelf` (reported approx. 1.45 × 1.90 × 0.62 m) | Partial: a shelf unit, not the tall pallet-rack system needed for five planned rows |
+| Crates / stock | `Crate_Large`, `Crate_Long`, `Crate_Small`, `Box_Medium`, `Box_Small`, `Box_Tall`, `Open_Carton`, `Sack`, `Pallet`, `Lidded_Transit_Tote`, `Storage_Bin`, `Wire_Basket` | Good small-prop coverage; no shrink-wrapped pallet reported |
+| Container | `Lidded_Transit_Tote`, `Storage_Bin`, `Plastic_Barrel`, `Steel_Drum`, `Jerry_Can`, `Gas_Cylinder` | Partial: storage containers and drums, no freight/shipping container |
+| Cabinets | `Double_Locker`, `Electrical_Cabinet`, `Toolbox` | Partial: these do not replace a general warehouse storage cabinet |
+| "Lizards" | None | Missing; the instructor PDF uses this exact word and its meaning remains unclear |
+| Assembly tables | `Wooden_Spool_Table`, `Workbench_Vise` | Partial: table/workbench props, no dedicated assembly-line table |
+| Conveyor | `Roller_Conveyor` | One short roller-conveyor section; not a complete multi-section powered conveyor system |
+| Pallet truck | `Pallet_Jack` | Present |
+| Forklift | None reported | Missing |
+| Delivery truck / trailer | None reported | Missing |
+| Loading dock door / dock structure | None reported | Missing |
+
+The pack does not provide the project's two camera modes or the future C# Warehouse Generator. Those remain our own implementation tasks.
+
+### Animation sample report
+
+The 17 animation FBX files and corresponding `AnimatedSamples` prefabs are reported as:
+- `Caution_Sign` — folding frames
+- `Double_Locker` — two doors
+- `Electrical_Cabinet` — door
+- `Floor_Fan` — blades/rotor
+- `Furniture_Dolly` — four wheels
+- `Gas_Cylinder` — valve
+- `Hand_Trolley` — two wheels
+- `Industrial_Trash_Can` — lid
+- `Lidded_Transit_Tote` — lid
+- `Open_Carton` — four flaps
+- `Pallet_Jack` — handle and four wheels
+- `Plastic_Barrel` — lid
+- `Roller_Conveyor` — 14 rollers
+- `Step_Ladder` — two frames and four spreaders
+- `Toolbox` — lid
+- `Utility_Cart` — four wheels
+- `Workbench_Vise` — drawer and vise jaw
+
+The report derived these moving parts from FBX animation/keyframe data and the manifest. The package describes 17 clips sampled at 0%, 25%, 50% and 100%. It also notes sample prefab playback is disabled by default and uses a legacy Animation component/list. **These animations have not yet been played in Unity; this is static content inspection, not playback verification.** They are object-motion examples, not complete vehicle physics or gameplay systems.
+
+### Unity / URP compatibility
+
+- The creator reports testing the nested Unity package in Unity 6000.6.5f1 with the Built-in Render Pipeline and Standard shader.
+- URP compatibility is explicitly unverified by the creator.
+- Our project is Unity 6000.6.10f1 with URP. Therefore the pack remains untested in our actual render pipeline; material/shader conversion may be needed.
+- Standalone raw files are reported under `Models/Interactive_FBX`, `Models/Static_FBX_UCX`, `Models/Static_LOD1_FBX`, `Models/Unreal_Parts`, `Models/Interactive_GLB` and `Animations`. They can be inspected without importing the nested Unity package.
+
+### Recommended minimal preview subset
+
+For a **separate temporary Unity URP preview project**, test only these six interactive FBX assets first:
+- `Storage_Shelf`
+- `Crate_Large`
+- `Pallet`
+- `Pallet_Jack`
+- `Roller_Conveyor`
+- `Workbench_Vise`
+
+Copy only their referenced materials/textures:
+- `Warehouse_Navy_Atlas`
+- `Warehouse_Cream_Atlas`
+- `Warehouse_BaseColor`
+- the shared metallic/smoothness and roughness maps
+- `MaterialMap.json`
+- `LICENSE.txt` and relevant creator credit/documentation
+
+Do not open the Blender project or import the nested Unity package. Do not copy any of these assets into the main project until the temporary URP preview succeeds.
+
+### Current project / repository state at time of report
+- Active Unity project reported as Unity 6000.6.10f1 with `Warehouse_Blockout.unity` active.
+- Unity Console: zero errors; one warning, `WebSocket is not initialised`.
+- Editor reported `external_changes_dirty=true` from an earlier timestamp; assets were not refreshed and editor state was not cleared. Recheck before preview.
+- Repository was clean at `main...origin/main`; no assets were copied to the main project, and no import, scene change, commit or push was performed.
+- Phase 3 has not started.
+
+## 12. Current next task — isolated URP preview
+
+1. Recheck local repository status and the actual Unity Editor state.
+2. Preserve the downloaded review archive and the completed Phase 1 scene.
+3. Create a temporary preview project outside the main repository, based on the same Unity 6000.6.10f1 and URP package versions.
+4. Extract only the six listed raw interactive FBX models and their referenced texture/material files to that temporary project.
+5. Do not import the nested Unity package, open the Blender project, or execute downloaded scripts.
+6. Open the preview project in Unity and check for URP shader/material issues, scale, orientation, pivots, LODs and colliders. Test only the sample animations whose FBX data is present, and report whether playback actually works.
+7. Capture a preview image and report any manual material conversion required.
+8. Do not change the main warehouse project or start Phase 3 until the preview is reviewed.
