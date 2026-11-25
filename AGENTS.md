@@ -3,10 +3,11 @@
 Before every task in this repository:
 1. Read `PROJECT_BRIEF.md` completely. It is the authoritative project scope and decision record.
 2. Read `WAREHOUSE_LAYOUT.md` before any scene/layout/blockout work.
-3. Inspect the current Git status and actual Unity Editor state through MCP before editing.
+3. Read `ASSET_RESEARCH.md` before Phase 2 asset selection or import.
+4. Inspect the current Git status and actual Unity Editor state through MCP before editing.
 
 Non-negotiable project decisions:
-- Visual target: detailed, realistic quality comparable to the instructor's reference warehouse.
+- Visual target: reference-level visual completeness, detail density and coherent industrial presentation. Photorealism is not required; avoid cartoonish style and avoid a primitive-looking final scene.
 - Both camera modes are in scope: isometric overview and first-person exploration.
 - A configurable C# Warehouse Generator is in scope.
 - Preserve the existing Unity URP project and current package configuration.
@@ -23,4 +24,4 @@ Working rules:
 - Do not overwrite remote Git history. Check branch/status and remote state before pushing.
 - At the end of each task, report files changed, Unity verification performed, Console errors (if checked), remaining blockers, and Git commit/push status.
 
-Current phase: Phase 1 — Layout and blockout only. Follow section 10 of `PROJECT_BRIEF.md` and `WAREHOUSE_LAYOUT.md`. Do not import a large asset pack, implement the final Warehouse Generator, or build the camera controller during Phase 1.
+Current phase: Phase 2 — Asset research and import. Follow section 10 of `PROJECT_BRIEF.md` and `ASSET_RESEARCH.md`. Do not purchase or import paid assets without the user's explicit authorization. Prefer one coherent asset family, inspect a free sample before purchase when available, and verify URP / Unity 6 compatibility. Preserve the completed Phase 1 blockout. Do not start Phase 3 assembly, camera modes, generator, animations or audio until the asset selection and imports are verified.
