@@ -345,3 +345,64 @@ Requirements:
 8. Refresh/verify the actual six imported assets in Unity URP and confirm no missing textures or import errors.
 9. Commit and push only after verifying the cleanly scoped changes.
 10. Do not begin Phase 3 assembly yet. Next, inspect the remaining free model categories and the separate animation FBXs to close the missing forklift, high-bay pallet rack, truck, dock, freight container and other instructor-category gaps.
+
+## 16. Main-project asset import — six approved props (2026-11-26)
+
+Codex's report and screenshot confirm that Phase 2's first six approved raw FBX props were copied into the main Unity project, rendered in the actual Unity Editor with URP Lit materials, and pushed to GitHub.
+
+### Imported content
+Dedicated folder: `Assets/Imported/FreeWarehouseEssentials/`
+
+Models:
+- `Storage_Shelf.fbx`
+- `Crate_Large.fbx`
+- `Pallet.fbx`
+- `Pallet_Jack.fbx`
+- `Roller_Conveyor.fbx`
+- `Workbench_Vise.fbx`
+
+Also imported:
+- Warehouse navy, cream and base-colour texture maps.
+- Metallic and roughness maps plus the combined metallic/smoothness map.
+- Three Unity URP Lit materials.
+- FBX-generated `.fbm` texture dependency folders next to models.
+- Original `LICENSE.txt`, `CREDITS.md`, creator credits, `MaterialMap.json`, manifest, README and supplied Unity import/validation reports.
+- A visual verification image named `ImportPreview.png`.
+
+### Verification reported
+- All six models rendered in the connected Unity Editor preview with assigned URP Lit materials and expected textures.
+- Imported orientation, scale and bounds matched the previously reviewed preview.
+- No selected texture was missing.
+- No collider, LODGroup or embedded animation clip exists in these six raw FBX models; do not assume otherwise.
+- The temporary preview scene was deleted after capture.
+- `Warehouse_Blockout` remained active and clean; `SampleScene` and `Warehouse_Blockout` had no changes in the asset-import commit diff.
+- URP settings and package files were reported unchanged.
+- Unity Console: zero errors; one MCP WebSocket warning ("WebSocket is not initialised").
+- Git whitespace check reported trailing whitespace in Unity-generated metadata and CRLF documentation; these were left unchanged to avoid unnecessary modifications.
+- Commits pushed: `a03cd2a` (asset import) and `00be74e` (Unity folder metadata). Working tree reported clean; `main` and `origin/main` both point to `00be74e`.
+- This verifies the first six props are imported; it does NOT complete all instructor categories or Phase 2.
+
+### Remaining asset gaps
+Based on the previously inspected 40-prop inventory, further free assets are still needed or must be modelled:
+- Proper tall pallet racking for the planned rack rows (current Storage_Shelf is only a shelf unit).
+- Forklift.
+- Freight/shipping container.
+- Delivery truck/trailer and loading dock door/structure.
+- More complete warehouse storage cabinets.
+- Dedicated assembly table (current workbench props are partial coverage).
+- Expanded powered conveyor system (current Roller_Conveyor is one short section).
+- The instructor PDF's exact term "lizards" remains unresolved; do not guess its meaning.
+- No sound asset pack has yet been tested or imported.
+- Separate 17 animation-sample FBXs have not yet been tested for playback.
+
+## 17. Current next task — complete free asset gap research and animation review
+
+Phase 2 remains open. Before full scene assembly (Phase 3):
+1. Read current project docs and verify Git status/Unity project state.
+2. Research zero-cost assets only for the gaps above. Prefer CC0; CC BY 4.0 is acceptable with proper attribution. Do not purchase, enter checkout or use paid trials.
+3. Inspect actual downloaded file licences and archive contents statically before import.
+4. Prioritize proper pallet racking, forklift, freight container, truck/trailer, dock door, general cabinets and an assembly table.
+5. Review the separate 17 animation-sample FBX assets identified in section 11. Determine which actual animation clips exist from metadata/keyframes; do not claim playback until tested in Unity. Make a small reversible preview for suitable samples using the already licensed Unity Editor, preserving existing scenes/settings.
+6. Resolve the ambiguous "lizards" term only from instructor clarification or source evidence; do not invent an interpretation.
+7. Add source and licence records to CREDITS.md.
+8. Only when the essential visual categories are covered (by licensed free assets or clearly documented original procedural models), begin Phase 3 and replace blockout placeholders with final scene assets.
