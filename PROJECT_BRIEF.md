@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Authoritative Project Brief
 
-Version: 1.0  
+Version: 1.1  
 Status: Active project specification  
 Unity project: WAREHOUSE-UNITY  
 Unity pipeline: Universal Render Pipeline (URP)  
@@ -37,14 +37,14 @@ Suggested asset sources named in the PDF include Unity Asset Store, Free3D and T
 
 These decisions were explicitly selected by the user:
 
-1. **Visual target: reference quality.** Build a detailed, realistic warehouse comparable in overall completeness and visual quality to the instructor's reference image. It does not need to be an exact replica.
+1. **Visual target: reference quality.** Match the instructor example's overall visual completeness, detail density, functional clarity and polished three-quarter/isometric presentation. Photorealism is NOT a requirement. A coherent stylized-realistic / industrial visualization style is acceptable if it reaches the reference's level of detail. Avoid childish/cartoonish styling and avoid a bare primitive-looking final scene. It does not need to be an exact replica.
 2. **Camera experience: BOTH.**
    - Isometric / elevated overview mode for presenting the complete warehouse.
    - First-person mode for walking around inside the warehouse.
    - Recommended default: isometric overview on scene start; provide a clear, reliable toggle (proposed key: V) between modes.
 3. **C# scope: Warehouse Generator.** Implement a usable generator to populate storage areas with warehouse contents. It is a deliberate project feature even though C# scripting is optional in the instructor's specification.
 
-Do not downgrade the visual target to a minimal blockout as the final result. A blockout is allowed only as an intermediate planning stage.
+Do not downgrade the visual target to a minimal blockout as the final result. A blockout is only an intermediate planning stage. Do not interpret 'reference quality' as a requirement for photorealism or expensive PBR assets; prioritize the instructor image's scene composition, functional detail and visual coherence.
 
 ## 3. Design direction and layout
 
@@ -65,8 +65,8 @@ Exact dimensions are not specified by the instructor. Choose practical provision
 ## 4. Visual and technical quality
 
 - Use the existing Unity URP project; do not replace it with another render pipeline.
-- Aim for a polished, realistic industrial/logistics look: concrete floor, steel structure and racks, warehouse markings, believable materials, roof/ceiling structure and appropriate industrial lighting.
-- Use imported models/prefabs for prominent assets (racks, forklifts or pallet trucks, conveyors, pallets, crates, trucks, etc.) whenever suitable licensed assets are available.
+- Aim for a polished industrial/logistics look matching the instructor example: concrete floor, steel structure and racks, warehouse markings, believable materials, readable roof/ceiling structure and appropriate industrial lighting. The overall style may be stylized-realistic rather than photorealistic.
+- Use one coherent asset family / art style where practical. Use imported models/prefabs for prominent assets (racks, forklifts or pallet trucks, conveyors, pallets, crates, trucks, etc.) whenever suitable licensed assets are available. PBR is preferred where it adds value, but a well-made shared texture atlas is acceptable if it produces a consistent reference-quality result.
 - Use primitive or procedural geometry only for blockout, small supporting details, or a clearly justified fallback—not as a substitute for all major final assets.
 - Keep scale, pivots, colliders and material assignments consistent.
 - Prefer good composition, clean zone layout, readable aisles and adequate lighting over a large quantity of poorly placed props.
@@ -122,13 +122,14 @@ Prioritize a working conveyor animation and a small set of appropriate sounds ov
 - GitHub repository initial project commit pushed to main.
 If any status changes, verify it rather than assuming.
 
-### Phase 1 — Layout and blockout (next)
+### Phase 1 — Layout and blockout (completed)
 - Inspect current project and active scene before editing.
 - Create a clear warehouse layout with the functional zones above.
 - Establish provisional dimensions, floor, perimeter walls, loading edge, main aisles and rack footprints.
 - Create a top-down / isometric blockout or layout document and a simple in-Unity blockout scene.
 - Keep the blockout visually understandable, but do not waste time polishing placeholder geometry.
 - Save the scene and report exact files and what was verified.
+- Verified completed on 2026-11-25: commit c5a387d on main; Warehouse_Blockout.unity and WarehouseBlockoutBuilder.cs are in the repository; SampleScene unchanged; URPProjectSettings diff clean; two consecutive builder runs preserved one WAREHOUSE_ROOT and five rack rows; Unity Console reported no errors and one MCP WebSocket warning.
 
 ### Phase 2 — Asset research and import
 - Find a compact, consistent set of legal, Unity-compatible assets.
@@ -188,6 +189,6 @@ Do not mark a phase complete based only on generated code or a successful MCP to
 
 ## 10. Current next task
 
-Proceed with **Phase 1 — Layout and blockout** only.
+Proceed with **Phase 2 — Asset research and import**.
 
-First inspect the current Unity project and scene. Then propose and implement a coherent blockout that respects this brief. Do not start importing a large collection of assets, implementing both camera modes, or building the generator until the layout is established and reviewed. Preserve the current project and URP configuration.
+Read ASSET_RESEARCH.md before selecting assets. First inspect and compare a free sample of the recommended coherent warehouse kit, if available, against the instructor reference and the current blockout. Check package contents, URP compatibility, Unity 6.6 compatibility, licensing and which instructor-required props are covered or missing. Do not purchase anything, accept paid terms, or import a paid asset until the user has explicitly authorized/purchased it. Do not import a large mix of unrelated asset packs. Prefer one coherent asset family. After assets are selected and imported, verify the prefabs and materials in the actual Unity Editor, then move to Phase 3. Preserve the existing 60x40 blockout, project settings and URP configuration until a justified asset/layout fit is verified.
