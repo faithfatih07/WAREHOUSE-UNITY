@@ -253,3 +253,36 @@ Do not open the Blender project or import the nested Unity package. Do not copy 
 6. Open the preview project in Unity and check for URP shader/material issues, scale, orientation, pivots, LODs and colliders. Test only the sample animations whose FBX data is present, and report whether playback actually works.
 7. Capture a preview image and report any manual material conversion required.
 8. Do not change the main warehouse project or start Phase 3 until the preview is reviewed.
+
+## 13. Isolated preview attempt — blocked by Unity licensing initialization (2026-11-25)
+
+Codex reported the following:
+- A copy of the Unity project was made at `/private/tmp/WarehouseAssetPreviewProject`.
+- Six raw FBX assets and their referenced texture/material files, `MaterialMap.json`, licence and credits files were staged/imported into that temporary project.
+- The temporary project uses Unity 6000.6.10f1; its URP and Packages/manifest.json were reported as matching the source project.
+- The temporary Editor later failed during startup with `Licensing initialization failed after 74.83s`, recorded in `PreviewBatch.log`.
+- Unity MCP remained connected to the main project's Editor, so it could not inspect the temporary project.
+- `AssetPreview.unity`, the import-results report and the requested screenshot were not produced.
+- `WarehouseAssetPreviewBuilder.cs` was left inside the temporary copy but was not executed.
+- No material rendering, texture assignment, model scale/orientation, pivots, colliders, LODs or animation playback have been verified in Unity.
+- Static inspection of the FBXs found no embedded animation stacks or key times; the 17 animation samples are separate assets and remain untested.
+- Codex reported the main repository clean on `main` at `1a3c31b`; no main project scenes, assets or settings were modified; no commit or push occurred for the preview attempt.
+
+This is a Unity Editor licensing/startup blocker, **not evidence that the FBX assets are defective**. Do not deactivate, replace, or alter the user's Unity licence to work around this.
+
+### Revised next action
+
+1. Inspect the exact licensing error context in `PreviewBatch.log`; do not infer its cause from the summary alone.
+2. Try opening the existing temporary project through Unity Hub / normal GUI mode using the already-installed Unity 6000.6.10f1 Editor. Do not request a new licence, deactivate the current licence, or change account/licence settings.
+3. If GUI launch also fails, use the already-running, already-licensed main Unity Editor for a **reversible local preview only**:
+   - verify the main repository is clean and on main first;
+   - create one temporary folder and one temporary preview scene only (e.g. `Assets/__AssetPreviewTemp/`);
+   - copy only the six already-reviewed raw FBX files and exact referenced textures/material maps into that folder;
+   - do not import the nested Unity package, open the Blender project, or execute downloaded code;
+   - leave `Warehouse_Blockout.unity`, `SampleScene`, all project settings and Packages unchanged;
+   - do not commit or push preview assets;
+   - capture and inspect the temporary scene in the existing Unity Editor;
+   - after verification, remove only the exact temporary preview folder/scene and confirm the original repository returns to a clean state.
+4. If both launch routes fail, stop and report the exact licence error and ask the user for the Unity Hub state screenshot. Do not start Phase 3.
+
+No Unity preview is considered complete until assets have visibly rendered and their actual properties have been checked in Unity.
