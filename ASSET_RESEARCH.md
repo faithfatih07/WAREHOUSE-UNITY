@@ -406,3 +406,103 @@ Phase 2 remains open. Before full scene assembly (Phase 3):
 6. Resolve the ambiguous "lizards" term only from instructor clarification or source evidence; do not invent an interpretation.
 7. Add source and licence records to CREDITS.md.
 8. Only when the essential visual categories are covered (by licensed free assets or clearly documented original procedural models), begin Phase 3 and replace blockout placeholders with final scene assets.
+
+## 18. Follow-up zero-cost gap research — candidates, not yet downloaded (2026-11-26)
+
+The following candidates were found through current source-page research. Their pages identify them as CC0 1.0; however, no files have yet been downloaded from these individual pages, no archives inspected, and no models imported or tested. Treat them as **research candidates only** until the exact download and included provenance/licence are verified.
+
+### Priority A — large missing warehouse structures and equipment
+
+1. **Steel Pallet Rack — tevy**
+   - Page: https://tevy.dev/models/steel-pallet-rack
+   - CC0 1.0 according to the model page.
+   - Three-bay steel pallet rack, three beam levels; source describes about 8.3 m long, 1.2 m deep and 5 m tall. The listed bounds field uses a different axis ordering; confirm orientation and dimensions after download.
+   - LOD0/LOD1/LOD2 listed; 32,100 / 13,290 / 2,960 triangles.
+   - GLB, 1.8 MB for LOD0.
+   - Candidate to replace the small Storage_Shelf with proper high-bay pallet rack rows.
+
+2. **Pallet Racking Bay with Pallets — Innerscene**
+   - Page: https://www.innerscene.com/tools/library/3d-parts/pallet-racking-bay-with-pallets-821e591f
+   - CC0 public domain according to the source.
+   - GLB, about 574 KB; listed overall dimensions 2.7 × 1.1 × 3.0 m.
+   - Alternative modular single-bay rack if the tevy three-bay model does not fit the planned rack footprint or has awkward orientation.
+
+3. **Forklift — tevy**
+   - Page: https://tevy.dev/models/forklift
+   - CC0 1.0; LOD0/1/2 listed; 35,888 triangles at LOD0; GLB 2.8 MB.
+   - Separate moving parts listed for wheels, mast, carriage, forks and hydraulic rams.
+   - Candidate for both warehouse dressing and later simple lift/fork animation. The page's dimension field has ambiguous axis order; measure after import.
+
+4. **Loading Dock — tevy**
+   - Page: https://tevy.dev/models/loading-dock
+   - CC0 1.0; LOD0/1/2 listed; GLB 2.5 MB.
+   - Includes 6 m loading bay wall section, 1.2 m high concrete dock, hydraulic dock leveller, bumpers, dock shelter, light and traffic signal; separate moving parts are listed.
+   - Strong candidate for the three loading bays in the 60 × 40 m layout. Check wall integration and exact footprint before duplicating.
+
+5. **Semi Truck and Trailer — tevy**
+   - Page: https://tevy.dev/models/semi-truck
+   - CC0 1.0; three LODs listed; GLB LOD0 2.6 MB.
+   - Generic tractor and 13.6 m box semi-trailer, about 20 m overall; separate trailer, rear doors, landing legs and wheels are listed.
+   - Candidate for the exterior truck apron and dock presentation. Confirm it physically fits the apron and is oriented correctly.
+
+6. **20 ft Shipping Container — Grab3D**
+   - Page: https://grab3d.com/models/city/shipping-container-proz/
+   - Page states CC0 1.0 and offers GLB/FBX/BLEND/OBJ; GLB listed at about 1.3 MB with 2K textures.
+   - Weathered blue 20-ft container with corrugated walls and cargo doors.
+   - Alternative source: Innerscene's CC0 20 ft container is currently offered as STEP, about 2 MB, with GLB/OBJ export through the viewer: https://www.innerscene.com/tools/library/3d-parts/20-ft-standard-shipping-container-cb602209
+   - Prefer the direct GLB candidate only after inspecting its included licence and provenance; otherwise export the Innerscene source to GLB without paid features.
+
+### Priority B — extend conveyor and work areas
+
+7. **Roller Conveyor Straight — tevy**
+   - Page: https://tevy.dev/models/conveyor-roller-straight
+   - CC0 1.0; four-metre powered roller conveyor straight; 3 LODs; LOD0 16,212 triangles and GLB 2.2 MB; 25 separately listed roller parts.
+
+8. **Roller Conveyor Curve — tevy**
+   - Page: https://tevy.dev/models/conveyor-roller-curve
+   - CC0 1.0; 90-degree conveyor curve; 3 LODs; GLB 2.2 MB; separate roller parts.
+
+9. **Belt Conveyor Transfer — tevy**
+   - Page: https://tevy.dev/models/conveyor-belt-transfer
+   - CC0 1.0; powered 1.5 m belt transfer between roller sections; 3 LODs; GLB about 904 KB; head/tail drums separately listed.
+
+10. **Conveyor End Stop — tevy**
+    - Page: https://tevy.dev/models/conveyor-end-stop
+    - CC0 1.0; one-metre roller conveyor end section with stopper; 3 LODs; GLB about 735 KB; separate rollers listed.
+
+    Together these modular parts can form a longer, more convincing line than the existing 1.18 m Roller_Conveyor prop. Their listed moving parts are not proof of ready-to-play animation clips; playback must be tested or animated by our own script.
+
+11. **Workbench — Grab3D**
+    - Page: https://grab3d.com/models/tools/workbench/
+    - CC0 1.0 according to the model page; GLB listed about 1 MB, FBX about 1.8 MB, 2K textures, 8,902 triangles.
+    - Listed size 1.50 × 0.75 × 0.90 m; separate drawer object.
+    - Candidate for an assembly/packing table; harmonize materials to match the existing Warehouse Essentials props.
+
+12. **Lockable Steel Filing Cabinet — Innerscene**
+    - Page: https://www.innerscene.com/tools/library/3d-parts/lockable-steel-filing-cabinet-with-glass-doors-787d3529
+    - CC0 public domain according to source; GLB about 554 KB; listed 0.8 × 0.491 × 1.3 m.
+    - Office/file cabinet with glass doors; not a heavy-duty warehouse cabinet. Use only in the office zone if useful; warehouse equipment cabinets may need procedural modelling.
+
+### Source caveats
+- The pages above state CC0, but the exact downloaded files and their embedded/source licence notices have not yet been inspected. Verify the downloaded file's included licence, creator/provenance and any third-party content before project import.
+- CC0 does not eliminate all trademark, patent, personality or third-party rights. Avoid logos and brand marks in final presentation.
+- Some sources provide GLB with materials and textures embedded; inspect actual import into Unity 6000.6.10f1 URP before selecting.
+- Grab3D is an aggregator-style catalogue; check the underlying model origin, manifest and CC0 notice with the actual file. Prefer direct original creator sources when equivalent quality is available.
+- Tevy pages list CC0 glTF/GLB models and LOD variants; still retain source/asset manifest and check actual file integrity after download.
+- No candidate above is yet counted as imported or verified in Unity.
+
+## 19. Proposed minimal next batch
+
+For the next validation round, prioritize a small number that closes the largest visual gaps:
+- Steel Pallet Rack (tevy) OR Pallet Racking Bay with Pallets (Innerscene) — test one first, not both unless the first fails.
+- Forklift (tevy).
+- Loading Dock (tevy).
+- Semi Truck and Trailer (tevy).
+- 20 ft Shipping Container (prefer a direct GLB with verified CC0 source).
+- Roller Conveyor Straight + Roller Conveyor Curve + Belt Conveyor Transfer (tevy).
+
+Treat the cabinet and workbench as lower priority because the first Warehouse Essentials pack already contains partial cabinet/workbench props.
+
+Do not download everything at once. Verify individual licences/provenance and file formats first, then download this small batch at zero cost. Statically inspect files and import only a representative sample into the existing licensed Unity Editor using a reversible preview. Keep the main project and Git history safe; no paid content or trials.
+
+The instructor's exact word "lizards" is unresolved and must not be guessed. Ask the instructor or inspect the original PDF context before assigning an asset to it.
