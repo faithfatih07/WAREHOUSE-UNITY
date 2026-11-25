@@ -33,7 +33,11 @@ The PDF does NOT specify exact dimensions, required player controls, required ca
 
 Suggested asset sources named in the PDF include Unity Asset Store, Free3D and TurboSquid, as well as three additional asset-collection websites. Check individual asset licences before use. Prefer legitimate sources and assets that can be legally included in the submitted project.
 
-## 2. Agreed user decisions — fixed scope
+## 2. Non-negotiable budget decision
+
+The user explicitly requires a total project budget of EUR 0. No paid assets, plugins, subscriptions, AI services, credits, add-ons or trials that may become paid. Do not purchase or initiate checkout. Use free assets with verified licences (prefer CC0; CC BY 4.0 is acceptable with proper attribution), original procedural geometry, or models created locally with existing free tools. Do not use unauthorized copies of paid assets. The zero-budget constraint must not be used as a reason to silently lower the reference-quality target; instead, harmonize legal free assets and create missing props procedurally.
+
+## 3. Agreed user decisions — fixed scope
 
 These decisions were explicitly selected by the user:
 
@@ -46,7 +50,7 @@ These decisions were explicitly selected by the user:
 
 Do not downgrade the visual target to a minimal blockout as the final result. A blockout is only an intermediate planning stage. Do not interpret 'reference quality' as a requirement for photorealism or expensive PBR assets; prioritize the instructor image's scene composition, functional detail and visual coherence.
 
-## 3. Design direction and layout
+## 4. Design direction and layout
 
 Build a coherent medium-sized logistics / distribution warehouse inspired by the instructor's example.
 
@@ -62,7 +66,7 @@ Layout must read clearly from the isometric camera: distinguish circulation aisl
 
 Exact dimensions are not specified by the instructor. Choose practical provisional dimensions during Phase 1, record them, and keep them consistent. Avoid repeatedly resizing the whole building later.
 
-## 4. Visual and technical quality
+## 5. Visual and technical quality
 
 - Use the existing Unity URP project; do not replace it with another render pipeline.
 - Aim for a polished industrial/logistics look matching the instructor example: concrete floor, steel structure and racks, warehouse markings, believable materials, readable roof/ceiling structure and appropriate industrial lighting. The overall style may be stylized-realistic rather than photorealistic.
@@ -72,7 +76,7 @@ Exact dimensions are not specified by the instructor. Choose practical provision
 - Prefer good composition, clean zone layout, readable aisles and adequate lighting over a large quantity of poorly placed props.
 - Avoid unnecessary post-processing or expensive effects that reduce performance on the user's Mac.
 
-## 5. Warehouse Generator — required project feature by user decision
+## 6. Warehouse Generator — required project feature by user decision
 
 Create a maintainable C# generator that can populate warehouse storage with reusable prefabs.
 
@@ -87,7 +91,7 @@ Minimum intended controls:
 
 The generator should be easy to run and configure (prefer an Editor Inspector component or custom editor workflow if that is the simplest reliable implementation). Do not build a complex inventory simulation; the goal is a convincing, controllable warehouse-population generator.
 
-## 6. Two camera modes
+## 7. Two camera modes
 
 ### Isometric overview
 - Starts as the default mode.
@@ -104,7 +108,7 @@ The generator should be easy to run and configure (prefer an Editor Inspector co
 
 Both modes must be tested in the built scene.
 
-## 7. Animation and sound
+## 8. Animation and sound
 
 Instructor asks for sounds and animation of some elements. Implement a small number of visible, reliable examples:
 - At least one clear moving element, preferably conveyor belt with boxes moving along it.
@@ -114,7 +118,7 @@ Instructor asks for sounds and animation of some elements. Implement a small num
 
 Prioritize a working conveyor animation and a small set of appropriate sounds over many unfinished effects.
 
-## 8. Phased implementation plan
+## 9. Phased implementation plan
 
 ### Phase 0 — Foundation (completed / verify as needed)
 - Unity URP project created.
@@ -131,12 +135,15 @@ If any status changes, verify it rather than assuming.
 - Save the scene and report exact files and what was verified.
 - Verified completed on 2026-11-25: commit c5a387d on main; Warehouse_Blockout.unity and WarehouseBlockoutBuilder.cs are in the repository; SampleScene unchanged; URPProjectSettings diff clean; two consecutive builder runs preserved one WAREHOUSE_ROOT and five rack rows; Unity Console reported no errors and one MCP WebSocket warning.
 
-### Phase 2 — Asset research and import
-- Find a compact, consistent set of legal, Unity-compatible assets.
-- Prioritize the instructor-listed model categories and the major visible props.
-- Record asset source, licence and import format.
-- Import and test assets in the actual project; do not list assets as imported until verified.
-- Avoid asset-library scraping or redistributing assets without permission.
+### Phase 2 — Free asset research and import (zero budget)
+- Use ASSET_RESEARCH.md as the current free-only shortlist.
+- Find a compact, visually coherent set of legal free assets compatible with Unity 6 URP.
+- Prefer CC0; CC BY 4.0 is acceptable with correct attribution. Free Unity Asset Store packages under their EULA are also acceptable.
+- Never purchase assets or initiate checkout/trials. Never use unauthorized mirrors of paid assets.
+- Inspect archive contents and licences before importing. Record source, creator, licence and attribution in CREDITS.md.
+- Import a small representative set into a preview folder/scene first; verify scale, materials, pivots, colliders and URP rendering.
+- Create missing props procedurally / locally using free tools rather than paying.
+- Do not list assets as imported until they have been verified in Unity.
 
 ### Phase 3 — Main environment assembly
 - Replace blockout placeholders with selected models.
@@ -169,7 +176,7 @@ If any status changes, verify it rather than assuming.
 - Commit and push changes to GitHub.
 - Produce an appropriate build and short walkthrough evidence once the lecturer's submission format is confirmed.
 
-## 9. Working rules and anti-drift checklist
+## 10. Working rules and anti-drift checklist
 
 At the start of every new work session:
 1. Read this brief.
@@ -187,8 +194,8 @@ For every completed phase, report:
 
 Do not mark a phase complete based only on generated code or a successful MCP tool call; verify the resulting scene or behavior in Unity when possible.
 
-## 10. Current next task
+## 11. Current next task
 
-Proceed with **Phase 2 — Asset research and import**.
+Proceed with **Phase 2 — Free asset research and import (EUR 0 budget)**.
 
-Read ASSET_RESEARCH.md before selecting assets. First inspect and compare a free sample of the recommended coherent warehouse kit, if available, against the instructor reference and the current blockout. Check package contents, URP compatibility, Unity 6.6 compatibility, licensing and which instructor-required props are covered or missing. Do not purchase anything, accept paid terms, or import a paid asset until the user has explicitly authorized/purchased it. Do not import a large mix of unrelated asset packs. Prefer one coherent asset family. After assets are selected and imported, verify the prefabs and materials in the actual Unity Editor, then move to Phase 3. Preserve the existing 60x40 blockout, project settings and URP configuration until a justified asset/layout fit is verified.
+Read ASSET_RESEARCH.md before selecting assets. Evaluate only zero-cost assets with verified licences. Inspect the 40-prop CC0 warehouse pack first if it can be downloaded for zero; supplement gaps with CC BY 4.0 warehouse props and/or free Unity Asset Store packages. No payment, checkout, paid trial or unauthorized redistribution. Check actual package contents, URP compatibility, Unity 6.6 compatibility, licence terms and required attributions. Import a small sample into a dedicated preview folder/scene, verify it in Unity, harmonize style, and record CREDITS.md. Preserve the existing 60x40 blockout, project settings and URP configuration until asset fit is verified.
