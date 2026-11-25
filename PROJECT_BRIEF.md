@@ -144,7 +144,7 @@ If any status changes, verify it rather than assuming.
 - Preserve circulation paths and the layout decided in Phase 1.
 
 ### Phase 4 — Materials, lighting and presentation
-- Apply coherent PBR materials.
+- Apply a coherent material style; use PBR where supported and useful, or a consistent colour-atlas workflow for a stylized-realistic asset set.
 - Add interior lighting and suitable exterior / loading-area lighting.
 - Tune shadows and visual composition.
 - Ensure the overview camera clearly presents the whole environment.
