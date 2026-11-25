@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Authoritative Project Brief
 
-Version: 1.2  
+Version: 1.3  
 Status: Active project specification  
 Unity project: WAREHOUSE-UNITY  
 Unity pipeline: Universal Render Pipeline (URP)  
@@ -198,4 +198,4 @@ Do not mark a phase complete based only on generated code or a successful MCP to
 
 Proceed with **Phase 2 — Free asset research and import (EUR 0 budget)**.
 
-Read ASSET_RESEARCH.md before selecting assets. Evaluate only zero-cost assets with verified licences. Inspect the 40-prop CC0 warehouse pack first if it can be downloaded for zero; supplement gaps with CC BY 4.0 warehouse props and/or free Unity Asset Store packages. No payment, checkout, paid trial or unauthorized redistribution. Check actual package contents, URP compatibility, Unity 6.6 compatibility, licence terms and required attributions. Import a small sample into a dedicated preview folder/scene, verify it in Unity, harmonize style, and record CREDITS.md. Preserve the existing 60x40 blockout, project settings and URP configuration until asset fit is verified.
+Read ASSET_RESEARCH.md before selecting assets. The 40-prop CC0 Warehouse Essentials archive has now been downloaded at zero cost and statically inspected. Read section 11 of ASSET_RESEARCH.md for the reported inventory, category gaps and security limitations. No antivirus scan was run, no code was executed, and no assets were imported. Next, create an isolated temporary Unity 6000.6.10f1 URP preview project outside the main repository. Import only the six raw FBX candidates and their referenced textures; do not import the nested Unity package or open the Blender project. Verify URP materials, scale, pivots, colliders and actual animation playback. No payment, checkout, paid trial or unauthorized redistribution. Preserve the existing 60x40 blockout, project settings and URP configuration; do not begin Phase 3 until preview results are reviewed.
