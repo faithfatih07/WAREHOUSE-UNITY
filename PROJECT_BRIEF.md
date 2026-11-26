@@ -602,3 +602,27 @@ Next: Phase 8A Test 3 — actual Play Mode animation regression:
 5. Verify authored parent/placement transforms are stable (no drift or accumulating offsets).
 6. Exit Play Mode and verify `Warehouse_Final` is not dirty and the serialized baseline is unchanged.
 No animation code changes, no layout modifications, no generated objects or file deletions. Report per-feature PASS/FAIL/BLOCKED and evidence. Then Test 4 audio/lighting/Console/performance, followed by Phase 8B build/archive checks.
+
+## 31. Phase 8A Test 3 — animation regression and carton investigation (2026-11-26)
+
+### Actual Phase 7A regression
+- Office Double Locker: PASS. Both doors moved in opposite directions through approximately +0.77° to +99.87° and −0.77° to −99.87° during live sampling.
+- Conveyor rollers: PASS. All 100 unique roller transforms changed rotation; 25 rollers in each of four straight modules. Roller positions did not drift.
+- Packing carton: FAIL in the production Play Mode sample. The assigned `Open_Carton.fbx` clip had non-constant curves for all four flaps, but a 4.6-second live Play Mode sample across 41 Editor updates recorded zero local position/rotation change on every flap.
+
+### Follow-up read-only/isolated investigation
+The follow-up report found:
+- The production `Packing_Open_Carton_1` saved hierarchy contains body and four flap children.
+- All 60 clip curve bindings resolve: root, `Open_Carton_Body`, and `Open_Carton_Flap_1` through `Open_Carton_Flap_4`, each with expected Transform properties. No missing paths or unexpected root binding.
+- Direct `AnimationClip.SampleAnimation` on an isolated clone at 0, 0.6, 1.25, 1.9 and 2.4 seconds changed all four flap rotations.
+- Isolated Legacy Animation playback passed in Play Mode: `IsPlaying=true`, and all four flap rotations changed across samples at approximately 0.1, 0.6, 1.252, 1.901 and 2.4 seconds. Editor advanced 1,390 frames.
+- No competing Animator, Animation or script component was found on the inspected production carton root/body/ancestors. The root Animation component is enabled, autoplay, speed 1, PingPong wrap.
+- Separate model and animation FBXs share the same body/flap names and paths. Importer `animationType` differs (model 2, animation clip 1), but this alone is not a demonstrated cause because the locker uses the same type distinction and works.
+- `Warehouse_Final` was restored as active and remained not dirty; temporary fixture was discarded. No project files changed during investigation. Console: 0 errors and the 4 pre-existing obsolete FBX warnings.
+
+Conclusion: the isolated reproduction proves the source clip and Legacy playback can work, but does not establish why the one production-instance Play Mode sample failed. No root cause and no safe production fix have been confirmed. Do not modify animation code, clip, imported FBXs or importer settings speculatively.
+
+### Next focused check
+Run a live Play Mode sample against the exact saved scene instance `P7A_Placement_Packing_Open_Carton_1` in `Warehouse_Final`, with Game View focused and Editor actively advancing. Capture exact instance ID/hierarchy path, active clip, Animation component/state (`isPlaying`, enabled, state.time, normalized time, speed, wrapMode), and four flap local rotations at t0 then ~0.5, 1, 1.5, 2, 2.5 seconds. If it moves, classify the earlier fail as non-reproduced/test instrumentation mismatch and close it. If it still does not move, compare that exact instance to the passing isolated clone including prefab overrides, parent chain, effective clip/state and exact flap paths. Any reproduction must be an unsaved isolated scene/clone; do not run Phase 7A setup, do not save/modify the production scene, and stop if Unity/MCP disconnects. No speculative fix.
+
+After resolving/carton result, proceed to Phase 8A Test 4: verify existing two audio sources/control, interior/dock lighting in both camera modes, fresh Console and actual performance measurement if available; then Phase 8B macOS build/archive checks.
