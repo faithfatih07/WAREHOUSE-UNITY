@@ -222,3 +222,13 @@ These are inventory and fit notes only. The Phase 1 blockout scene and builder w
 - `WAREHOUSE_PHASE5_CAMERA_AND_COLLISION_SYSTEM` groups a single CharacterController and `INVISIBLE_COLLISION_PROXIES`. The setup preserves south dock openings and provides box proxies for perimeter walls, five rack rows, portal columns, fixed conveyor and packing stations. It does not add colliders to small crates or cartons.
 - Play Mode checks verified the west perimeter and rack collisions, continued movement through the west route, and five mode/roof-state transitions. The setup menu was run twice without duplicating the Phase 5 root, player, controller or collider set.
 - Texture generation/import settings and the incomplete matched 1× comparison are recorded in `PROJECT_BRIEF.md` section 18. Retina Game View reported 2× minimum; before/after captures therefore do not yet constitute a verified 1× matched-framing comparison.
+
+## 15. Remaining scope decision (2026-11-26)
+
+The user explicitly excluded the source PDF's ambiguous "lizards" item from this project. Do not research, clarify, substitute "ladders", model it, or treat it as a blocker. It is not implemented; if mentioned in a final exhaustive coverage table, mark "excluded by user decision / not implemented".
+
+Remaining work after Phase 5:
+- Phase 6: configurable deterministic C# Warehouse Generator for shelf/rack stock population.
+- Phase 7: integrate/test selected animations and warehouse audio/ambience.
+- Phase 8: final QA and delivery.
+The strict matched 1× texture before/after screenshot was not verifiable on this Retina Game View (2× minimum); treat as a documented evidence limitation and do not block further implementation on it.
