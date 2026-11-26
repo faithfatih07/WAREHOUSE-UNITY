@@ -32,7 +32,7 @@ All coordinates below are planning bounds, not wall thickness specifications.
 | Sorting / conveyor zone | X 38–56, Z 19–29 | Conveyor and sorting work cells |
 | Packing / assembly zone | X 38–56, Z 12–18 | Assembly tables, packing stations and cabinets |
 | Dispatch / outbound staging | X 37–58, Z 3–11 | Staged pallets, crates and access to dock doors |
-| External truck apron | X 34–60, Z -15–0 | Three truck/trailer positions aligned to loading doors |
+| External truck apron | X 34–60, Z -24–0 | Three full-size truck/trailer positions aligned to loading doors (23–24 m clear depth) |
 
 Maintain an unobstructed route between receiving, storage, sorting, packing and outbound staging. Keep first-person paths at least about 1.8 m clear; primary forklift aisles should be wider (target around 3.0 m or more).
 
@@ -132,3 +132,51 @@ These are inventory and fit notes only. The Phase 1 blockout scene and builder w
 - The project also has separate short Warehouse Essentials roller-conveyor FBX and sample animation clip. The FBX Legacy clip does not apply to the separate tevy GLB hierarchy; later conveyor motion will need the matching FBX model/clip or a project-authored animation for the GLBs.
 - Additional tested stock props include small and medium boxes, a small crate and an open carton. Cabinet and table assets include a double locker, electrical cabinet, toolbox and wooden spool table. Their raw FBX imports have no Unity colliders or `LODGroup` components; add these only as part of a later gameplay/assembly need.
 - Keep the rack +2.5 m Y placement, south-facing 180-degree dock/truck rotation and 23–24 m apron requirements above. No warehouse dimensions, zone bounds or object placement coordinates are changed by this asset review.
+
+
+## 12. Phase 3 final-scene assembly decisions (authorized 2026-11-26)
+
+### Scene safety
+- Create Assets/Scenes/Warehouse_Final.unity as a copy of Assets/Scenes/Warehouse_Blockout.unity.
+- Never edit or regenerate Warehouse_Blockout.unity during Phase 3. Preserve SampleScene.
+- In the new final scene, keep the copied Phase 1 blockout root only as a disabled reference (rename it clearly, e.g. WAREHOUSE_BLOCKOUT_REFERENCE) and create the finished environment under a separate WAREHOUSE_FINAL_ROOT.
+- Create a new Assets/Editor/WarehouseAssemblyBuilder.cs with an idempotent command. It may replace only WAREHOUSE_FINAL_ROOT in Warehouse_Final.unity; it must never delete unrelated scene objects or the blockout reference root.
+- Do not call the Phase 1 WarehouseBlockoutBuilder.Regenerate method from the new assembly task.
+
+### Final dimensions and vehicle apron
+- Internal floor remains 60 m east-west (X) × 40 m south-north (Z); internal clear height approximately 9 m.
+- Final exterior apron is X 34–60, Z approximately -24 to -1 (23–24 m clear depth). This supersedes the old Phase 1 placeholder label Z -15 to 0.
+- Use three dock/truck positions centred approximately at X 40, 47 and 54, but inspect actual asset bounds/pivots and ensure no overlap.
+- Full-size semi-truck measured at approximately 20.026 m long. Do not scale down. Its rear doors should face north (+Z) to reverse into the south-facing dock; place truck facing outwards to the south.
+- Loading dock asset should face south (verified 180° Y orientation); inspect its pivot and integrate the rear face correctly into the south facade.
+
+### Rack layout using verified GLB
+- Five north-south rows, approximate centre X positions 4.5, 10.0, 15.5, 21.0, 26.5.
+- Use two 8.7 m long rack modules per row (ten modules total), rotated to align the 8.7 m local X dimension along world Z.
+- The verified rack is 8.7 × 5.0 × 1.5 m in its imported bounds. Apply the measured vertical pivot offset (+2.5 m when root is not rotated) and verify its base rests on the floor after rotation.
+- Place the two modules in each row end-to-end with a small sensible joint/gap; keep approximately 3 m or more forklift aisles and 2–3 m cross-aisles.
+- Populate racks with existing pallets, boxes and crates, but do not implement the configurable Warehouse Generator in Phase 3.
+
+### Functional area assembly
+- Use the current approved bounds in sections 1–4 as the base zone map.
+- Use the straight, curve and belt-transfer GLB modules to create a legible conveyor/sorting route.
+- Use existing FBX assets for boxes, crates, pallets, pallet jack, cabinets, lockers, toolbox, wooden spool table and workbench vise.
+- Build a general warehouse storage cabinet and a dedicated assembly/production worktable from original, detailed procedural geometry in the project. These are explicitly approved zero-cost modelling decisions; avoid plain primitive placeholder boxes.
+- Place the shipping container in a useful staging/storage position without blocking the forklift spine or dispatch routes.
+- Place forklifts only in believable parking/operating positions and keep all pedestrian/forklift routes clear.
+
+### Roof and overview presentation
+- Build a proper roof structure and roof panels; do not leave the finished warehouse permanently roofless.
+- Keep roof elements under their own named root/layer so the overview presentation can hide/cut away roof panels while the actual roof remains part of the scene. A future first-person camera should be able to show the full roof.
+- Include an overview camera for Phase 3 visual review. Final isometric/first-person controller and toggle are still Phase 5 tasks.
+
+### Deferred instructor term
+- The user approved Phase 3 proceeding while the PDF's exact term “lizards” remains unresolved.
+- Do not substitute ladders or any other item without source evidence or lecturer clarification.
+- Keep the requirement in project documentation as “pending clarification”; do not claim full instructor-category coverage or Phase 2 final sign-off until it is answered.
+
+### Phase 3 boundaries
+- Build the assembled architecture and all known functional zones.
+- Do not implement final lighting (Phase 4), camera controls (Phase 5), the configurable C# Warehouse Generator (Phase 6), or sound/animation integration (Phase 7).
+- Basic temporary inspection lighting is acceptable; clearly label it as provisional.
+- Test actual final scene in Unity; capture overview and representative close-up screenshots, run the builder twice to prove idempotency, verify no Console errors, then commit/push.
