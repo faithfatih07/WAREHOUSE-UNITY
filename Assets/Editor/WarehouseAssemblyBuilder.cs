@@ -303,7 +303,7 @@ public static class WarehouseAssemblyBuilder
         // Forklift spine and footpath are markings only; keep their travel surfaces unobstructed.
         Box(marks, "Forklift_Spine_West_Edge", new Vector3(32f, 0.018f, 20f), new Vector3(0.12f, 0.02f, 34f), Mats["SafetyYellow"]);
         Box(marks, "Forklift_Spine_East_Edge", new Vector3(36f, 0.018f, 20f), new Vector3(0.12f, 0.02f, 34f), Mats["SafetyYellow"]);
-        Box(marks, "Pedestrian_Route_West", new Vector3(2.1f, 0.018f, 20f), new Vector3(1.8f, 0.02f, 35f), Mats["ZoneBlue"]);
+        Box(marks, "Pedestrian_Route_West", new Vector3(1.7f, 0.018f, 20f), new Vector3(1.8f, 0.02f, 35f), Mats["ZoneBlue"]);
         Box(marks, "Pedestrian_Route_Office", new Vector3(18f, 0.02f, 30.6f), new Vector3(28f, 0.025f, 0.16f), Mats["SafetyYellow"]);
 
         Zone(markers: marks, "STORAGE", new Vector3(17f, 0.025f, 5.1f), new Vector3(28f, 0.025f, 0.18f), Mats["ZoneBlue"]);
@@ -392,12 +392,12 @@ public static class WarehouseAssemblyBuilder
     private static void BuildOffice(Transform parent)
     {
         // Enclosed south-west office (X 2–13, Z 31–38), with glazed upper panels and a clear doorway.
-        Box(parent, "Office_West_Wall", new Vector3(2.15f, 1.65f, 34.5f), new Vector3(0.3f, 3.3f, 7.2f), Mats["Pale"]);
-        Box(parent, "Office_North_Wall", new Vector3(7.5f, 1.65f, 38.05f), new Vector3(10.7f, 3.3f, 0.3f), Mats["Pale"]);
+        Box(parent, "Office_West_Wall", new Vector3(3.15f, 1.65f, 34.5f), new Vector3(0.3f, 3.3f, 7.2f), Mats["Pale"]);
+        Box(parent, "Office_North_Wall", new Vector3(8f, 1.65f, 38.05f), new Vector3(9.7f, 3.3f, 0.3f), Mats["Pale"]);
         Box(parent, "Office_East_Wall", new Vector3(12.85f, 1.65f, 34.5f), new Vector3(0.3f, 3.3f, 7.2f), Mats["Pale"]);
-        Box(parent, "Office_South_Left", new Vector3(4.6f, 1.65f, 30.95f), new Vector3(5.2f, 3.3f, 0.3f), Mats["Pale"]);
+        Box(parent, "Office_South_Left", new Vector3(5.55f, 1.65f, 30.95f), new Vector3(4.8f, 3.3f, 0.3f), Mats["Pale"]);
         Box(parent, "Office_South_Right", new Vector3(11.15f, 1.65f, 30.95f), new Vector3(3.4f, 3.3f, 0.3f), Mats["Pale"]);
-        Box(parent, "Office_Glazing_North", new Vector3(7.5f, 2.45f, 37.86f), new Vector3(9.9f, 1.55f, 0.06f), Mats["Glass"]);
+        Box(parent, "Office_Glazing_North", new Vector3(8f, 2.45f, 37.86f), new Vector3(8.9f, 1.55f, 0.06f), Mats["Glass"]);
         Box(parent, "Office_Glazing_East", new Vector3(12.65f, 2.45f, 34.5f), new Vector3(0.06f, 1.55f, 6.3f), Mats["Glass"]);
         Box(parent, "Office_Door", new Vector3(8.6f, 1.1f, 30.95f), new Vector3(1.3f, 2.2f, 0.08f), Mats["Steel"]);
         Box(parent, "Office_Counter", new Vector3(6.3f, 0.9f, 34.7f), new Vector3(2.2f, 0.18f, 0.85f), Mats["Wood"]);
@@ -405,7 +405,7 @@ public static class WarehouseAssemblyBuilder
         Box(parent, "Office_Control_Desk", new Vector3(10.1f, 0.78f, 34.7f), new Vector3(2.1f, 0.15f, 0.85f), Mats["Wood"]);
         Box(parent, "Office_Monitor", new Vector3(10.1f, 1.34f, 34.98f), new Vector3(0.82f, 0.55f, 0.08f), Mats["Steel"]);
         Box(parent, "Office_Monitor_Screen", new Vector3(10.1f, 1.35f, 34.925f), new Vector3(0.7f, 0.42f, 0.025f), Mats["ZoneBlue"]);
-        Model(parent, Essentials("Double_Locker"), "Office_Double_Locker", new Vector3(3.7f, 0f, 36.7f), 0f, 1f);
+        Model(parent, Essentials("Double_Locker"), "Office_Double_Locker", new Vector3(4f, 0f, 36.7f), 0f, 1f);
         Model(parent, Essentials("Electrical_Cabinet"), "Office_Control_Cabinet", new Vector3(11.5f, 0f, 36.8f), 180f, 1f);
         Zone(parent, "OFFICE / CONTROL", new Vector3(7.5f, 0.035f, 32f), new Vector3(8.8f, 0.03f, 0.14f), Mats["ZoneBlue"]);
     }
