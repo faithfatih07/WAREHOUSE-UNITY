@@ -258,3 +258,11 @@ The user has explicitly excluded “lizards”; it is not implemented and is not
 ## 18. Phase 7A animation integration results (2026-11-26)
 
 Phase 7A adds animation behavior without changing the approved 60×40 m interior, 24 m truck apron, zone positions, rack rows, conveyor route, camera setup or stock layout. The existing packing carton and office double locker each use a root-keyed matching Legacy clip beneath a placement parent that retains its original world pose. The four existing straight conveyor modules expose 100 separate roller transforms controlled by one runtime component. Rollers rotate in place; conveyor loads are not translated and no conveyor models are replaced. Full Play Mode results are recorded in `PROJECT_BRIEF.md` section 23 and `Assets/Imported/FreeWarehouseEssentials/Documentation/AnimationPlaybackValidation.md`.
+
+## 19. Phase 8 delivery checks (2026-11-26)
+
+The committed `ProjectSettings/EditorBuildSettings.asset` was checked directly on GitHub and currently lists only `Assets/Scenes/SampleScene.unity`. This omits the actual deliverable scene. Before any standalone build, add `Assets/Scenes/Warehouse_Final.unity` first and enabled, retaining `SampleScene.unity` second and enabled. Preserve both scenes and inspect the existing scene GUID.
+
+The user manually confirmed the two Phase 7B sounds on the Mac: a low ambient warehouse hum and spatial conveyor audio near the conveyor/pallet area. Exactly two sounds are intentional. No pack one-shot or reversing alarm is required.
+
+Phase 8 must preserve reported pre-existing local changes (Phase 4 LED material, three settings files, Build Profiles). Inspect exact diffs before acting. Never run destructive Git cleanup or blanket staging. Final smoke build may target macOS only if support is already installed; the instructor has not specified the final platform, file format or deadline. Source-project archive should be made only from reviewed committed files and exclude Unity caches, .git and unreviewed local-only files.
