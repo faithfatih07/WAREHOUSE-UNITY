@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Authoritative Project Brief
 
-Version: 1.10  
+Version: 1.11  
 Status: Active project specification  
 Unity project: WAREHOUSE-UNITY  
 Unity pipeline: Universal Render Pipeline (URP)  
@@ -300,4 +300,28 @@ The final Console query after recompilation returned no entries. An earlier quer
 
 On this Retina macOS display the live Game View control reported 2× as its minimum, even after setting its internal scale to the minimum. The before capture was made at 7× and the after capture at that available minimum; both are 1920×1104, but their camera framing differs. These are not a matched, explicitly verified 1× comparison. The overview/first-person Play Mode screenshots are 1100×636 ScreenCapture outputs. Phase 5 implementation is in place, but **visual-quality sign-off is pending** a fixed-framing, verified 1× before/after capture. Do not claim the texture comparison requirement is complete until then.
 
-The EUR 0 budget is unchanged. Phase 6 generator, Phase 7 audio/animation integration and the unresolved instructor term “lizards” remain out of scope here.
+The EUR 0 budget is unchanged. Phase 6 generator and Phase 7 audio/animation integration remain. The user has explicitly excluded the ambiguous “lizards” term from project scope; do not spend further effort on it.
+
+## 19. User scope decision — exclude the ambiguous "lizards" term (2026-11-26)
+
+The user explicitly instructed: "tamam o lizard ı siktir et kalan işlere odaklan" (ignore the lizard item and focus on the remaining work).
+
+This supersedes every earlier note that treated "lizards" as an open clarification task or a Phase 3/Phase 2 sign-off blocker.
+
+Rules from now on:
+- Treat the source PDF's literal word "lizards" as an intentionally excluded / waived item for this project scope.
+- Do not research it, ask the lecturer about it, substitute "ladders", build a model for it, or spend further Codex tokens on it.
+- Do not state that the item was built or fulfilled. If the final coverage report must be exhaustive, label it "excluded by user decision / not implemented", not "complete".
+- Continue with the remaining known project requirements only.
+
+Current remaining technical sequence:
+1. Phase 6 — implement the configurable deterministic C# Warehouse Generator, using the exact user-selected scope in section 6 of this brief.
+2. Phase 7 — integrate working conveyor/selected prop animations and appropriate sound effects/warehouse ambience; test in Unity Play Mode.
+3. Phase 8 — final QA, both camera modes, generator, animation/audio, Console, repository dependencies and a build/walkthrough. Do not claim the Roll-a-Ball course tutorial or email/group response is complete unless the user separately confirms it.
+
+Phase 5 status:
+- Both camera modes and texture source regeneration are implemented and Play Mode checked.
+- A strict matched 1× before/after texture screenshot was not achievable on the current Retina Game View (2× was its reported minimum; captures also used different framing). This is a documented evidence limitation, not a reason to block Phase 6. Do not spend another long task chasing 1× unless a practical native-resolution capture method is available during final QA.
+- Preserve truthful status: calibration is implemented; matched 1× comparative sign-off is not verified.
+
+The EUR 0 budget and all other established design choices remain unchanged.
