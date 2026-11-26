@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Authoritative Project Brief
 
-Version: 1.12  
+Version: 1.13  
 Status: Active project specification  
 Unity project: WAREHOUSE-UNITY  
 Unity pipeline: Universal Render Pipeline (URP)  
@@ -21,7 +21,7 @@ Keep the work efficient: prioritize a complete, coherent, reference-quality ware
 The instructor's two-page DPVR_Specification.pdf asks for a 3D warehouse or manufacturing environment created in Unity 3D. Students are expected to research and find the models needed for the environment.
 
 The specification explicitly lists:
-- Models used to assemble the environment: rack, crates, container, cabinets, "lizards" (the PDF uses this exact word; its intended meaning is unclear and must not be guessed), assembly tables, conveyor, and pallet truck.
+- Models used to assemble the environment: rack, crates, container, cabinets, assembly tables, conveyor, and pallet truck. The PDF also contains the word “lizards”; the user explicitly excluded that item from project scope on 2026-11-26. It is not implemented and must not be researched or treated as a blocker.
 - Sounds that fit the environment.
 - Animation of some elements.
 - Interior lighting.
@@ -196,7 +196,7 @@ Do not mark a phase complete based only on generated code or a successful MCP to
 
 ## 11. Historical Phase 2 status and next requirement (see section 16 for current status)
 
-Phase 2 asset import and validation is complete for all categories with a known meaning under the EUR 0 budget. The project contains 14 selected CC0 Warehouse Essentials interactive FBX props, 17 separate Legacy animation samples, and eight CC0 GLB gap models. Added assets and clips were verified in the live Unity 6000.6.10f1 URP 17.6.0 Editor; see `ASSET_RESEARCH.md` section 23 and the imported asset reports. The installed official importer dependencies remain glTFast 6.21.0, KTX 3.8.0 and Meshopt Decompressor 0.3.0-exp.1. No downloaded code was executed and no antivirus scan was performed. The exact instructor word “lizards” remains unresolved. On 2026-11-26 the user explicitly approved proceeding with Phase 3 while carrying this one item forward as an unresolved requirement. Do not guess its meaning or silently substitute ladders/another model. Build all known warehouse categories now; keep a documented gap for “lizards” and ask the lecturer for clarification before final submission. The user has also approved original procedural modelling at EUR 0 for the remaining general storage cabinet and dedicated assembly table.
+Phase 2 asset import and validation is complete for all categories with a known meaning under the EUR 0 budget. The project contains 14 selected CC0 Warehouse Essentials interactive FBX props, 17 separate Legacy animation samples, and eight CC0 GLB gap models. Added assets and clips were verified in the live Unity 6000.6.10f1 URP 17.6.0 Editor; see `ASSET_RESEARCH.md` section 23 and the imported asset reports. The installed official importer dependencies remain glTFast 6.21.0, KTX 3.8.0 and Meshopt Decompressor 0.3.0-exp.1. No downloaded code was executed and no antivirus scan was performed. Historical note, superseded by the later user decision in section 19: the exact instructor word “lizards” was initially carried as unresolved during Phase 3. The user subsequently explicitly excluded it from scope. Do not research it or ask for clarification. Original procedural general storage cabinet and assembly table were approved at EUR 0 and are now built.
 
 ## 12. Phase 2 — GLB importer and gap assets (2026-11-26)
 
@@ -213,13 +213,13 @@ Phase 2 asset import and validation is complete for all categories with a known 
 - Added eight unique Warehouse Essentials interactive FBX props: `Box_Medium`, `Box_Small`, `Crate_Small`, `Double_Locker`, `Electrical_Cabinet`, `Open_Carton`, `Toolbox` and `Wooden_Spool_Table`. Their file hashes match the original archive. Added the exact referenced Blue, Rust and Sage atlases and assigned project-owned URP Lit materials.
 - Retained all 17 separate Warehouse Essentials animation FBXs. In Play Mode every Legacy clip reported as playing; 13 changed transforms over the sampled interval, while `Industrial_Trash_Can`, `Lidded_Transit_Tote`, `Plastic_Barrel` and `Workbench_Vise` showed no pose change. The five moving priority clips and Toolbox have matching transform paths on their static imported FBX counterparts. Root transforms are keyed, so later instances need an unanimated placement parent.
 - The added curve, transfer and eight FBX props rendered with resolved material/texture references in the actual Editor. No raw FBX/GLB instances had Unity colliders or `LODGroup` components. The temporary preview scenes were deleted; `Warehouse_Blockout.unity`, `SampleScene`, packages and project settings were preserved.
-- Phase 2 is complete for identified model categories, but final sign-off is pending because the source PDF's exact term “lizards” is ambiguous. Do not guess. Also document a later original-modelling choice for a general storage cabinet and dedicated assembly table before assembly. Audio, final high-bay lighting, generator implementation and camera modes remain in their scheduled later phases.
-- Concrete decision superseded on 2026-11-26: the user explicitly approved starting Phase 3 without waiting for “lizards” clarification. Carry the term as unresolved; do not interpret it. Proceed with known requirements, and add an original procedural general cabinet and dedicated assembly/production table using free in-project geometry. Do not mark the ambiguous requirement complete until the lecturer clarifies it.
+- Historical Phase 2 review: the source PDF's exact term “lizards” was initially treated as ambiguous. This status was later superseded by the user decision in section 19 to exclude it. The original general cabinet and dedicated assembly table have since been built; lighting, camera modes and generator are complete.
+- Historical decision during Phase 3: proceed without clarifying “lizards”. This was subsequently superseded by section 19, where the user excluded the item from scope. The general cabinet and assembly/production table were built with original free geometry.
 
 
 ## 14. Phase 3 authorization and implementation constraints (2026-11-26)
 
-The user explicitly authorized starting Phase 3 even though the instructor's exact term "lizards" remains unresolved. This authorization means: proceed with all known requirements, keep the unknown item visible as a pending requirement, do not guess its meaning, and do not let it block construction of the rest of the warehouse. It does not mean "lizards" has been satisfied.
+Historical Phase 3 authorization. Superseded by the current scope decision in section 19: the user excluded the ambiguous “lizards” term from the project. It is not implemented, must not be researched or asked about, and is not a blocker.
 
 Original modelling decisions under the EUR 0 budget:
 - Create a coherent general warehouse storage cabinet using original procedural geometry in the project.
@@ -251,7 +251,7 @@ The scene retains the 60 × 40 m interior and approximately 9 m clear height, a 
 
 Unity verification observed two scene roots, 14 final hierarchy groups, 1,405 transforms below `WAREHOUSE_FINAL_ROOT`, 996 renderers, zero null material slots, 10 racks, three docks, three trucks and one inactive six-child blockout reference. A second consecutive builder run reproduced the same counts. Actual Editor captures are `Assets/Screenshots/WarehouseFinal_Phase3_Overview.png` and `Assets/Screenshots/WarehouseFinal_Phase3_Operations.png`. The protected baseline scene files, package manifest/lockfile and ProjectSettings have no diff. The Console had zero errors; it reported eight warning entries (four duplicated warnings) that the existing `MaterialLocation.External` FBX import setting is obsolete for `Crate_Large.fbx`, `Pallet.fbx`, `Pallet_Jack.fbx` and `Workbench_Vise.fbx`. No import settings were altered in this phase.
 
-Phase 3 does not include final lighting/material polish, a switchable first-person camera, a configurable Warehouse Generator, or sound/animation integration. Imported models still have no colliders or LODGroups; collision/gameplay work remains for later phases. The instructor's exact word “lizards” remains pending clarification and is not represented by an invented object. The next implementation phase is Phase 4, followed by camera controls (Phase 5), the Warehouse Generator (Phase 6), and animation/audio integration (Phase 7). Phase 3 visual assembly was Editor-verified; final delivery commit/push state is reported with the task results.
+Phase 3 does not include final lighting/material polish, a switchable first-person camera, a configurable Warehouse Generator, or sound/animation integration. Imported models still have no colliders or LODGroups; collision/gameplay work remains for later phases. At that historical point, “lizards” was still pending clarification; the user later excluded it from project scope in section 19. The next implementation phase is Phase 4, followed by camera controls (Phase 5), the Warehouse Generator (Phase 6), and animation/audio integration (Phase 7). Phase 3 visual assembly was Editor-verified; final delivery commit/push state is reported with the task results.
 
 ## 16. Phase 4 materials, lighting and presentation (2026-11-26)
 
@@ -261,7 +261,7 @@ The builder creates project-owned URP Lit materials and deterministic local text
 
 The full roof structure, roof panels and skylight material remain in the scene. `ROOF_PANELS_AND_SKYLIGHTS` stays disabled for the cutaway overview. It was temporarily enabled for the retained full-roof verification capture and restored to disabled before saving. The overview camera framing and scene ambient/directional lighting were tuned; no camera-mode controller was added. High-bay/dock lights are non-shadow-casting to limit render cost; the existing directional light retains soft shadows. The project settings and packages were not intentionally changed; `ProjectSettings/URPProjectSettings.asset` was restored byte-for-byte after Unity added an unrelated path field.
 
-Actual Editor captures are `Assets/Screenshots/WarehouseFinal_Phase4_Overview.png`, `WarehouseFinal_Phase4_Storage_Closeup.png`, `WarehouseFinal_Phase4_Operations_Closeup.png` and `WarehouseFinal_Phase4_Roof_Complete.png`. The first three show the saved cutaway state; the final image documents the retained roof option. The Phase 3 overview/operations captures remain the before images. The final live scene query found 1,279 renderers, zero missing material/shader slots, 543 assigned Phase 4 material slots with 302 texture-backed assignments, and one 331-transform detail root. The final Console query returned zero errors and four existing obsolete `MaterialLocation.External` warnings from `Pallet.fbx`, `Pallet_Jack.fbx`, `Workbench_Vise.fbx` and `Crate_Large.fbx`; their importer settings were not changed. “Lizards” remains an unresolved instructor term. Phase 5 camera modes, Phase 6 generator and Phase 7 animation/audio remain future work.
+Actual Editor captures are `Assets/Screenshots/WarehouseFinal_Phase4_Overview.png`, `WarehouseFinal_Phase4_Storage_Closeup.png`, `WarehouseFinal_Phase4_Operations_Closeup.png` and `WarehouseFinal_Phase4_Roof_Complete.png`. The first three show the saved cutaway state; the final image documents the retained roof option. The Phase 3 overview/operations captures remain the before images. The final live scene query found 1,279 renderers, zero missing material/shader slots, 543 assigned Phase 4 material slots with 302 texture-backed assignments, and one 331-transform detail root. The final Console query returned zero errors and four existing obsolete `MaterialLocation.External` warnings from `Pallet.fbx`, `Pallet_Jack.fbx`, `Workbench_Vise.fbx` and `Crate_Large.fbx`; their importer settings were not changed. The earlier “lizards” status was superseded by the user scope decision in section 19. Phase 5 camera modes, Phase 6 generator and Phase 7 animation/audio remain future work.
 
 
 ## 17. Close-up pixelation finding and camera-phase handoff (2026-11-26)
@@ -338,43 +338,83 @@ Actual Unity 6000.6.10f1 Editor validation passed: seed 12345 repeated to an ide
 
 The required Phase 5 matched 1× texture comparison remains pending as documented above. Phase 6 was completed under the user's explicit authorization. Phase 7 was not started in this task.
 
-## 21. Phase 7 — animation and audio integration (authorized 2026-11-26)
+## 21. Phase 7 — staged implementation plan (authoritative, 2026-11-26)
 
-The configurable Phase 6 C# Warehouse Generator is implemented and Editor-verified. Proceed with Phase 7.
+Do NOT combine animation and audio into one long Codex task. Implement and verify the animation work first (Phase 7A), commit/push it, then implement audio (Phase 7B) in a separate task. This reduces debugging scope and makes failures attributable.
 
-### Animations
-Use the existing reviewed Legacy animation FBX samples and their matching static Warehouse Essentials models. The 17 imported samples each contain a 2.50-second `Warehouse_DAY` clip. The prior Play Mode report (`Assets/Imported/FreeWarehouseEssentials/Documentation/AnimationPlaybackValidation.md`) verified that 13 clips changed transforms in the sampled interval and four did not. Seven target static model hierarchies were checked against clip curve paths with zero missing non-root bindings.
+### Phase 7A — visible animation only
 
-Prioritize visible, functional examples:
-- `Roller_Conveyor`: implement visibly rotating rollers / moving belt in the active sorting/packing conveyor route. The tested Legacy clip belongs to the Warehouse Essentials FBX hierarchy and is not directly retargeted to the separate tevy GLB modules. Use the matching Warehouse Essentials FBX model for the animated demonstration segment, or implement a separate procedural roller rotation on the GLB only after inspecting its actual node hierarchy. Do not claim a GLB clip was imported.
-- `Double_Locker`: looping / ping-pong door open-close where it can be seen.
-- `Electrical_Cabinet`: safe door open-close demonstration.
-- `Open_Carton`: flap motion at packing.
-- `Pallet_Jack`: use only if the motion can be positioned plausibly without drifting or overriding its placement; use an unanimated placement parent because source clips key root transforms.
-Do not force the four samples that showed no visible transform change (`Industrial_Trash_Can`, `Lidded_Transit_Tote`, `Plastic_Barrel`, `Workbench_Vise`) into the final scene as working animation.
+The active scene is `Assets/Scenes/Warehouse_Final.unity`. The Phase 3 assembly builder's actual scene objects include:
+- Sorting conveyor straight/curve/transfer pieces built from the separate tevy GLB modules.
+- `Conveyor_Load_01` through `Conveyor_Load_04` placed along the straight run near X 43/47/51/55, Z 24.
+- `Sort_Open_Carton` and `Packing_Open_Carton_1`.
+- `Office_Double_Locker`, `Packing_Locker`.
+- `Office_Control_Cabinet`, `Packing_Electrical_Cabinet`.
+- `Packing_Pallet_Jack`, `Dispatch_Pallet_Jack_1`, `Dispatch_Pallet_Jack_2`.
 
-Use the existing Legacy `Animation` component and clip when appropriate, preserving source imports. Place root-keyed animated models under unanimated placement parents. Set suitable wrap modes, ensure models start in the intended neutral state, and test actual motion in Play Mode. Avoid needless duplication, visual clutter, or constant large movements that interfere with the warehouse walkthrough.
+The previous Play Mode report is `Assets/Imported/FreeWarehouseEssentials/Documentation/AnimationPlaybackValidation.md`. It tested 17 Legacy clips, all 2.50 seconds; 13 showed transform changes and four showed no visible transform change. Seven static FBX hierarchies were checked for curve-path compatibility. The safe, directly relevant matching candidates are `Open_Carton`, `Double_Locker`, and `Electrical_Cabinet`. `Pallet_Jack` and `Roller_Conveyor` also matched in the hierarchy check, but clips include root-transform curves, so do not use root-keyed clips if they cause drift or placement changes.
 
-### Audio
-Instructor explicitly asks for sounds that fit the environment. Add a small coherent soundscape, not music:
-- Low-level warehouse ambience / HVAC room tone.
-- Spatial conveyor motor / rollers sound synchronized with the running conveyor.
-- A restrained packing / carton handling or metal impact one-shot.
-- Optional forklift reversing warning only when a believable reverse/vehicle event is actually active; do not have a stationary truck beep continuously.
+Important conveyor distinction:
+- The active long conveyor system is built from tevy GLB straight/curve/transfer modules.
+- The Legacy `Roller_Conveyor` clip belongs to a separate Warehouse Essentials FBX hierarchy. It is NOT a retargeted animation for the tevy GLB modules.
+- Inspect the real GLB hierarchy. If rollers are separate visible child transforms, rotating those roller meshes procedurally is acceptable. Otherwise demonstrate conveyance by moving one existing `Conveyor_Load_*` carton/crate along the existing straight belt path, after validating exact coordinates and clearance. Do not create a fake claim that the GLB roller clip is playing.
 
-EUR 0 is non-negotiable. Prefer clean, legally free CC0 audio if already available without accounts/payment. Otherwise generate original procedural WAV assets locally with an Editor utility (ambient hum, conveyor motor harmonics, short carton/metal handling cues and a reversing warning), and document that they are synthesized. No paid libraries, trials, plugins, sample packs or external service credits. Do not download random audio without checking its licence/source.
+Minimum animation scope (sufficient for the PDF's “animation, some of the elements”):
+1. One carton with visible flap movement using the matching `Open_Carton` Legacy clip.
+2. One existing locker OR electrical-cabinet door with visible open/close movement using its matching Legacy clip.
+3. The conveyor demonstration: either actual individual roller rotation, or one existing load moving smoothly along the real straight section. Prefer the option that is genuinely visible and does not alter the approved layout.
 
-Use AudioSources with sensible volume, spatial blend, rolloff, looping and AudioMixer/grouping only if helpful. Add a simple user mute/volume control if it can be done without distracting from the presentation. Avoid repetitive or excessively loud effects. Keep ambience low and ensure the audio can be heard in Play Mode on the Mac.
+Use the imported Legacy Animation clips/components with their matching FBX hierarchy paths; do not invent Animator Controllers or retargeting unless truly required. Place root-keyed animations under an unanimated placement parent, preserving the world location of the existing object. Use gentle looping or ping-pong, reasonable delays, and a neutral/default pose. Do not animate all repeated locker/cabinet instances; use one or two clear examples. Skip the Pallet_Jack animation unless its root motion is demonstrably safe and useful.
 
-### Verification
-- In actual Unity Play Mode, visibly verify each selected animation, not only that a clip reports as playing.
-- Verify root placement remains stable, animation loops/ping-pongs correctly, and switching between overview and first-person does not break playback.
-- Verify ambient and spatial sounds are audible at appropriate locations and volume, can be muted, and do not overlap excessively.
-- Confirm conveyor audio is synchronized to motion.
-- Check Console; distinguish any pre-existing importer warnings from new errors.
-- Preserve `Warehouse_Blockout.unity`, `SampleScene`, rack layout, generator, cameras and existing warehouse detail.
-- Test generator after animation/audio integration to ensure it still works.
-- Capture actual Unity screenshots and a short Play Mode video or other evidence only if the available tools support genuine capture.
-- Update documentation, commit and push verified Phase 7 work. Do not claim sounds or animation work unless actually heard/seen during Play Mode.
+Use one small runtime animation controller plus a minimal editor setup helper only if needed. Avoid multiple overlapping manager systems. Do not add audio in Phase 7A.
 
-Phase 5 matched-1× texture comparison remains a documented display-evidence limitation and must not block Phase 7/8. The user has explicitly excluded the ambiguous “lizards” PDF term; do not research, clarify, substitute, model or spend effort on it.
+Phase 7A acceptance:
+- In actual Unity Play Mode, visibly confirm the carton flap and selected door move, and verify conveyor roller/package movement.
+- Record before/after child transform values or other reliable runtime evidence.
+- Ensure animated roots stay in their original world locations and no scene object duplicates appear.
+- Switch overview/first-person modes while animations are running.
+- Check Console and test the Phase 6 generator still works.
+- Capture an actual Unity Editor/Play Mode screenshot.
+- Commit and push the verified animation-only work before Phase 7B.
+
+### Phase 7B — audio only
+
+No audio source files currently exist in the repository tree. Keep audio simple and zero-cost:
+- One low-volume continuous warehouse ambience/HVAC loop (2D or very wide spatial source).
+- One spatial conveyor operating loop, enabled only while the conveyor demonstration is active.
+- One restrained carton/packing one-shot, triggered by a clear event such as a package reaching the end of the conveyor. Do not play it repeatedly at an irritating rate.
+- Do NOT add a reversing alarm yet: the current forklifts/trucks are static props and there is no real reverse-driving event to synchronize with.
+
+Prefer original locally generated WAV files using a small offline Editor utility; an already-available, verified CC0 source is acceptable but do not perform a new broad asset search, sign up, pay or use a trial. Do not add music. Avoid installing audio packages or building a full AudioMixer unless a real need is shown.
+
+Use a compact audio controller with sensible gain, loop, spatial blend and rolloff. Add one simple mute/unmute input (M) if it does not conflict with camera controls. Keep ambience and conveyor sound subtle.
+
+Phase 7B acceptance:
+- Confirm clips are assigned, import/load correctly and AudioSources enter playback in Play Mode.
+- Provide a manual listening checklist; do not claim “audibly verified” based only on `AudioSource.isPlaying` or source configuration. The user must confirm actual audible output on the Mac, or a genuine audio-output recording must be inspected.
+- Check that M mutes and restores all Phase 7 audio.
+- Check the two camera modes and generator still work.
+- Check Console, capture screenshots of the audio setup, update docs, commit and push.
+
+### Phase 7 exclusions
+
+- No forklift driving or reversing alarm without a real driving/reverse event.
+- No music, complex interaction framework, advanced audio middleware, paid assets or packages.
+- No animation for the four samples that showed no visible transform change: `Industrial_Trash_Can`, `Lidded_Transit_Tote`, `Plastic_Barrel`, `Workbench_Vise`.
+- Do not re-target the Warehouse Essentials `Roller_Conveyor` clip to the tevy GLB conveyor.
+- Do not modify `SampleScene`, `Warehouse_Blockout.unity`, the approved warehouse layout, Phase 6 generator or camera system except to fix a verified regression.
+- The ambiguous “lizards” item is excluded by user decision; never reopen it.
+
+## 22. Phase 8 — final QA and course handoff
+
+After Phase 7A and 7B:
+- Open `Warehouse_Final.unity` from a clean repository checkout and verify both camera modes, stock generator, animation and audio.
+- Test the scene and project compile with no new Console errors.
+- Confirm all referenced assets, clips, generated WAVs and packages are included in Git.
+- Confirm a clean Git working tree and remote `main) parity.
+- Create a standalone build only after confirming the lecturer's required submission format and target OS; the email screenshots do not specify this format or a deadline.
+- Capture an overview, first-person walkthrough and short evidence clip if supported.
+- Keep the Roll-a-Ball tutorial as a separate teacher-requested course task; do not claim it complete unless the user confirms it.
+- The teacher also requested an email reply stating whether the semester project is individual or a group of up to three students. Track that separately from the Unity repository.
+- A short consultation and VR headset session are offered as optional, not mandatory.
+- The user explicitly excluded “lizards”; mark it “excluded by user decision / not implemented” in any exhaustive coverage table.
