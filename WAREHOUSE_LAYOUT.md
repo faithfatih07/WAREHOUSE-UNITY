@@ -202,3 +202,14 @@ These are inventory and fit notes only. The Phase 1 blockout scene and builder w
 - High-bay spots and dock wall packs provide interior/exterior accents. The existing directional light is reduced to a neutral warm daylight level and remains the only soft-shadow source. Added local lights do not cast shadows to limit cost on the MacBook Air M4. Presentation cameras are still static; first-person/isometric switching remains Phase 5.
 - Screenshots from the actual Unity Editor: `Assets/Screenshots/WarehouseFinal_Phase4_Overview.png`, `WarehouseFinal_Phase4_Storage_Closeup.png`, `WarehouseFinal_Phase4_Operations_Closeup.png`, and `WarehouseFinal_Phase4_Roof_Complete.png`. The before captures remain the Phase 3 screenshots.
 - No layout, blockout or SampleScene changes are authorized by this visual pass. Keep “lizards” pending instructor clarification; camera controls, generator and animation/audio are still later phases.
+
+
+## 13. Phase 5 camera and navigation decisions (2026-11-26)
+
+- Default view on scene start: raised three-quarter / isometric overview camera framing the full 60×40 m interior and 24 m apron. Prefer orthographic projection if it preserves a clear full-scene composition; otherwise tune perspective deliberately.
+- Toggle modes with V; expose a compact on-screen hint/control so the lecturer can discover the mode switch.
+- First-person mode: WASD + mouse look, sensible walking speed, CharacterController, cursor locked on entry and Escape to release. Press V to return to overview.
+- First-person uses the full roof and skylight panels. Isometric overview uses the established roof-panel cutaway state; toggle `ROOF_PANELS_AND_SKYLIGHTS` accordingly without deleting roof assets.
+- Add simplified invisible collision proxies under a dedicated hierarchy for the floor/boundaries, major walls, rack rows, columns, loading-dock structures and large fixed machinery. Do not create unnecessary colliders for each small carton/crate. Test that the player cannot pass through major structures but can traverse the west pedestrian route, forklift spine, rack aisles and door openings.
+- Reuse existing presentation/overview cameras where possible. Keep controller, player and collision proxies grouped and make creation idempotent; do not duplicate cameras or colliders on every builder run.
+- The pixelated close-up screenshot was taken at Game View Scale 7x. This magnifies the rendered image. Use Game View Scale 1x and a fixed resolution for quality captures. Phase 4 generated source maps are 512×512 albedo / 256×256 normal-metallic and original FBX atlases are 128×128; assess and improve those source textures separately from edge anti-aliasing. MSAA helps geometric edges but does not fix texture aliasing. Refer to PROJECT_BRIEF.md section 17.
