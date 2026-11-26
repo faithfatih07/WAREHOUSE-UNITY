@@ -325,3 +325,15 @@ Phase 5 status:
 - Preserve truthful status: calibration is implemented; matched 1× comparative sign-off is not verified.
 
 The EUR 0 budget and all other established design choices remain unchanged.
+
+## 20. Phase 6 configurable warehouse stock generator (2026-11-26)
+
+`Assets/Scripts/WarehouseStockGenerator.cs` stores the scene configuration. `Assets/Editor/WarehouseStockGeneratorEditor.cs` provides a direct Inspector UI (row count, bays per row, shelf levels, fill density, deterministic seed and relative pallet-only/box/crate distribution weights) plus Generate, Clear Generated Stock and Regenerate buttons. Its setup command is **Warehouse → Phase 6 → Configure Stock Generator in Warehouse_Final**. It binds the existing imported Pallet, Box_Small, Box_Medium, Crate_Small and Crate_Large models; no source model was edited and no project-owned model prefabs were needed.
+
+The generator targets the 10 existing modules in `WAREHOUSE_FINAL_ROOT/STORAGE_RACKS_AND_STOCK`, using the assembly's measured row/module transforms and its proven three-bay spacing (2.65 m) and two shelf positions (Y 0 and 2.55 m). The default full rack capacity is 5 rows × 6 positions per row × 2 levels = 60 loads. One pallet and at most one aligned cargo model occupy each selected slot. Seeded `System.Random` shuffling and category selection make the same configuration repeatable. Clear and Regenerate destroy only children of `WAREHOUSE_GENERATED_STOCK_ROOT`; the editor validates required references before clearing.
+
+The configure command created `WAREHOUSE_STOCK_GENERATOR_CONFIG` and the dedicated `WAREHOUSE_GENERATED_STOCK_ROOT`. It moved the existing 120 objects explicitly named `Stock_*` / `Stock_Pallet_*` under that root without replacing their instances, transforms or rack structures. Subsequent generation replaces only the contents of that owned root. The saved `Warehouse_Final.unity` ends with the default 50% density (30 loads), seed 12345; other scene objects, rack modules, routes, trucks, conveyor and architecture were not regenerated.
+
+Actual Unity 6000.6.10f1 Editor validation passed: seed 12345 repeated to an identical arrangement; seed 67890 produced a different arrangement; densities 25/50/75/100 generated 15/30/45/60 unique in-rack slots; clear reduced the owned root to zero; regeneration returned 30 loads without duplicates. Slot checks bounded generated positions to the rack zone. Play Mode started in overview, V switched to first-person, repeated mode changes were exercised, the first-person view rendered the rack aisle, and a one-second W input advanced along the pedestrian route; V returned to overview. The current Console after the generator run showed 0 errors and 2 existing obsolete `MaterialLocation.External` warnings for `Workbench_Vise.fbx` and `Pallet_Jack.fbx`. Earlier Console history contained four obsolete FBX import warnings; these importer settings were not changed. No Phase 7 work was started.
+
+The required Phase 5 matched 1× texture comparison remains pending as documented above. Phase 6 was completed under the user's explicit authorization. Phase 7 was not started in this task.

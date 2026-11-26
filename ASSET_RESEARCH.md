@@ -712,3 +712,9 @@ For a bounded correction, assess native 1x captures, regenerate Phase 4 source m
 The user directed us to ignore the ambiguous "lizards" word in the source PDF and focus on the remaining tasks. Do not research the term, ask the lecturer, reinterpret it as "ladders", search for a replacement, or build anything for it. It is excluded by user decision and was not implemented. If referenced in a final exhaustive coverage report, label it "excluded by user decision / not implemented".
 
 No further broad asset research is needed for the remaining scope. Next work is the configurable C# Warehouse Generator using existing verified prefabs/assets, then integration of selected animations and audio, then final QA.
+
+## 29. Phase 6 use of verified stock assets (2026-11-26)
+
+The configurable stock generator uses only already imported, reviewed Warehouse Essentials assets: `Pallet.fbx`, `Box_Small.fbx`, `Box_Medium.fbx`, `Crate_Small.fbx` and `Crate_Large.fbx`. It keeps their importer assets unchanged and uses them as model prefab sources in scene instances. No additional assets, licences, attribution records or packages were introduced. Existing raw assets remain under `Assets/Imported/FreeWarehouseEssentials/Models/` and retain the previously documented CC0 provenance.
+
+Unity editor validation placed mixed pallet-only, box and crate loads in unique rack positions with repeatable seed behavior. The generator does not add collider, LOD or animation claims to these assets. Source importer warnings about obsolete `MaterialLocation.External` metadata remain an existing Unity-version compatibility notice and were not addressed by changing import settings.
