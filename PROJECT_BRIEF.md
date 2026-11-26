@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Authoritative Project Brief
 
-Version: 1.11  
+Version: 1.12  
 Status: Active project specification  
 Unity project: WAREHOUSE-UNITY  
 Unity pipeline: Universal Render Pipeline (URP)  
@@ -337,3 +337,44 @@ The configure command created `WAREHOUSE_STOCK_GENERATOR_CONFIG` and the dedicat
 Actual Unity 6000.6.10f1 Editor validation passed: seed 12345 repeated to an identical arrangement; seed 67890 produced a different arrangement; densities 25/50/75/100 generated 15/30/45/60 unique in-rack slots; clear reduced the owned root to zero; regeneration returned 30 loads without duplicates. Slot checks bounded generated positions to the rack zone. Play Mode started in overview, V switched to first-person, repeated mode changes were exercised, the first-person view rendered the rack aisle, and a one-second W input advanced along the pedestrian route; V returned to overview. The current Console after the generator run showed 0 errors and 2 existing obsolete `MaterialLocation.External` warnings for `Workbench_Vise.fbx` and `Pallet_Jack.fbx`. Earlier Console history contained four obsolete FBX import warnings; these importer settings were not changed. No Phase 7 work was started.
 
 The required Phase 5 matched 1× texture comparison remains pending as documented above. Phase 6 was completed under the user's explicit authorization. Phase 7 was not started in this task.
+
+## 21. Phase 7 — animation and audio integration (authorized 2026-11-26)
+
+The configurable Phase 6 C# Warehouse Generator is implemented and Editor-verified. Proceed with Phase 7.
+
+### Animations
+Use the existing reviewed Legacy animation FBX samples and their matching static Warehouse Essentials models. The 17 imported samples each contain a 2.50-second `Warehouse_DAY` clip. The prior Play Mode report (`Assets/Imported/FreeWarehouseEssentials/Documentation/AnimationPlaybackValidation.md`) verified that 13 clips changed transforms in the sampled interval and four did not. Seven target static model hierarchies were checked against clip curve paths with zero missing non-root bindings.
+
+Prioritize visible, functional examples:
+- `Roller_Conveyor`: implement visibly rotating rollers / moving belt in the active sorting/packing conveyor route. The tested Legacy clip belongs to the Warehouse Essentials FBX hierarchy and is not directly retargeted to the separate tevy GLB modules. Use the matching Warehouse Essentials FBX model for the animated demonstration segment, or implement a separate procedural roller rotation on the GLB only after inspecting its actual node hierarchy. Do not claim a GLB clip was imported.
+- `Double_Locker`: looping / ping-pong door open-close where it can be seen.
+- `Electrical_Cabinet`: safe door open-close demonstration.
+- `Open_Carton`: flap motion at packing.
+- `Pallet_Jack`: use only if the motion can be positioned plausibly without drifting or overriding its placement; use an unanimated placement parent because source clips key root transforms.
+Do not force the four samples that showed no visible transform change (`Industrial_Trash_Can`, `Lidded_Transit_Tote`, `Plastic_Barrel`, `Workbench_Vise`) into the final scene as working animation.
+
+Use the existing Legacy `Animation` component and clip when appropriate, preserving source imports. Place root-keyed animated models under unanimated placement parents. Set suitable wrap modes, ensure models start in the intended neutral state, and test actual motion in Play Mode. Avoid needless duplication, visual clutter, or constant large movements that interfere with the warehouse walkthrough.
+
+### Audio
+Instructor explicitly asks for sounds that fit the environment. Add a small coherent soundscape, not music:
+- Low-level warehouse ambience / HVAC room tone.
+- Spatial conveyor motor / rollers sound synchronized with the running conveyor.
+- A restrained packing / carton handling or metal impact one-shot.
+- Optional forklift reversing warning only when a believable reverse/vehicle event is actually active; do not have a stationary truck beep continuously.
+
+EUR 0 is non-negotiable. Prefer clean, legally free CC0 audio if already available without accounts/payment. Otherwise generate original procedural WAV assets locally with an Editor utility (ambient hum, conveyor motor harmonics, short carton/metal handling cues and a reversing warning), and document that they are synthesized. No paid libraries, trials, plugins, sample packs or external service credits. Do not download random audio without checking its licence/source.
+
+Use AudioSources with sensible volume, spatial blend, rolloff, looping and AudioMixer/grouping only if helpful. Add a simple user mute/volume control if it can be done without distracting from the presentation. Avoid repetitive or excessively loud effects. Keep ambience low and ensure the audio can be heard in Play Mode on the Mac.
+
+### Verification
+- In actual Unity Play Mode, visibly verify each selected animation, not only that a clip reports as playing.
+- Verify root placement remains stable, animation loops/ping-pongs correctly, and switching between overview and first-person does not break playback.
+- Verify ambient and spatial sounds are audible at appropriate locations and volume, can be muted, and do not overlap excessively.
+- Confirm conveyor audio is synchronized to motion.
+- Check Console; distinguish any pre-existing importer warnings from new errors.
+- Preserve `Warehouse_Blockout.unity`, `SampleScene`, rack layout, generator, cameras and existing warehouse detail.
+- Test generator after animation/audio integration to ensure it still works.
+- Capture actual Unity screenshots and a short Play Mode video or other evidence only if the available tools support genuine capture.
+- Update documentation, commit and push verified Phase 7 work. Do not claim sounds or animation work unless actually heard/seen during Play Mode.
+
+Phase 5 matched-1× texture comparison remains a documented display-evidence limitation and must not block Phase 7/8. The user has explicitly excluded the ambiguous “lizards” PDF term; do not research, clarify, substitute, model or spend effort on it.
