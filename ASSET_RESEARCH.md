@@ -506,3 +506,68 @@ Treat the cabinet and workbench as lower priority because the first Warehouse Es
 Do not download everything at once. Verify individual licences/provenance and file formats first, then download this small batch at zero cost. Statically inspect files and import only a representative sample into the existing licensed Unity Editor using a reversible preview. Keep the main project and Git history safe; no paid content or trials.
 
 The instructor's exact word "lizards" is unresolved and must not be guessed. Ask the instructor or inspect the original PDF context before assigning an asset to it.
+
+## 20. Downloaded GLB gap-asset batch — static inspection only (2026-11-26)
+
+Codex reports that eight GLB 2.0 models were downloaded directly from the listed source pages into `/private/tmp/WarehouseGapAssetReview/`. All eight files were SHA-256 verified. No payment or checkout was used, no code was executed, nothing was imported into Unity, and no main-project files changed.
+
+Detailed file inventory, source records and hashes are retained locally in `Review_Report.md`, `SOURCES.md` and `SHA256SUMS.txt` within the review folder. Those files are not yet committed to GitHub because they are external review records and the models have not passed Unity import/visual review.
+
+### Download inventory reported by Codex
+
+| Asset | Downloaded file | Size | Source-reported dimensions* | Static findings |
+|---|---|---:|---:|---|
+| Steel pallet rack | `Steel_Pallet_Rack_L0.glb` | 1,874,364 B | 8.7 × 5 × 1.5 m | 3 LODs advertised; embedded PBR maps; no collider or animation data detected |
+| Forklift | `Forklift_L0.glb` | 2,912,328 B | 1.41 × 2.4 × 4.12 m | 3 LODs advertised; wheel, mast, fork and ram nodes; no animation clips/channels |
+| Loading dock | `Loading_Dock_L0.glb` | 2,601,352 B | 6.6 × 6.22 × 6 m | 3 LODs advertised; leveller and light-arm nodes; no animation clips/channels |
+| Semi truck and trailer | `Semi_Truck_L0.glb` | 2,686,428 B | 3.27 × 4.21 × 20.03 m | 3 LODs advertised; trailer, door, leg and wheel nodes; no animation clips/channels |
+| Conveyor straight | `Conveyor_Roller_Straight_L0.glb` | 2,281,796 B | 0.88 × 0.99 × 4 m | 3 LODs advertised; 25 roller nodes; no animation clips/channels |
+| Conveyor curve | `Conveyor_Roller_Curve_L0.glb` | 2,334,236 B | 1.48 × 0.99 × 1.48 m | 3 LODs advertised; 12 roller nodes; no animation clips/channels |
+| Belt conveyor transfer | `Conveyor_Belt_Transfer_L0.glb` | 925,636 B | 0.97 × 0.99 × 1.52 m | 3 LODs advertised; two drum nodes; no animation clips/channels |
+| Shipping container | `Shipping_Container.glb` | 1,315,132 B | 6.128 × 2.591 × 2.440 m | One mesh, closed doors; embedded PBR maps; no LOD or animation data detected |
+
+*The rack, forklift and truck source pages contain mismatches between descriptive prose and dimension fields; Codex recorded both where available. These are source-reported values, not measured Unity import bounds. Verify actual dimensions, axis orientation and pivot placement in the Unity preview before changing the layout.*
+
+### Source and licence checks
+- Tevy rack, forklift, dock, truck and conveyor pages state CC0 1.0; their downloaded GLBs embed `tevy.dev` and CC0 metadata.
+- The Grab3D shipping-container download included `LICENSE.txt` stating CC0 1.0. Its manifest identifies Grab3D as source/creator and describes procedural creation.
+- The review folder retains the model files, Grab3D licence/manifest, source notes, inventory report and SHA-256 checksum list.
+- Treat these as licence/source records from the downloaded files and webpages; CC0 only applies to rights held by the named creator and does not clear third-party trademark/patent rights.
+
+### Static security inspection and limitations
+- Static inspection found no scripts, executable payloads, external resource URLs, collider declarations or animation clips/channels in the eight GLBs.
+- Separate moving-part nodes are present on some models, but moving nodes alone are not working animations.
+- No downloaded code was executed.
+- **No antivirus scan was performed.** Hash verification and static inspection do not prove that a file is malware-free.
+
+### Unity import compatibility blocker
+- The current project's package manifest has no glTF/GLB importer dependency.
+- The Tevy GLBs use meshopt-compressed geometry and BasisU/KTX2 textures. A compatible preview importer must support both `EXT_meshopt_compression` and `KHR_texture_basisu`.
+- Official Unity glTFast is a free Unity Package Manager package identified as `com.unity.cloud.gltfast`; its docs describe GLB Editor import and support for URP. Unity's installation documentation names optional support packages `com.unity.meshopt.decompress` for meshoptimizer and `com.unity.cloud.ktx` for KTX/BasisU. glTFast is Apache-2.0 licensed.
+- The official documentation confirms Editor import of GLB and URP, but the extension support requires the optional packages above. None of these packages has been installed in this project yet. Package version compatibility and resulting project dependency changes must be checked before adding them.
+- This gives us a zero-cost importer path; do not use a paid importer or change render pipelines.
+
+### Fit and layout warning
+- The semi-truck source-reported overall length is about 20.03 m, while the current south truck apron in `WAREHOUSE_LAYOUT.md` is about 14–15 m deep.
+- Do not force the truck into the existing apron or arbitrarily scale it down. First measure the imported bounds and orientation. If they confirm approximately 20 m length, revise the apron depth/vehicle positioning in `WAREHOUSE_LAYOUT.md` and then update the blockout through the builder in a separately verified task.
+- The truck, rack and dock dimensions remain unverified in Unity and must not yet be used to change the main scene.
+
+### Main project state
+- No GLB files were imported.
+- No Unity package was installed.
+- No scene, package, project setting or main-project file was changed.
+- Phase 3 has not started.
+- Eight candidate files are downloaded and statically inspected only.
+
+## 21. Current next task — free GLB importer validation and six-model preview
+
+1. Read all current project documents and verify clean Git status and active Unity project.
+2. Inspect `Packages/manifest.json` and `Packages/packages-lock.json`; record existing versions and make a backup before package changes.
+3. Confirm registry versions of `com.unity.cloud.gltfast`, `com.unity.meshopt.decompress` and `com.unity.cloud.ktx` compatible with Unity 6000.6.10f1. Inspect their package licences and dependencies. Use only the free official Unity registry packages.
+4. If any dependency is incompatible, requires payment, or would force unrelated package upgrades/render-pipeline changes, stop and report before installing.
+5. Add the importer and its two required extension packages only if compatible. Keep a minimal, reversible manifest diff.
+6. Use the existing licensed Unity Editor/MCP to import a limited preview set from `/private/tmp/WarehouseGapAssetReview/`: Steel Pallet Rack, Forklift, Loading Dock, Semi Truck and Trailer, Shipping Container, and Conveyor Roller Straight. Do not import all eight yet; curve and transfer modules can follow once the first test works.
+7. Test GLB mesh decoding, KTX2/BasisU textures, URP materials, scale, axis orientation, pivots, separate moving-part hierarchy and visible model quality. Record actual Unity bounds; do not treat source dimensions as measured.
+8. If successful, create a temporary preview scene. Do not modify `Warehouse_Blockout.unity` until the imported models have been inspected and the truck-apron mismatch resolved.
+9. If preview fails, revert only the package/test changes made during this task, preserve unrelated project work, and report the exact error.
+10. Do not commit until all selected GLBs render correctly and the package diff is reviewed. Then commit the importer, required GLB assets and licences if they are needed for the project, while keeping the no-payment rule and attribution records.
