@@ -123,3 +123,12 @@ The six selected GLBs were imported and measured in the active Unity 6000.6.10f1
 - The semi-truck's rear doors are at its negative-Z end and its cab at positive Z. Rotate it 180° around Y so the rear doors face the south-facing dock when reversing from the south apron.
 - These are implementation notes for later integration. They do not authorize changes to `Warehouse_Blockout.unity` or its builder in this asset-import task.
 - Preserve clear apron turning space and dock alignment when layout geometry is updated in a separately scoped assembly task.
+
+## 11. Phase 2 asset integration notes (verified 2026-11-26)
+
+These are inventory and fit notes only. The Phase 1 blockout scene and builder were not changed during this review.
+
+- The modular conveyor set now includes the four-metre straight roller GLB, 90-degree curve GLB and belt-transfer GLB. Their Unity bounds are respectively 0.876 × 0.995 × 4.000 m, 1.475 × 0.995 × 1.475 m and 0.966 × 0.995 × 1.519 m (X × Y × Z). Connect modules in the sorting area while keeping the north-south forklift spine clear.
+- The project also has separate short Warehouse Essentials roller-conveyor FBX and sample animation clip. The FBX Legacy clip does not apply to the separate tevy GLB hierarchy; later conveyor motion will need the matching FBX model/clip or a project-authored animation for the GLBs.
+- Additional tested stock props include small and medium boxes, a small crate and an open carton. Cabinet and table assets include a double locker, electrical cabinet, toolbox and wooden spool table. Their raw FBX imports have no Unity colliders or `LODGroup` components; add these only as part of a later gameplay/assembly need.
+- Keep the rack +2.5 m Y placement, south-facing 180-degree dock/truck rotation and 23–24 m apron requirements above. No warehouse dimensions, zone bounds or object placement coordinates are changed by this asset review.

@@ -4,7 +4,7 @@ Research date: 2026-11-25
 Budget policy: **EUR 0 — no purchases, paid plugins, subscriptions, credits or paid AI asset services.**  
 Current Unity project: Unity 6.6.10f1 (6000.6.10f1), URP  
 Current scene: Assets/Scenes/Warehouse_Blockout.unity  
-Status: Free-source shortlist; assets are NOT yet imported or tested in this Unity project.
+Status: Phase 2 imports and live Editor verification completed for the identified asset categories; final coverage is pending clarification of the PDF's exact word “lizards.” The latest results are in sections 22–23.
 
 ## 1. Non-negotiable budget and licence rules
 
@@ -135,7 +135,7 @@ Assessment:
 9. Create CREDITS.md listing all CC BY assets and their attribution; keep CC0 sources recorded for traceability too.
 10. Only after successful visual and technical checks, use selected assets to replace major placeholders in the warehouse scene.
 
-## 10. Current next task
+## 10. Historical next task — initial free asset verification
 
 Phase 2 — Free asset acquisition and validation only:
 - Download zero-cost samples/candidates only.
@@ -243,7 +243,7 @@ Do not open the Blender project or import the nested Unity package. Do not copy 
 - Repository was clean at `main...origin/main`; no assets were copied to the main project, and no import, scene change, commit or push was performed.
 - Phase 3 has not started.
 
-## 12. Current next task — isolated URP preview
+## 12. Historical next task — isolated URP preview (completed; see sections 14 and 23)
 
 1. Recheck local repository status and the actual Unity Editor state.
 2. Preserve the downloaded review archive and the completed Phase 1 scene.
@@ -324,7 +324,7 @@ The follow-up Codex report and screenshots show that the preview was ultimately 
 - Git reported clean `main...origin/main`; no preview assets were committed. Screenshot retained outside the repository at `/private/tmp/WarehouseAssetPreview_UnityMCP.png`.
 - Phase 3 has not started.
 
-## 15. Current next task — import the six verified free props into the main project
+## 15. Historical next task — import the six verified free props into the main project (completed in section 16)
 
 The isolated visual preview is now successful. The next safe step is to copy only the six approved raw FBX files and their exact referenced textures/material maps from the existing review archive into a dedicated folder in the main project, without importing the nested Unity package.
 
@@ -395,7 +395,7 @@ Based on the previously inspected 40-prop inventory, further free assets are sti
 - No sound asset pack has yet been tested or imported.
 - Separate 17 animation-sample FBXs have not yet been tested for playback.
 
-## 17. Current next task — complete free asset gap research and animation review
+## 17. Historical next task — complete free asset gap research and animation review (superseded by section 23)
 
 Phase 2 remains open. Before full scene assembly (Phase 3):
 1. Read current project docs and verify Git status/Unity project state.
@@ -604,6 +604,69 @@ Tevy source and CC0 notes were retained in `Documentation/SOURCES.md`. The Grab3
 - The temporary preview scene and its `.meta` file were removed after capture. `Warehouse_Blockout.unity`, `SampleScene`, the blockout builder and URP settings were not modified for this import.
 - Console check limitation: the first attempted save path generated one Unity error (`Parent directory must exist before creating asset at: Assets/__GLBPreviewTemp/AssetPreview.unity`). After creating that path, the scene was saved under the temporary root path above and deleted after capture. The Editor log also recorded MCP WebSocket transport warnings when the connection closed. No GLB/model-specific import errors appeared in the inspected log. The Unity Editor/MCP stopped responding before a final live `read_console` call could complete; the Console is not being reported as clean.
 
-### Remaining Phase 2 requirements
+### Status at the time of the original six-GLB import
 
-The curved and belt-transfer conveyor GLBs are still outside the project. There are no animation clips, colliders or LODGroups in this six-model set; add only if later requirements justify them. Continue reviewing the 17 separate Warehouse Essentials animation samples in Unity playback; cover missing cabinet/assembly-table needs and resolve the instructor PDF's exact term “lizards” from lecturer/source evidence. Do not begin Phase 3 assembly until essential category coverage is resolved or remaining gaps are explicitly assigned to procedural modelling. No purchase was made, no downloaded scripts were executed, and no antivirus scan was performed.
+At that point the curve and belt-transfer modules were outside the project and the animation samples were untested. Those tasks were completed in section 23 below. The original console limitation and preview results above remain historical records for that earlier import task.
+
+## 23. Final Phase 2 asset coverage and Play Mode animation validation (2026-11-26)
+
+### Source, licence and hash checks
+
+- The eight added Warehouse Essentials interactive FBX files (`Box_Medium`, `Box_Small`, `Crate_Small`, `Double_Locker`, `Electrical_Cabinet`, `Open_Carton`, `Toolbox`, `Wooden_Spool_Table`) and all 17 animation-sample FBXs were extracted from the already-reviewed `WarehouseEssentials_v1.0_CC0.zip`. Their SHA-256 values matched the exact entries in that archive. The added Blue, Rust and Sage atlas PNGs also matched the archive. The project's `Documentation/LICENSE.txt` is a byte-for-byte copy of the archive's `LICENSE.txt`, which names Akash Jikadra and grants CC0 1.0 for original assets to the extent of the creator's rights.
+- The curved conveyor and belt-transfer GLBs came from the already-downloaded review folder; project file SHA-256 values match the review copies. The official creator pages identify both as free CC0 1.0: [Roller Conveyor Curve](https://tevy.dev/models/conveyor-roller-curve) and [Belt Conveyor Transfer](https://tevy.dev/models/conveyor-belt-transfer). The two digests and detailed Editor measurements are recorded in `Assets/Imported/FreeWarehouseGapAssets/Documentation/UnityImportVerification.md`; source/version records remain in `SOURCES.md`.
+- No purchase, checkout or paid trial occurred. No new package was installed; the nested Warehouse Essentials Unity package and Blender project were not opened or imported. No downloaded code was executed and no antivirus scan was performed.
+
+### Files added to the project
+
+- `Assets/Imported/FreeWarehouseGapAssets/Models/Conveyor_Roller_Curve_L0.glb`
+- `Assets/Imported/FreeWarehouseGapAssets/Models/Conveyor_Belt_Transfer_L0.glb`
+- Eight distinct Warehouse Essentials FBXs under `Assets/Imported/FreeWarehouseEssentials/Models/`: `Box_Medium.fbx`, `Box_Small.fbx`, `Crate_Small.fbx`, `Double_Locker.fbx`, `Electrical_Cabinet.fbx`, `Open_Carton.fbx`, `Toolbox.fbx`, `Wooden_Spool_Table.fbx`
+- All 17 separate animation-sample FBXs under `Assets/Imported/FreeWarehouseEssentials/Animations/`.
+- Three referenced colour atlas PNGs (`Warehouse_Blue_Atlas.png`, `Warehouse_Rust_Atlas.png`, `Warehouse_Sage_Atlas.png`) and three corresponding project-owned URP Lit materials.
+- Updated attribution/import documentation and actual Unity preview captures in the two imported asset Documentation folders.
+
+No duplicate model files were imported. Existing six FBX props and six prior GLBs remain in place.
+
+### Unity 6.6 URP verification
+
+- Unity Editor: 6000.6.10f1, actual project; URP 17.6.0; existing package versions retained.
+- The two added GLBs rendered with `Shader Graphs/glTF-pbrMetallicRoughness`; their base-colour, normal and metallic/roughness texture properties were populated. Unity bounds: curve 1.47 × 0.99 × 1.47 m; transfer 0.97 × 0.99 × 1.52 m.
+- All eight added FBXs rendered with `Universal Render Pipeline/Lit`; every material had a texture assigned. Their measured bounds and renderer counts are in the imported asset verification report. The models read at plausible scale and upright orientation in the captured preview.
+- No null materials or missing texture references were found for these previewed models. The raw FBX and GLB instances had no Unity `Collider` or `LODGroup` components. The tevy pages list three downloadable LOD files, but only LOD0 was imported. The Warehouse Essentials archive's separate collision meshes and LOD files were not imported.
+- The preview shows a readable, coordinated stylized-industrial palette. This isolated asset lineup does not establish that the final scene meets the reference-level detail target; composition, stock density, high-bay lighting and layout integration remain to be reviewed in later phases.
+- The active preview scene `Assets/__Phase2FinalPreview/` was deleted after capture. `Assets/Scenes/Warehouse_Blockout.unity` was reloaded and was clean. `SampleScene`, Packages, ProjectSettings and the blockout builder were not changed by this asset task. The Unity Console returned zero current error or warning entries after preview and animation validation.
+
+### Animation playback findings
+
+All 17 imported animation FBXs exposed one 2.50-second `Warehouse_DAY` clip. Their import type was changed to Legacy. Each preview model used an `Animation` component with the clip explicitly assigned and `Play` called in Play Mode. The Editor was set to run in the background for this test because it was unfocused; Unity frame count and animation state time advanced. Local transform snapshots were compared at two different runtime times.
+
+| Play Mode result | Samples |
+|---|---|
+| Pose changed (13) | `Caution_Sign`, `Double_Locker`, `Electrical_Cabinet`, `Floor_Fan`, `Furniture_Dolly`, `Gas_Cylinder`, `Hand_Trolley`, `Open_Carton`, `Pallet_Jack`, `Roller_Conveyor`, `Step_Ladder`, `Toolbox`, `Utility_Cart` |
+| Clip played, but no pose change observed in sampled interval (4) | `Industrial_Trash_Can`, `Lidded_Transit_Tote`, `Plastic_Barrel`, `Workbench_Vise` |
+
+The seven matching static FBX assets (`Double_Locker`, `Electrical_Cabinet`, `Open_Carton`, `Pallet_Jack`, `Roller_Conveyor`, `Toolbox`, `Workbench_Vise`) had zero missing transform paths when compared with their animation clips. Therefore the clips for the first six listed assets are reusable candidates on the matching Warehouse Essentials models; `Workbench_Vise` is not a demonstrated visible animation. Root transforms are animated, so future scene placement needs an unanimated parent. The `Roller_Conveyor` FBX clip is not a clip for the separate tevy GLBs; those models have moving-part nodes but no clips were imported.
+
+Full per-clip result and setup: `Assets/Imported/FreeWarehouseEssentials/Documentation/AnimationPlaybackValidation.md`. Play Mode images: `AnimationSamples_All17_PlayMode.png` and `AnimationPriority_PlayMode.png`.
+
+### Instructor requirement coverage
+
+| Instructor requirement | Coverage | Verified assets / status | Remaining work |
+|---|---|---|---|
+| Rack | Fully covered | Tevy steel pallet rack GLB | Arrange repeated rack bays and test scene fit in Phase 3 |
+| Crates / stock | Fully covered | Large/small crates, medium/small boxes, open carton, pallets, totes and bins | Populate visually in the generator/assembly phases |
+| Container | Fully covered | Shipping container GLB plus storage containers from Warehouse Essentials | Layout/stacking decision later |
+| Cabinets | Partially covered | Double locker, electrical cabinet, toolbox | A general warehouse storage cabinet is missing; use original procedural modelling if required |
+| “lizards” | Missing / unclear | The PDF's exact wording is preserved; no interpretation has been assumed | Ask the instructor what this means before closing coverage |
+| Assembly tables | Partially covered | Wooden spool table and Workbench Vise | No dedicated assembly/production table; create a project-original procedural model if needed |
+| Conveyor | Structurally covered | Straight roller, 90° curve and belt-transfer modules, plus Essentials short roller prop | Animate the chosen line in a later phase; GLB parts have no imported clip |
+| Pallet truck | Fully covered | Warehouse Essentials Pallet_Jack FBX | Use its verified matching Legacy clip only if desired |
+| Sounds | Missing | No project audio collection was acquired or tested | Source legal free sounds or record/create original foley in Phase 7 |
+| Animation of some elements | Partially covered | 13 of 17 clips showed transform change in Play Mode; useful candidates listed above | Integrate a small number into the final scene and verify there |
+| Interior lighting | Missing | No final high-bay warehouse light rig is part of this asset set | Implement and review lighting in Phase 4 |
+
+The instructor PDF's example also depicts a forklift, loading dock and delivery vehicle; the collection has a verified forklift, dock and semi-truck/trailer GLB. The user-selected project features (both camera modes and a configurable C# Warehouse Generator) remain future implementation work, as scheduled in `PROJECT_BRIEF.md`.
+
+### Phase completion decision
+
+Asset acquisition and technical verification are complete for the known warehouse model categories at zero expenditure. Overall Phase 2 coverage sign-off remains **pending instructor clarification of “lizards.”** General cabinet and dedicated assembly-table gaps are explicitly assigned to original procedural modelling if needed. Sound and final interior lighting remain later scheduled phases. Do not begin Phase 3 until the ambiguous instructor requirement has been clarified or otherwise explicitly resolved with the instructor. `Warehouse_Blockout.unity` remains untouched.

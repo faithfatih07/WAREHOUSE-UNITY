@@ -15,8 +15,12 @@ Imported models:
 - Loading Dock — https://tevy.dev/models/loading-dock
 - Semi Truck and Trailer — https://tevy.dev/models/semi-truck
 - Roller Conveyor Straight — https://tevy.dev/models/conveyor-roller-straight
+- Roller Conveyor Curve — https://tevy.dev/models/conveyor-roller-curve
+- Belt Conveyor Transfer — https://tevy.dev/models/conveyor-belt-transfer
 
 The retained `Documentation/SOURCES.md` records the version-pinned source URLs, the creator-page licence statement and the embedded GLB metadata. The pages did not provide separate per-model licence text files.
+
+The curve and transfer modules were added on 2026-11-26 from the already-reviewed downloads. Their SHA-256 digests matched the source review files: curve `058c44ac485dffb66531d37c7504cfae73016cb5aaeca45a590a13bb9c90373a`; transfer `f0adec5772bfdb4076c9fd2299c51527e390ab667f0dcf438d8c8b75ef367ae8`. Both are CC0 1.0 according to the official creator pages. Their live Unity URP render/material checks are in `Documentation/UnityImportVerification.md`.
 
 ## Grab3D shipping container
 
