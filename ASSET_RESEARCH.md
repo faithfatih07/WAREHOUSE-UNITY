@@ -4,7 +4,7 @@ Research date: 2026-11-25
 Budget policy: **EUR 0 — no purchases, paid plugins, subscriptions, credits or paid AI asset services.**  
 Current Unity project: Unity 6.6.10f1 (6000.6.10f1), URP  
 Current scene: Assets/Scenes/Warehouse_Blockout.unity  
-Status: Phase 2 imports and live Editor verification completed for the identified asset categories; final coverage is pending clarification of the PDF's exact word “lizards.” The latest results are in sections 22–23.
+Status: Phase 2 imports and live Editor verification completed for the identified asset categories. The user explicitly excluded the PDF's ambiguous “lizards” item from scope on 2026-11-26; it is not implemented and is not a blocker. The latest results and authoritative scope decisions are in sections 23, 28–30.
 
 ## 1. Non-negotiable budget and licence rules
 
@@ -725,3 +725,14 @@ Unity editor validation placed mixed pallet-only, box and crate loads in unique 
 The asset research phase is closed. Do not perform another broad asset search. The existing Legacy animation samples are retained in `Assets/Imported/FreeWarehouseEssentials/Animations/`; their detailed 17-clip Play Mode evidence and exact matching-hierarchy limitations are in `Documentation/AnimationPlaybackValidation.md`. Use only matching clip/model hierarchy combinations. The tested `Roller_Conveyor` clip maps to the Warehouse Essentials FBX hierarchy, not the separate tevy GLB conveyor modules.
 
 No audio source files are currently present in the repository tree. For Phase 7 use a legally free CC0 audio source only if already available without signup/payment; otherwise author small original procedural WAVs locally with an Editor utility. Do not install audio packages or use paid/unlicensed content. The next phase after animation/audio is Phase 8 final QA and delivery.
+
+
+## 30. Phase 7 implementation is split into two verified tasks (2026-11-26)
+
+Animation evidence is in `Documentation/AnimationPlaybackValidation.md`. The active Warehouse Final scene already contains the relevant static model instances: `Sort_Open_Carton`, `Packing_Open_Carton_1`, `Office_Double_Locker`, `Packing_Locker`, `Office_Control_Cabinet`, `Packing_Electrical_Cabinet`, plus conveyor loads `Conveyor_Load_01`–`Conveyor_Load_04`. The exact assembly coordinates and hierarchy names are in `Assets/Editor/WarehouseAssemblyBuilder.cs`.
+
+Phase 7A should animate only one carton, one locker or electrical-cabinet door, and the conveyor demonstration. Use only matching Legacy clips proven by the report. The long operational conveyor is composed from separate tevy GLB modules, not the Warehouse Essentials `Roller_Conveyor` FBX. Do not retarget the latter. Inspect the GLB's roller hierarchy first; if it does not expose individual rollers, move one existing conveyor load along the validated straight segment. Avoid root-motion drift and unnecessary pallet-jack animation.
+
+Phase 7B audio is separate. The repository contains no pre-existing WAV/MP3/OGG audio sources. Use a small original locally generated WAV soundscape or already-available verified CC0 audio only. Do not perform broad new asset research or use paid/unlicensed files. The user must listen in Play Mode to confirm audible output; source configuration alone is not audibility proof.
+
+The ambiguous “lizards” item is excluded by user decision; no further work is allowed on it.
