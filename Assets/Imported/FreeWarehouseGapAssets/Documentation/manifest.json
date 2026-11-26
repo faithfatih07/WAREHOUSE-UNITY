@@ -1,0 +1,46 @@
+{
+ "slug": "shipping-container-proz",
+ "triangles": 4208,
+ "texture_px": 2048,
+ "triangles_light": null,
+ "texture_px_light": null,
+ "files": {
+  "glb": {
+   "name": "shipping-container-proz.glb",
+   "bytes": 1315132
+  },
+  "blend": {
+   "name": "shipping-container-proz.blend",
+   "bytes": 1253209
+  },
+  "fbx": {
+   "name": "shipping-container-proz.fbx",
+   "bytes": 1940956
+  },
+  "obj": {
+   "name": "shipping-container-proz-obj.zip",
+   "bytes": 1756908
+  },
+  "usdz": {
+   "name": "shipping-container-proz.usdz",
+   "bytes": 2037533
+  }
+ },
+ "extras": {
+  "license": "CC0-1.0",
+  "source": "grab3d.com",
+  "dimensions_m": "6.128 x 2.440 x 2.591",
+  "triangles": 4208,
+  "textures": "PBR 2048px: base color, roughness, metallic, normal (baked)",
+  "generator": "Created by grab3d",
+  "created": "2026-09-26",
+  "real_size": "20 ft ISO 668 dry van, 6.058 x 2.438 x 2.591 m",
+  "notes": "doors modelled closed; corner castings with ISO slots"
+ },
+ "origin": {
+  "method": "procedural",
+  "detail": "Built procedurally with Blender scripts. The scripts were written with the help of an AI coding assistant. No generative AI model produced the geometry or textures directly.",
+  "ai_content": false,
+  "ai_assisted_code": true
+ }
+}

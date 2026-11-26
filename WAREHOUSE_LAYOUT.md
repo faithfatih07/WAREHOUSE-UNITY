@@ -15,7 +15,7 @@ This layout is an implementation decision for the project, not a dimension speci
 - South is the front/loading facade (Z = 0).
 - North is the rear of the warehouse (Z = 40).
 - West is X = 0; east is X = 60.
-- Exterior truck apron is south of the building, approximately Z = -15 to -1.
+- Exterior truck apron is south of the building. After measuring the imported semi-truck in Unity, plan approximately 23–24 m of clear apron depth (roughly Z = -24 to -1) for a straight dock approach; do not scale down the truck to force it into the former 14–15 m apron.
 - The overview camera should look from a raised south-west / south-east three-quarter angle and frame the complete facility.
 - For later presentation, use a cutaway/hidden-front-wall/roof approach if necessary so the inside is readable from the isometric view. Do not build a permanently roofless final warehouse merely to make the overview visible.
 
@@ -112,14 +112,14 @@ At the end, report the real scene path, created scripts/materials, screenshots o
 - Verified through Codex/Unity MCP: two consecutive builder runs left one WAREHOUSE_ROOT and five rack rows; scene saved; SampleScene unchanged; URPProjectSettings had no diff; Unity Console reported no errors and one MCP WebSocket warning.
 - Note: the blockout uses primitive geometry and coloured zones intentionally. Phase 2/3 will replace major placeholders with selected licensed assets.
 
-## 10. Vehicle apron fit check — pending asset verification
+## 10. Imported GLB fit and placement notes (verified 2026-11-26)
 
-The 2026-11-26 static review of the candidate `Semi_Truck_L0.glb` records a source-reported overall length of about 20.03 m. The current truck apron was planned at approximately 14–15 m deep (south of the dock facade), so the source-reported truck length appears to exceed the current apron depth.
+The six selected GLBs were imported and measured in the active Unity 6000.6.10f1 URP Editor with glTFast 6.21.0, KTX 3.8.0 and Meshopt Decompressor 0.3.0-exp.1. Their Unity bounds and import findings are recorded in `Assets/Imported/FreeWarehouseGapAssets/Documentation/UnityImportVerification.md`.
 
-This is a planning warning only:
-- The rack, forklift and truck source pages contain mismatches between prose dimensions and dimension fields.
-- The downloaded GLB has not yet been imported into Unity and its actual bounds/orientation are not measured.
-- Do not scale down the truck or change the warehouse blockout based on source-page dimensions alone.
-- After GLB importer validation, measure the truck's actual Unity bounds and placement orientation.
-- If approximately 20 m overall length is confirmed, revise the external apron to approximately 23–24 m clear depth or otherwise revise the dock/truck arrangement before updating the main scene.
-- Keep the 60 × 40 m internal warehouse footprint unchanged unless another verified constraint requires a separately reviewed change.
+- Keep the 60 × 40 m internal warehouse footprint unchanged.
+- Provide approximately 23–24 m of clear exterior truck apron depth south of the loading facade. The truck is 20.026 m long in Unity; do not scale it down to fit the old 14–15 m apron.
+- The rack model has a vertically centred pivot and 5.0 m height; place its root at Y = +2.5 m for floor placement.
+- Rotate the loading dock model 180° around Y so its facade faces south (toward negative Z).
+- The semi-truck's rear doors are at its negative-Z end and its cab at positive Z. Rotate it 180° around Y so the rear doors face the south-facing dock when reversing from the south apron.
+- These are implementation notes for later integration. They do not authorize changes to `Warehouse_Blockout.unity` or its builder in this asset-import task.
+- Preserve clear apron turning space and dock alignment when layout geometry is updated in a separately scoped assembly task.

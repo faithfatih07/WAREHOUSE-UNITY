@@ -559,7 +559,7 @@ Detailed file inventory, source records and hashes are retained locally in `Revi
 - Phase 3 has not started.
 - Eight candidate files are downloaded and statically inspected only.
 
-## 21. Current next task — free GLB importer validation and six-model preview
+## 21. GLB importer validation plan (completed; see section 22)
 
 1. Read all current project documents and verify clean Git status and active Unity project.
 2. Inspect `Packages/manifest.json` and `Packages/packages-lock.json`; record existing versions and make a backup before package changes.
@@ -571,3 +571,39 @@ Detailed file inventory, source records and hashes are retained locally in `Revi
 8. If successful, create a temporary preview scene. Do not modify `Warehouse_Blockout.unity` until the imported models have been inspected and the truck-apron mismatch resolved.
 9. If preview fails, revert only the package/test changes made during this task, preserve unrelated project work, and report the exact error.
 10. Do not commit until all selected GLBs render correctly and the package diff is reviewed. Then commit the importer, required GLB assets and licences if they are needed for the project, while keeping the no-payment rule and attribution records.
+
+## 22. GLB gap-model import and live Unity verification (2026-11-26)
+
+The importer-support commit `c30f1ce` (`build: add official glTF import support`) was pushed to `origin/main` before any new commit was created. The remote branch was verified at `c30f1ce9ae2df12ee8fd92d8530aafe73cfde701`.
+
+### Imported models and retained provenance
+
+Six reviewed GLBs were copied from `/private/tmp/WarehouseGapAssetReview/Models/` into `Assets/Imported/FreeWarehouseGapAssets/Models/`. Their destination SHA-256 values were compared to the reviewed `SHA256SUMS.txt` and matched:
+
+| Model | Creator/source | Source size | SHA-256 verified |
+|---|---|---:|---|
+| `Steel_Pallet_Rack_L0.glb` | tevy.dev — https://tevy.dev/models/steel-pallet-rack | 1,874,364 B | Yes |
+| `Forklift_L0.glb` | tevy.dev — https://tevy.dev/models/forklift | 2,912,328 B | Yes |
+| `Loading_Dock_L0.glb` | tevy.dev — https://tevy.dev/models/loading-dock | 2,601,352 B | Yes |
+| `Semi_Truck_L0.glb` | tevy.dev — https://tevy.dev/models/semi-truck | 2,686,428 B | Yes |
+| `Shipping_Container.glb` | Grab3D — https://grab3d.com/models/city/shipping-container-proz/ | 1,315,132 B | Yes |
+| `Conveyor_Roller_Straight_L0.glb` | tevy.dev — https://tevy.dev/models/conveyor-roller-straight | 2,281,796 B | Yes |
+
+Tevy source and CC0 notes were retained in `Documentation/SOURCES.md`. The Grab3D `LICENSE.txt` and `manifest.json` were retained unchanged. `CREDITS.md` records the source URLs and CC0 1.0 status. Embedded GLB textures and material definitions were preserved; no external texture package was added. `Documentation/GLB_ImportPreview.png` is the screenshot captured from the actual Unity Editor. Detailed per-model observations are in `Documentation/UnityImportVerification.md`.
+
+### Unity and rendering verification
+
+- Unity Editor: 6000.6.10f1; URP: 17.6.0.
+- Installed official Unity importer packages: glTFast 6.21.0, KTX 3.8.0 and Meshopt Decompressor 0.3.0-exp.1. These are the compatible versions retained by the pushed importer-support commit. No render-pipeline change was made.
+- The live Editor loaded and instantiated all six GLBs in a separate temporary scene. All six rendered. Every model's materials used `Shader Graphs/glTF-pbrMetallicRoughness`; inspection found no null material references and populated texture slots. The selected tevy meshopt geometry and BasisU/KTX2 texture path rendered; the KTX2 decode path had also been exercised in the successful prior GLB preview (`/private/tmp/WarehouseGapAssetReview/Unity_Importer_Preview_Report.md`). The temporary scene was saved as `Assets/AssetPreview_TEMP.unity` for capture and later removed.
+- Actual Unity renderer bounds were: rack 8.700 × 5.000 × 1.500 m; forklift 1.410 × 2.397 × 4.120 m; dock 6.600 × 6.220 × 6.000 m; truck 3.270 × 4.207 × 20.026 m; container 6.128 × 2.591 × 2.440 m; straight conveyor 0.876 × 0.995 × 4.000 m (X × Y × Z).
+- Separate object hierarchies were retained: forklift (9 direct child nodes), dock (5), truck (11), container (1) and conveyor (27); rack is a single renderer root. These child objects are not evidence of animation.
+- No colliders, LODGroups, Animation components or Animator components were found in the imported instances. Do not claim these six assets animate. Source-advertised LOD variants were not imported as LODGroups.
+- No source-scale correction was applied. The rack pivot is vertically centered; use a +2.5 m Y translation to place its 5 m height on the floor. The loading dock needs a 180° Y rotation to face south. The truck has length along Z, rear doors at negative Z and cab at positive Z; rotate 180° around Y for its rear doors to face the south-facing dock.
+- The 20.026 m measured truck requires approximately 23–24 m clear apron depth for a straight approach. This is recorded in `WAREHOUSE_LAYOUT.md`; the 60 × 40 m internal footprint remains unchanged.
+- The temporary preview scene and its `.meta` file were removed after capture. `Warehouse_Blockout.unity`, `SampleScene`, the blockout builder and URP settings were not modified for this import.
+- Console check limitation: the first attempted save path generated one Unity error (`Parent directory must exist before creating asset at: Assets/__GLBPreviewTemp/AssetPreview.unity`). After creating that path, the scene was saved under the temporary root path above and deleted after capture. The Editor log also recorded MCP WebSocket transport warnings when the connection closed. No GLB/model-specific import errors appeared in the inspected log. The Unity Editor/MCP stopped responding before a final live `read_console` call could complete; the Console is not being reported as clean.
+
+### Remaining Phase 2 requirements
+
+The curved and belt-transfer conveyor GLBs are still outside the project. There are no animation clips, colliders or LODGroups in this six-model set; add only if later requirements justify them. Continue reviewing the 17 separate Warehouse Essentials animation samples in Unity playback; cover missing cabinet/assembly-table needs and resolve the instructor PDF's exact term “lizards” from lecturer/source evidence. Do not begin Phase 3 assembly until essential category coverage is resolved or remaining gaps are explicitly assigned to procedural modelling. No purchase was made, no downloaded scripts were executed, and no antivirus scan was performed.
