@@ -176,7 +176,7 @@ This is a record of the reported inspection, not an independent antivirus certif
 | Crates / stock | `Crate_Large`, `Crate_Long`, `Crate_Small`, `Box_Medium`, `Box_Small`, `Box_Tall`, `Open_Carton`, `Sack`, `Pallet`, `Lidded_Transit_Tote`, `Storage_Bin`, `Wire_Basket` | Good small-prop coverage; no shrink-wrapped pallet reported |
 | Container | `Lidded_Transit_Tote`, `Storage_Bin`, `Plastic_Barrel`, `Steel_Drum`, `Jerry_Can`, `Gas_Cylinder` | Partial: storage containers and drums, no freight/shipping container |
 | Cabinets | `Double_Locker`, `Electrical_Cabinet`, `Toolbox` | Partial: these do not replace a general warehouse storage cabinet |
-| "Lizards" | None | Missing; the instructor PDF uses this exact word and its meaning remains unclear |
+| "Lizards" | Excluded by user decision / not implemented | PDF wording preserved; no interpretation made |
 | Assembly tables | `Wooden_Spool_Table`, `Workbench_Vise` | Partial: table/workbench props, no dedicated assembly-line table |
 | Conveyor | `Roller_Conveyor` | One short roller-conveyor section; not a complete multi-section powered conveyor system |
 | Pallet truck | `Pallet_Jack` | Present |
@@ -391,7 +391,7 @@ Based on the previously inspected 40-prop inventory, further free assets are sti
 - More complete warehouse storage cabinets.
 - Dedicated assembly table (current workbench props are partial coverage).
 - Expanded powered conveyor system (current Roller_Conveyor is one short section).
-- The instructor PDF's exact term "lizards" remains unresolved; do not guess its meaning.
+- Historical note: the PDF's exact term "lizards" was unresolved at the time; the user later excluded it from project scope.
 - No sound asset pack has yet been tested or imported.
 - Separate 17 animation-sample FBXs have not yet been tested for playback.
 
@@ -403,7 +403,7 @@ Phase 2 remains open. Before full scene assembly (Phase 3):
 3. Inspect actual downloaded file licences and archive contents statically before import.
 4. Prioritize proper pallet racking, forklift, freight container, truck/trailer, dock door, general cabinets and an assembly table.
 5. Review the separate 17 animation-sample FBX assets identified in section 11. Determine which actual animation clips exist from metadata/keyframes; do not claim playback until tested in Unity. Make a small reversible preview for suitable samples using the already licensed Unity Editor, preserving existing scenes/settings.
-6. Resolve the ambiguous "lizards" term only from instructor clarification or source evidence; do not invent an interpretation.
+6. Historical instruction at the time: resolve the ambiguous "lizards" term only from instructor clarification or source evidence. This is superseded by the user's later explicit decision to exclude it from scope.
 7. Add source and licence records to CREDITS.md.
 8. Only when the essential visual categories are covered (by licensed free assets or clearly documented original procedural models), begin Phase 3 and replace blockout placeholders with final scene assets.
 
@@ -505,7 +505,7 @@ Treat the cabinet and workbench as lower priority because the first Warehouse Es
 
 Do not download everything at once. Verify individual licences/provenance and file formats first, then download this small batch at zero cost. Statically inspect files and import only a representative sample into the existing licensed Unity Editor using a reversible preview. Keep the main project and Git history safe; no paid content or trials.
 
-The instructor's exact word "lizards" is unresolved and must not be guessed. Ask the instructor or inspect the original PDF context before assigning an asset to it.
+Historical note, superseded by the user's later scope decision: the instructor's exact word "lizards" was unresolved. It is now excluded; do not ask about it or assign an asset.
 
 ## 20. Downloaded GLB gap-asset batch — static inspection only (2026-11-26)
 
@@ -657,7 +657,7 @@ Full per-clip result and setup: `Assets/Imported/FreeWarehouseEssentials/Documen
 | Crates / stock | Fully covered | Large/small crates, medium/small boxes, open carton, pallets, totes and bins | Populate visually in the generator/assembly phases |
 | Container | Fully covered | Shipping container GLB plus storage containers from Warehouse Essentials | Layout/stacking decision later |
 | Cabinets | Partially covered | Double locker, electrical cabinet, toolbox | A general warehouse storage cabinet is missing; use original procedural modelling if required |
-| “lizards” | Missing / unclear | The PDF's exact wording is preserved; no interpretation has been assumed | Ask the instructor what this means before closing coverage |
+| “lizards” | Excluded by user decision / not implemented | The PDF's exact wording is preserved; no interpretation has been assumed | No further work; not a blocker |
 | Assembly tables | Partially covered | Wooden spool table and Workbench Vise | No dedicated assembly/production table; create a project-original procedural model if needed |
 | Conveyor | Structurally covered | Straight roller, 90° curve and belt-transfer modules, plus Essentials short roller prop | Animate the chosen line in a later phase; GLB parts have no imported clip |
 | Pallet truck | Fully covered | Warehouse Essentials Pallet_Jack FBX | Use its verified matching Legacy clip only if desired |
@@ -669,12 +669,12 @@ The instructor PDF's example also depicts a forklift, loading dock and delivery 
 
 ### Phase completion decision
 
-Asset acquisition and technical verification are complete for the known warehouse model categories at zero expenditure. Overall Phase 2 coverage sign-off remains **pending instructor clarification of “lizards.”** General cabinet and dedicated assembly-table gaps are explicitly assigned to original procedural modelling if needed. Sound and final interior lighting remain later scheduled phases. Do not begin Phase 3 until the ambiguous instructor requirement has been clarified or otherwise explicitly resolved with the instructor. `Warehouse_Blockout.unity` remains untouched.
+Historical Phase 2 decision, superseded by section 28: asset acquisition and technical verification were initially treated as pending “lizards” clarification. The user later excluded that item. General cabinet and assembly-table gaps were assigned to original procedural modelling and completed in Phase 3. Sound remained a later scheduled task. `Warehouse_Blockout.unity` remained untouched.
 
 
 ## 24. Phase 3 handoff — approved to assemble known requirements (2026-11-26)
 
-The user explicitly approved starting Phase 3 while the instructor PDF's exact word "lizards" remains unresolved. Keep it pending; do not guess or substitute another item. The known requirements and model categories are sufficiently covered to assemble the main warehouse. General storage cabinet and dedicated assembly table are approved as original procedural geometry under the EUR 0 budget. Do not perform another broad asset search. Follow WAREHOUSE_LAYOUT.md section 12 and PROJECT_BRIEF.md section 14. Build in a new Warehouse_Final.unity scene, preserve the Phase 1 blockout baseline, use only verified imported assets already in the repository, and implement Phase 3 assembly only. Do not start camera controller, C# generator, final lighting, or audio/animation integration yet.
+Historical Phase 3 handoff: the user approved starting before clarifying "lizards". A later decision in section 28 excluded that item from scope; do not treat it as pending. The known requirements and model categories are sufficiently covered to assemble the main warehouse. General storage cabinet and dedicated assembly table are approved as original procedural geometry under the EUR 0 budget. Do not perform another broad asset search. Follow WAREHOUSE_LAYOUT.md section 12 and PROJECT_BRIEF.md section 14. Build in a new Warehouse_Final.unity scene, preserve the Phase 1 blockout baseline, use only verified imported assets already in the repository, and implement Phase 3 assembly only. Do not start camera controller, C# generator, final lighting, or audio/animation integration yet.
 
 ## 25. Phase 3 asset integration results (2026-11-26)
 
@@ -682,7 +682,7 @@ All Phase 3 scene placement used the already-reviewed assets documented in secti
 
 `Assets/Scenes/Warehouse_Final.unity` contains the final warehouse assembly, with imported materials left assigned and project-owned procedural construction materials under `Assets/Materials/WarehouseFinal/`. The overall renderer check found no null material slots; actual Unity screenshots show the models and materials rendering in URP. No colliders or LODGroups were added to models because none were present in the verified imports. No animation playback or audio work was performed in this phase.
 
-Do not treat this assembly as closure of the “lizards” item: that exact instructor term remains pending clarification. Other later scheduled work remains: final lighting (Phase 4), camera modes/controller (Phase 5), configurable C# Warehouse Generator (Phase 6), and selected animation/audio integration (Phase 7). The two phase captures are `Assets/Screenshots/WarehouseFinal_Phase3_Overview.png` and `Assets/Screenshots/WarehouseFinal_Phase3_Operations.png`.
+At the time of this Phase 3 report, “lizards” was still unresolved; it was later excluded by user decision in section 28. Other later scheduled work remains: final lighting (Phase 4), camera modes/controller (Phase 5), configurable C# Warehouse Generator (Phase 6), and selected animation/audio integration (Phase 7). The two phase captures are `Assets/Screenshots/WarehouseFinal_Phase3_Overview.png` and `Assets/Screenshots/WarehouseFinal_Phase3_Operations.png`.
 
 ## 26. Phase 4 material and visual review (2026-11-26)
 
