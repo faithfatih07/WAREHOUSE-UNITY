@@ -474,10 +474,267 @@ The user explicitly excluded “lizards” from scope. In the coverage report sh
 9. **Academic handoff.** Keep these separate from Unity scene completion: the teacher explicitly linked the Roll-a-Ball tutorial but no user confirmation of completion exists; the email also asked the student to reply whether working individually or in a group of up to three. Do not claim either is complete without confirmation. VR session and consultation were optional. No submission target/deadline is specified in the email screenshots.
 10. **Final report.** Provide a PDF requirement coverage table, actual tests performed, Console state, build result/target, GitHub commit and remote parity, local uncommitted changes preserved, source archive path, and academic items still awaiting user action. Be explicit about tests not performed.
 
-Do not add features during Phase 8 except the single user-approved, narrowly bounded Automatic Conveyor Package Flow exception recorded in section 26. Do not reopen the excluded “lizards” term. Keep the EUR 0 budget.
+Do not add features during Phase 8 except the single explicitly approved Automatic Conveyor Package Flow exception recorded in section 37. Do not reopen the excluded “lizards” term. Keep the EUR 0 budget.
 
-## 26. Phase 8 exception — automatic conveyor package flow (2026-11-27)
+## 26. Phase 8 partial QA results — 2026-11-26
 
-The user explicitly approved one feature exception to the Phase 8 QA-only scope: a lightweight automatic package-flow visual demonstration on the existing straight conveyor in `Warehouse_Final`. This exception authorizes only one runtime controller attached to the existing `WAREHOUSE_FINAL_ROOT/SORTING_AND_CONVEYOR` root and serialized references to the four existing `Conveyor_Load_01` through `Conveyor_Load_04` transforms. Move those four instances along world +X between X=41 and X=57 at one configurable shared speed, preserving their Y/Z, rotation, scale, initial 4 m spacing, and deterministic endpoint-wrap behavior with overshoot preserved. Do not add package objects, geometry, imported assets, physics, UI, inventory, or route connections.
+### Verified GitHub change
+Remote `main` was checked directly after the Phase 8 Codex run. The latest commit is `6f3d91c3000d21d5e2d2d32abc99a483d5d87bd9` (`fix: launch warehouse scene from player builds`); it modifies only `ProjectSettings/EditorBuildSettings.asset`. That file now contains two enabled scenes in the required order:
+1. `Assets/Scenes/Warehouse_Final.unity` (GUID `1666c90be4ecf4182b7d0e349f7b08b2`)
+2. `Assets/Scenes/SampleScene.unity` (GUID `99c9720ab356a0642a771bea13969a05`)
 
-The physical conveyor does not form a closed loop and is not connected to the sorting inspection table or packing tables. Describe the behavior only as a conveyor-flow visual demonstration with endpoint reset; do not present it as a complete physical sorting/packing workflow. Preserve the existing 100-roller controller, carton flap animation, generator, audio, lighting, and all other project work. This exception does not authorize any other Phase 8 feature or scope change.
+This resolves the previous build-scene-list omission. Do not repeat or revert this change.
+
+### Tests actually reported by Codex in its Phase 8 run
+- Scene/build configuration: passed; both scenes enabled in the required order.
+- Static scene reference scan: 65 unique GUID references in `Warehouse_Final` resolved against Assets, Packages, PackageCache or Unity built-ins; no null script references or “Missing” markers were found.
+- Play Mode camera: partial. Overview rendered; `V` switched to first person and the full roof was visible; `Escape` returned the UI to “Click to look”. Mouse look, WASD movement and collisions were not tested.
+- Audio controls: partial. `M` visibly toggled Off/On. Codex did not repeat a listening test in that session. The user had separately reported on the Mac that warehouse ambience and the spatial conveyor sound were audible, so retain that user-confirmed result; do not misreport it as freshly re-tested in the Phase 8 run.
+- Generator: not rerun during Phase 8; the seed/density/clear matrix was not executed in a temporary scene copy during that run. Previous actual Play Mode validation remains documented in sections 20, 23 and 24.
+- Animation: not rerun during Phase 8; carton flaps, locker doors, rollers and placement drift were not rechecked in that session. Previous actual Play Mode validation remains documented in section 23.
+- Lighting: overview and first-person views reportedly showed high-bay and dock lighting; no separate measurement was made.
+- Performance: no FPS or numeric measurement was captured.
+- macOS: Build Support is installed, but no standalone QA build was produced or launched. Unity stopped responding while the scene picker was open, and the run deliberately avoided a concurrent batch build against the open project.
+- Console: 0 errors and 4 existing obsolete `MaterialLocation.External` FBX metadata warnings were reported. Two Phase 7B mute/unmute informational logs also appeared.
+- Requirement coverage: the PDF categories were reviewed, but the model-category and generator final QA rows remain partial/not re-run.
+
+### Source archive status
+Codex reports that a source-only archive was created at `/private/tmp/WAREHOUSE-UNITY-Phase8-Source-6f3d91c.zip`, with `README_PHASE8.md`, required project files and .meta files, and a passing ZIP integrity check. Reported SHA-256: `936ca3fc064297df855e56ac5301e2ed978a74e65221ea838c1bb6f213f767aa`. This path is local to the Mac/Codex environment, not a GitHub release or a downloadable attachment in this chat. The user must confirm that the file exists at that path and copy it to a convenient delivery location. Do not claim that it was uploaded or attached here.
+
+### Current phase 8 remaining work — do not claim final delivery yet
+1. Complete manual Unity Play Mode checks for WASD, mouse look, Escape cursor release, wall/rack collisions and roof switching.
+2. Rerun the generator matrix in a temporary scene copy: seeds 12345 and 67890; 25/50/75/100% density; clear/regenerate; no duplicates or blocked aisles. Restore/delete only the temporary test copy, never destructively clean user files or the final scene.
+3. Rerun Phase 7A animation checks and stable placement in Play Mode.
+4. Confirm lighting and the two audio controls in both camera modes; retain the separate user-confirmed Mac listening test. Ask the user to listen again only if a change/regression occurs.
+5. Measure actual performance on the M4 Mac if available; otherwise mark unmeasured.
+6. Resolve the macOS build QA safely. Since Build Support exists but the Editor became unresponsive with the scene picker open, first recover the active Editor normally and inspect process/Editor state. Do not launch a concurrent batch build against the open project. If safe, create a build outside the repo, launch it, verify Warehouse_Final and basic controls. If it remains unstable, report that build testing is blocked.
+7. Inspect the source ZIP at its reported local path, verify contents and hash, then copy it to Desktop or another user-accessible location. Never infer a sandbox download link from this path.
+8. Preserve existing local-only LED material, settings and Build Profiles modifications. Do not commit them without exact review. Confirm local Git status and remote parity before any further commit.
+
+Final delivery is incomplete until the remaining critical checks and build/archive handoff are either completed or explicitly reported as blocked. Keep Roll-a-Ball and the lecturer's individual/group email reply separate from Unity completion. Do not reopen the user-excluded “lizards” item. No added features; EUR 0 budget.
+
+## 27. Phase 8A attempt blocked by Unity access — 2026-11-26
+
+The latest Phase 8A Codex attempt ran **zero Unity regression tests**. Unity was listed as running, but CUA timed out on both attempts to connect to its window and no Unity MCP tools were available. This is an access/tooling blocker, not a test failure and not a passing test. No files were edited or staged.
+
+Reported statuses: WASD/mouse/Escape, collision/V/roof, generator seed/density/Clear/Regenerate, animation playback/placement, fresh audio runtime check, lighting two-mode inspection, and fresh Console inspection were blocked. Mute/unmute had only prior checks; the user had separately confirmed audio was audible on the Mac. Performance remains unmeasured.
+
+Git preservation: remote `origin/main` was reported at `729f142a509a954975cb8c972e22cb9848244228`; local `HEAD` remained `6f3d91c3000d21d5e2d2d32abc99a483d5d87bd9`. Existing local user changes were left untouched. Do not force-pull, reset, clean, stash or discard to synchronize this state.
+
+Next action is to restore Unity access manually before more automated work:
+1. Bring the existing Unity Editor to front and ensure `Warehouse_Final` is loaded, compilation/import is finished and no modal dialog blocks it.
+2. Open `Window > MCP for Unity > Toggle MCP Window` and inspect connection/server status.
+3. Verify the `unityMCP` server is enabled in Codex and reconnect/reload it.
+4. If still unavailable, restart the existing Unity Editor/project (do not create a new project), wait until fully loaded, then reconnect.
+5. Resume Phase 8A in small, independent batches only after the live Unity MCP connection is visible. Do not repeatedly retry the same failing CUA UI path or claim tests passed without actual Play Mode evidence.
+
+Phase 8B build and archive verification must wait until Phase 8A is completed or its remaining blockers are explicitly documented.
+
+## 28. Phase 8A Test 1 — camera and movement manually confirmed (2026-11-26)
+
+Codex's live Unity MCP inspection confirmed the active scene was `Assets/Scenes/Warehouse_Final.unity` in Unity 6000.6.10f1, Edit Mode, loaded and not dirty. Overview camera rendered successfully in Play Mode. Codex could not inject physical desktop input for V/WASD/mouse/Escape or collision tests. The user then manually tested the game and reported that it works and there was no meaningful difference from before. Record the previously blocked user-input/collision checks as **user-confirmed PASS**: V camera switching, WASD movement, mouse look, Escape cursor release, and wall/rack collisions. Do not misrepresent these as Codex-injected tests. No scene or project files were changed during Test 1.
+
+### Next test — Phase 8A Test 2: Warehouse Stock Generator
+
+Inspect the real implementation and serialized configuration before testing:
+- `Assets/Scripts/WarehouseStockGenerator.cs`
+- `Assets/Editor/WarehouseStockGeneratorEditor.cs`
+- the generator component and `WAREHOUSE_GENERATED_STOCK_ROOT` in `Warehouse_Final`.
+
+Run the generator regression in an isolated temporary scene/test fixture, not the saved final scene. Prefer in-memory scene cloning if it can preserve all required generator dependencies; otherwise use one explicitly named temporary QA scene/folder under a dedicated temporary path. Do not alter or save `Warehouse_Final.unity`, `SampleScene.unity`, or `Warehouse_Blockout.unity`.
+
+Test:
+1. Seed 12345 twice; capture counts/transforms/order and compare for deterministic equality.
+2. Seed 67890; verify arrangement differs.
+3. Density 25%, 50%, 75%, 100%; record actual generated counts.
+4. Clear; verify generated contents are removed but authored warehouse objects remain.
+5. Regenerate; verify no duplicates.
+6. Verify generated bounds do not obstruct defined aisles, pedestrian lane, dock/apron clearances or keep-clear zones.
+
+Read generator code for density semantics and expected count formula before judging results. Do not assume default stock count or density output from old reports. Record the component's actual serialized settings and any deterministic ordering/hashing method used. Clean up only test artifacts created in this run, using exact known paths/instance IDs. No blanket asset/folder cleanup. Preserve local user changes and do not commit unless a test fix is explicitly requested after the report.
+
+After Test 2, proceed separately to Test 3 animations, then Test 4 audio/lighting/Console/performance. Phase 8B build remains last.
+
+## 29. Phase 8A Test 2 — generator regression and confirmed vertical overlap defect (2026-11-26)
+
+Codex tested the actual generator against an isolated in-memory fixture cloned from the production rack modules and FBX dependencies; the temporary fixture was closed after testing. `Warehouse_Final` remained active in Edit Mode and not dirty; four scene roots, 21 existing storage children, 30 generated loads and generator settings were unchanged. Nothing was committed or pushed during the test.
+
+Results:
+- Seed 12345 determinism: PASS. Two 50% runs each produced 30 loads with identical full signatures (SHA-256 prefix `285A42AB…C3290D5`).
+- Seed 67890 variation: PASS. It produced a different signature (`5997218C…AFAA94E`).
+- Density: PASS. 25%=15 loads/27 model instances; 50%=30/55; 75%=45/85; 100%=60/113. Configured rack capacity is 60 positions.
+- Clear Generated: PASS. It removed all generated loads while all 10 cloned rack modules and fixture objects remained.
+- Regenerate: deterministic signature restored and 30 unique load-root positions, but FAIL due to renderer-bounds overlaps. Detected intersecting load pairs: 25%=3; 50%=5; 75%=13; 100%=25.
+- Warehouse operational zones: PASS with overlap finding above. Generated load bounds did not intersect the defined pedestrian route, forklift spine, conveyor, packing, dispatch, dock/apron, office or receiving zones.
+- Console: 0 errors and the four known obsolete `MaterialLocation.External` warnings for imported FBXs.
+
+Confirmed source defect in `Assets/Editor/WarehouseStockGeneratorEditor.cs`:
+- `GetSlots` loops `level = 0..shelfLevels-1`, then creates `Slot(..., level + 1, ..., LevelOffsets[level], ...)` (one-based slot.level).
+- `LevelOffsets = { 0f, 2.55f }`.
+- `Generate` uses `slot.level == 0 ? 0.2f : 2.75f` to choose cargo offset.
+- The lower-level condition is impossible because all generated slots have level 1 or 2. Therefore both shelf levels receive the upper-level cargo offset; renderer bounds overlap vertically.
+- Existing `VerifySlotsAreUniqueAndInsideRackZone` checks root-position uniqueness and broad X/Z extents only; it does not check renderer bounds between loads, so extend it or add a dedicated validator.
+
+Next: minimally correct cargo placement using the real one-based level or, preferably, an explicit per-slot local cargo offset derived from the actual slot height. Add robust per-load combined renderer-bounds intersection verification to `RunGeneratorValidation`. Rerun determinism, changed seed, density, Clear, Regenerate, renderer overlap and operational-zone tests in the isolated fixture. Expected acceptance is zero distinct-load renderer-bound intersections at 25/50/75/100%, with all existing keep-clear zones still unobstructed. Modify only the generator editor implementation/test as needed; do not alter saved scenes, source models, packages or unrelated project settings. Preserve all pre-existing local changes and use exact-path Git staging only.
+
+## 30. Phase 8A Test 2 — generator fix and full regression passed (2026-11-26)
+
+Codex fixed the confirmed level-index bug in the local working copy of `Assets/Editor/WarehouseStockGeneratorEditor.cs` only (reported diff +103/-8). Pallet is positioned at local Y=0 and cargo at local Y=0.2 relative to its generated load root, replacing the impossible `slot.level == 0` test against one-based shelf levels. The validation now combines renderer bounds per load and compares bounds between distinct loads on all three axes, in addition to the existing rack-zone and operational-zone checks.
+
+The isolated unsaved-fixture regression then passed:
+- Seed 12345 repeatability: PASS. Two runs produced identical signatures for 30 loads, including types, world positions, rotations and descendant transforms.
+- Seed 67890 variation: PASS. Different signature and 30 loads.
+- 25%: PASS — 15 loads, 0 renderer-bound overlaps, 0 rack/operational-zone violations.
+- 50%: PASS — 30 loads, 0 overlaps, 0 violations.
+- 75%: PASS — 45 loads, 0 overlaps, 0 violations.
+- 100%: PASS — 60 loads, 0 overlaps, 0 violations.
+- Clear: PASS — all generated loads removed; all 10 cloned rack modules and fixture structure remained intact.
+- Regenerate: PASS — 30 loads restored with seed-12345 signature and 0 overlaps.
+- Saved scene safety: PASS — `Warehouse_Final` remained active in Edit Mode and not dirty; its hierarchy snapshot matched the pre-test snapshot, retaining 30 generated loads and 21 storage children.
+
+Unity compilation completed with no errors; one MCP WebSocket “not initialised” warning appeared. No scenes were saved. No commit or push was made. The local `main` was reported 2 commits behind `origin/main`; pre-existing local LED material, settings and Build Profiles changes remain untouched. The generator fix is an uncommitted local change and must be preserved. Do not pull/rebase/reset/clean/stash/discard/blanket-stage.
+
+Next: Phase 8A Test 3 — actual Play Mode animation regression:
+1. Verify four carton flaps animate.
+2. Verify both office locker doors animate.
+3. Verify all 100 conveyor rollers rotate.
+4. Sample actual transforms at multiple time points to confirm movement.
+5. Verify authored parent/placement transforms are stable (no drift or accumulating offsets).
+6. Exit Play Mode and verify `Warehouse_Final` is not dirty and the serialized baseline is unchanged.
+No animation code changes, no layout modifications, no generated objects or file deletions. Report per-feature PASS/FAIL/BLOCKED and evidence. Then Test 4 audio/lighting/Console/performance, followed by Phase 8B build/archive checks.
+
+## 31. Phase 8A Test 3 — animation regression and carton investigation (2026-11-26)
+
+### Actual Phase 7A regression
+- Office Double Locker: PASS. Both doors moved in opposite directions through approximately +0.77° to +99.87° and −0.77° to −99.87° during live sampling.
+- Conveyor rollers: PASS. All 100 unique roller transforms changed rotation; 25 rollers in each of four straight modules. Roller positions did not drift.
+- Packing carton: FAIL in the production Play Mode sample. The assigned `Open_Carton.fbx` clip had non-constant curves for all four flaps, but a 4.6-second live Play Mode sample across 41 Editor updates recorded zero local position/rotation change on every flap.
+
+### Follow-up read-only/isolated investigation
+The follow-up report found:
+- The production `Packing_Open_Carton_1` saved hierarchy contains body and four flap children.
+- All 60 clip curve bindings resolve: root, `Open_Carton_Body`, and `Open_Carton_Flap_1` through `Open_Carton_Flap_4`, each with expected Transform properties. No missing paths or unexpected root binding.
+- Direct `AnimationClip.SampleAnimation` on an isolated clone at 0, 0.6, 1.25, 1.9 and 2.4 seconds changed all four flap rotations.
+- Isolated Legacy Animation playback passed in Play Mode: `IsPlaying=true`, and all four flap rotations changed across samples at approximately 0.1, 0.6, 1.252, 1.901 and 2.4 seconds. Editor advanced 1,390 frames.
+- No competing Animator, Animation or script component was found on the inspected production carton root/body/ancestors. The root Animation component is enabled, autoplay, speed 1, PingPong wrap.
+- Separate model and animation FBXs share the same body/flap names and paths. Importer `animationType` differs (model 2, animation clip 1), but this alone is not a demonstrated cause because the locker uses the same type distinction and works.
+- `Warehouse_Final` was restored as active and remained not dirty; temporary fixture was discarded. No project files changed during investigation. Console: 0 errors and the 4 pre-existing obsolete FBX warnings.
+
+Conclusion: the isolated reproduction proves the source clip and Legacy playback can work, but does not establish why the one production-instance Play Mode sample failed. No root cause and no safe production fix have been confirmed. Do not modify animation code, clip, imported FBXs or importer settings speculatively.
+
+### Next focused check
+Run a live Play Mode sample against the exact saved scene instance `P7A_Placement_Packing_Open_Carton_1` in `Warehouse_Final`, with Game View focused and Editor actively advancing. Capture exact instance ID/hierarchy path, active clip, Animation component/state (`isPlaying`, enabled, state.time, normalized time, speed, wrapMode), and four flap local rotations at t0 then ~0.5, 1, 1.5, 2, 2.5 seconds. If it moves, classify the earlier fail as non-reproduced/test instrumentation mismatch and close it. If it still does not move, compare that exact instance to the passing isolated clone including prefab overrides, parent chain, effective clip/state and exact flap paths. Any reproduction must be an unsaved isolated scene/clone; do not run Phase 7A setup, do not save/modify the production scene, and stop if Unity/MCP disconnects. No speculative fix.
+
+After resolving/carton result, proceed to Phase 8A Test 4: verify existing two audio sources/control, interior/dock lighting in both camera modes, fresh Console and actual performance measurement if available; then Phase 8B macOS build/archive checks.
+
+## 32. Phase 8A Test 3 — exact production carton retest PASS; previous failure not reproduced (2026-11-26)
+
+Codex retested the exact production instance `P7A_Placement_Packing_Open_Carton_1` (instance ID `23819:768`) in the actual `Warehouse_Final` Play Mode, with Game View focused. Its carton child was `Packing_Open_Carton_1` (instance ID `25463:768`). The parent transform was world position (47, 1, 15.4), rotation approximately (270.02, 0, 0), scale (1,1,1). The carton root used the enabled, autoplay Legacy Animation component with `Warehouse_DAY`, clip duration 2.5 seconds, speed 1, PingPong wrap.
+
+All four flap local rotations changed at every captured sample:
+- Requested 0.0s: state time 0.000, normalized 0.000.
+- Requested 0.5s: measured elapsed 0.562s, state time 0.420, normalized 0.168.
+- Requested 1.0s: measured elapsed 1.061s, state time 0.920, normalized 0.368.
+- Requested 1.5s: measured elapsed 1.562s, state time 1.421, normalized 0.568.
+- Requested 2.0s: measured elapsed 2.062s, state time 1.920, normalized 0.768.
+- Requested 2.5s: measured elapsed 3.161s, state time 2.220, normalized 0.888. This final sample arrived late; report measured elapsed and state time rather than calling it an exact 2.5-second sample. Earlier samples already confirm movement on all four flaps.
+
+Conclusion: PASS — previous production carton failure not reproduced. Close this investigation. No production fix is warranted; do not modify animation code, clips, FBX assets or importer settings.
+
+After testing, Play Mode was exited; `Warehouse_Final` was active in Edit Mode and clean. Console showed 0 errors and 4 existing obsolete material-location warnings for `Pallet.fbx`, `Crate_Large.fbx`, `Workbench_Vise.fbx` and `Pallet_Jack.fbx`. No project files were changed; no commit or push occurred. Local changes including the uncommitted generator fix remain untouched; local branch remained reported two commits behind `origin/main`.
+
+Phase 7A animation regression status is now:
+- Packing carton four flaps: PASS (earlier failure not reproduced)
+- Office Double Locker two doors: PASS
+- Conveyor rollers: PASS (100/100, no positional drift)
+
+Next: Phase 8A Test 4 — verify the existing two audio sources and M toggle, ambience and spatial conveyor sound in both camera modes, high-bay and dock lighting in overview and first-person, current Console (separate pre-existing FBX warnings), and actual FPS/frame time if available. Do not invent performance measurements. Do not add audio, lights or features. Use actual Play Mode evidence; ask the user to listen/observe any checks that cannot be verified from MCP. Do not modify project files or scenes. Exit Play Mode and confirm scene clean. Then Phase 8B macOS build and source archive verification.
+
+## 33. Phase 8A Test 4 — audio PASS, lighting FAIL, performance unmeasured (2026-11-27)
+
+### Audio setup and mute toggle — PASS
+- Exactly 2 AudioSources and 1 audio controller found.
+- Ambience source is 2D at (30, 4, 20), volume 0.12.
+- Conveyor source is spatial at (49, 1.35, 24), volume 0.18, logarithmic rolloff, min/max distance 2.5/24.
+- Genuine `M` keypresses toggled both sources' mute flags and HUD Off/On state; Console logged mute and unmute.
+- User's prior confirmation that both sounds were audible on their Mac remains accepted.
+
+### Camera/audio independence — PASS
+- Genuine `V` presses switched overview/first-person and back.
+- Same audio controller and two sources remained; one active camera and one active AudioListener.
+- Listener belongs to inactive camera; camera controller did not disable or duplicate audio objects.
+
+### Background audio observation — BLOCKED, not FAIL
+During MCP profiling Unity lost focus. Both sources reported `isPlaying=false` while Editor was in Play Focused mode and `runInBackground=false`. This does not establish that camera switching stopped playback. Keep the user's prior listening confirmation; only recheck in foreground runtime or with a user listening test if necessary.
+
+### Lighting — FAIL
+- All 15 high-bay spotlights were enabled and located at y=9.86, but their world direction was `(0,0,1)` (horizontal toward +Z), not downward. Interior illumination was visible but coverage was uneven.
+- Three dock wallpacks were enabled at y=6.8, pointing downward and outward; docks/apron appeared brightly lit.
+- Legacy blockout directional light was disabled; a separate provisional directional light remained active.
+- No lighting changes were made in Test 4.
+
+### Performance — UNMEASURED
+Ten FrameTimingManager samples were inconsistent. Reported CPU frame values varied around 100–200 ms while main-thread values were near zero and render/GPU/present fields were zero. These records do not support reliable FPS or frame-time conclusions. Do not invent a measurement. Try a genuine standalone profiling method during Phase 8B on the M4; otherwise retain UNMEASURED.
+
+### Console and scene preservation — PASS
+- 0 errors.
+- 4 existing obsolete `MaterialLocation.External` warnings for `Crate_Large.fbx`, `Pallet.fbx`, `Pallet_Jack.fbx`, and `Workbench_Vise.fbx`.
+- No audio or rendering errors.
+- Play Mode exited; `Warehouse_Final` remained active and not dirty, with four root objects.
+- No files, scene objects, settings or packages were changed in Test 4. Existing local changes, including uncommitted `WarehouseStockGeneratorEditor.cs`, remain preserved. No Git operations were performed.
+
+### Next: focused lighting correction only
+Inspect the exact 15 high-bay spotlight transforms/hierarchy, Light ranges/spot angles/intensities/colors/shadows, ceiling geometry, and directional-light roles. Correct only the high-bay orientations to illuminate the warehouse downward, verifying each fixture's actual forward direction before changing it. Keep their positions and other intentional properties unchanged unless evidence demands otherwise. Do not change the dock wallpacks, provisional directional light, post-processing, URP, project settings, materials or unrelated objects. Prefer a reversible/in-memory test first; compare coverage in overview and first-person and preserve current dock/apron lighting. Capture before/after evidence and Console. If a fixture or directional-light role is ambiguous, stop and report rather than toggle it.
+
+After the lighting check passes, repeat relevant Test 4 checks. Do not make a macOS build; the user can inspect the project in Unity Editor and the instructor uses Windows. A Windows standalone build (.exe) is optional and should be attempted only as a final delivery step if time/budget permits. Performance remains unmeasured unless a reliable genuine measurement is obtained. Then consider the one user-preferred low-cost automatic conveyor package-flow visual described in AGENTS.md; do not start it until the user approves after lighting.
+
+## 34. Delivery platform and QA boundary (2026-11-27)
+
+The instructor uses Windows. Do not create a macOS build. The user can inspect the project in Unity Editor. A Windows standalone build (.exe) is optional only if needed for teacher handoff and sufficient budget/time remains. Phase 8 is QA/delivery and prohibits feature development; any additional feature must be explicitly separated into Phase 9 after Phase 8A QA closure. Do not report blocked or unmeasured checks as passed.
+
+## 35. User-selected optional feature direction — automatic package movement (2026-11-27)
+
+The user prefers automatic warehouse activity over manual placement or a guided tour, and has limited remaining Codex token budget. The selected candidate is a single lightweight automatic package-flow demonstration using the existing straight conveyor and four existing packages. Implement only as a separate Phase 9 after Phase 8A QA is closed; do not violate the Phase 8 QA/delivery freeze.
+
+## 36. Read-only conveyor inspection — confirmed route and limitations (2026-11-27)
+
+Unity MCP read-only inspection found:
+- All conveyor modules are under `WAREHOUSE_FINAL_ROOT/SORTING_AND_CONVEYOR`.
+- `Sort_Belt_Transfer` bounds X 39.95–41.47, Z 23.60–24.57, at approximately (40.7,0,24), Y rotation 90°.
+- `Sort_Conveyor_Straight_A`: X 41–45, Z 23.53–24.41, at (43,0,24), Y rotation 90°.
+- `Sort_Conveyor_Straight_B`: X 45–49, same Z bounds, at (47,0,24), Y rotation 90°.
+- `Sort_Conveyor_Straight_C`: X 49–53, same Z bounds, at (51,0,24), Y rotation 90°.
+- `Sort_Conveyor_Straight_D`: X 53–57, same Z bounds, at (55,0,24), Y rotation 90°.
+- `Sort_Conveyor_Curve` bounds X 55.53–57.01, Z 23.33–24.81, at approximately (57,0,24.8), Y rotation 90°.
+The transfer overlaps Straight A and A-D meet edge-to-edge. They form a connected straight conveyor run along +X from about X=41 to X=57, at Z≈24. The curve is at the far end; no conveyor continues beyond it or returns to the start. There is no physical closed loop.
+
+Four existing package objects are already on the straight conveyor at Y=1, Z=24, each spaced by 4m:
+- `Conveyor_Load_01` — `Box_Medium.fbx`, X=43.
+- `Conveyor_Load_02` — `Box_Small.fbx`, X=47.
+- `Conveyor_Load_03` — `Crate_Small.fbx`, X=51.
+- `Conveyor_Load_04` — `Open_Carton.fbx`, X=55.
+They are scene instances of imported FBX model assets, not separate prefab files.
+
+The existing `WarehousePhase7AAnimationController.cs` has 100 unique roller references (25 per straight module), rotating rollers at 135°/s. It rotates rollers only and does not move packages. Do not retarget it to package transforms.
+
+Other nearby work areas are not connected to this belt:
+- Sorting inspection table center: (44,0.92,20), ~4m south; `Sort_Open_Carton` and `Sort_Small_Box` are on the table, not the belt.
+- Packing tables center at X=41,47,53, Z=15.4, ~8.6m south; no conveyor connects to them.
+- Receiving inspection bench at (22,0.92,31.8), also separate.
+
+### Smallest bounded Phase 9 implementation proposal
+
+One lightweight C# package-flow controller attached to/referenced from the existing `SORTING_AND_CONVEYOR` parent, with references to the four existing `Conveyor_Load_0*` transforms. Move all four at the same speed along +X over the actual 16m straight run X≈41–57, preserving their Y, Z, rotation and scale. Use a shared route phase/modulo so the existing 4m spacing is maintained as each package visually wraps to X≈41 after reaching the endpoint. This is a visual reset, not a physically closed-loop conveyor. It demonstrates automatic motion only on the straight belt; do not claim that packages reach the unconnected sorting or packing tables.
+
+No Rigidbody/physics, new assets or GameObjects, manual placement UI, additional UI, forklift AI, inventory system, sorting logic, fictional conveyor segments or broad architecture changes. Inspect exact current scene references and controller setup before implementation; implement only if the feature can be fully tested and verified within the remaining token budget. Otherwise leave it as-is and deliver the current project cleanly.
+
+
+## 37. Phase 8 approved exception — automatic conveyor package flow (2026-11-27)
+
+After the earlier read-only inspection and Phase 8A QA work, the user explicitly approved one narrowly scoped exception to the QA-only freeze: a small automatic package-flow visual demonstration on the existing straight conveyor in `Warehouse_Final`. No other new feature is authorized.
+
+`Assets/Scripts/WarehouseConveyorPackageFlow.cs` is attached to the existing `WAREHOUSE_FINAL_ROOT/SORTING_AND_CONVEYOR` root and references the four existing `Conveyor_Load_01` through `Conveyor_Load_04` transforms. The shared speed is 1 m/s along world +X from X=41 to X=57. It preserves each load's Y/Z, rotation and scale, maintains the existing 4 m cyclic spacing, and resets at the endpoint while preserving overshoot. It creates no package objects and uses no physics, Rigidbody, coroutine, UI or inventory system. The roller controller was not modified.
+
+Actual Play Mode verification observed 14 route wraps, 4.000 m cyclic spacing and positions matching the overshoot-preserving calculation; package heights, lateral positions, rotations and scales remained unchanged. All 100 existing rollers were observed rotating, the four production carton flaps moved, and overview/first-person camera and roof switching were checked. Play Mode was exited; `Warehouse_Final` was saved and clean. No Windows runtime or standalone executable test was performed.
+
+The conveyor is physically straight and has no return path; the sorting inspection and packing tables are disconnected. Present this only as a conveyor-flow visual demonstration with endpoint reset, not a complete sorting/packing workflow. Preserve this limitation and do not expand the exception.
