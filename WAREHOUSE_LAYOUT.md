@@ -247,3 +247,12 @@ The strict matched 1× texture before/after screenshot was not verifiable on thi
 Use the reviewed Legacy animations only on matching Warehouse Essentials FBX hierarchy paths. The `Roller_Conveyor` clip does not target the separate tevy GLB modules. An animated matching FBX conveyor segment may be placed as a clear demonstration at the sorting/packing line, or the GLB roller nodes can be rotated procedurally after inspection. Keep animated, root-keyed props beneath unanimated placement parents. Prioritize the existing matching locker, electrical cabinet, open carton and pallet-jack models where visually useful; do not force clips that showed no motion.
 
 Audio should be a small zero-cost warehouse soundscape: low-level room ambience/HVAC, spatial conveyor operation, restrained packaging/metal handling effects, and a reversing alert only during an actual vehicle/reverse event. Use existing licensed audio if available, otherwise synthesize original WAV assets locally; no unlicensed samples or paid services. Keep levels subtle and include mute/volume control if practical.
+
+
+## 17. Current animation/audio sequence (2026-11-26)
+
+Phase 7 is deliberately split into two small Codex tasks. First animate a matching Open_Carton and one Double_Locker or Electrical_Cabinet, plus one real conveyor movement demonstration. Do not add sound during that task. The long conveyor is built from separate tevy GLBs; the Legacy Roller_Conveyor clip targets the Warehouse Essentials FBX hierarchy and must not be retargeted. If GLB roller children are not individually exposed, move one existing conveyor load along the validated straight section instead. Then commit and verify 7A before beginning 7B audio.
+
+Phase 7B audio should stay minimal: low-volume warehouse ambience, one spatial conveyor loop and one restrained packing one-shot; no reversing alarm while vehicles are static, no music, no paid packages. Prefer original locally generated WAVs at EUR 0. Ask the user to confirm audible playback on the Mac rather than claiming audibility from configuration alone.
+
+The user has explicitly excluded “lizards”; it is not implemented and is not a blocker. Roll-a-Ball completion and the teacher's requested group/individual email reply are separate course handoff tasks, not warehouse-scene tasks.
