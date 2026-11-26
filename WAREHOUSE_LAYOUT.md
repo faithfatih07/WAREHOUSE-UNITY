@@ -227,7 +227,7 @@ These are inventory and fit notes only. The Phase 1 blockout scene and builder w
 
 The user explicitly excluded the source PDF's ambiguous "lizards" item from this project. Do not research, clarify, substitute "ladders", model it, or treat it as a blocker. It is not implemented; if mentioned in a final exhaustive coverage table, mark "excluded by user decision / not implemented".
 
-Remaining work after Phase 5:
+At the time this scope decision was recorded, remaining work after Phase 5 was:
 - Phase 6: configurable deterministic C# Warehouse Generator for shelf/rack stock population.
 - Phase 7: integrate/test selected animations and warehouse audio/ambience.
 - Phase 8: final QA and delivery.
@@ -239,4 +239,4 @@ The strict matched 1× texture before/after screenshot was not verifiable on thi
 - The existing rack modules remain at their Phase 3 positions: five rows centered on X = 4.5, 10, 15.5, 21 and 26.5 m; two modules per row centered on Z = 15.3 and 24.3 m. Each module provides three bay centers at module Z offsets −2.65, 0 and +2.65 m. The generator sorts the existing rack transforms and maps them to six row bays while respecting the gap between modules.
 - The current assembled stock tiers use pallet bases at Y = 0 and Y = 2.55 m. The configurable generator exposes 1–2 levels and 1–6 bay positions per row, defaulting to the actual 5×6×2 capacity (60 positions). It uses imported pallet, small/medium box and small/large crate models at the established yaw and offsets from `WarehouseAssemblyBuilder.BuildStorage`.
 - Generated loads belong only under `STORAGE_RACKS_AND_STOCK/WAREHOUSE_GENERATED_STOCK_ROOT`. Generator configuration lives on sibling `WAREHOUSE_STOCK_GENERATOR_CONFIG`. The editor setup adopts only previously assembled children whose names begin `Stock_`, reparenting the existing object instances without deleting/recreating them; later clearing/replacing is restricted to the dedicated generated-stock root. Rack modules and all unrelated objects stay outside that root.
-- Deterministic tests in Unity produced 15/30/45/60 occupied rack positions at 25/50/75/100% fill; the seeded arrangement is repeatable and changing seed varies the layout. Routes at west (X≈1.7), rack access and forklift spine (X≈32–36) remain outside the generated x/z slot region. See `PROJECT_BRIEF.md` section 19.
+- Deterministic tests in Unity produced 15/30/45/60 occupied rack positions at 25/50/75/100% fill; the seeded arrangement is repeatable and changing seed varies the layout. Routes at west (X≈1.7), rack access and forklift spine (X≈32–36) remain outside the generated x/z slot region. See `PROJECT_BRIEF.md` section 20.

@@ -711,7 +711,7 @@ For a bounded correction, assess native 1x captures, regenerate Phase 4 source m
 
 The user directed us to ignore the ambiguous "lizards" word in the source PDF and focus on the remaining tasks. Do not research the term, ask the lecturer, reinterpret it as "ladders", search for a replacement, or build anything for it. It is excluded by user decision and was not implemented. If referenced in a final exhaustive coverage report, label it "excluded by user decision / not implemented".
 
-No further broad asset research is needed for the remaining scope. Next work is the configurable C# Warehouse Generator using existing verified prefabs/assets, then integration of selected animations and audio, then final QA.
+No further broad asset research is needed for the remaining scope. At the time this scope decision was recorded, the next work was the configurable C# Warehouse Generator; its Phase 6 implementation is recorded in section 29. Selected animation/audio integration and final QA remain later work.
 
 ## 29. Phase 6 use of verified stock assets (2026-11-26)
 
