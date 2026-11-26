@@ -576,3 +576,29 @@ Confirmed source defect in `Assets/Editor/WarehouseStockGeneratorEditor.cs`:
 - Existing `VerifySlotsAreUniqueAndInsideRackZone` checks root-position uniqueness and broad X/Z extents only; it does not check renderer bounds between loads, so extend it or add a dedicated validator.
 
 Next: minimally correct cargo placement using the real one-based level or, preferably, an explicit per-slot local cargo offset derived from the actual slot height. Add robust per-load combined renderer-bounds intersection verification to `RunGeneratorValidation`. Rerun determinism, changed seed, density, Clear, Regenerate, renderer overlap and operational-zone tests in the isolated fixture. Expected acceptance is zero distinct-load renderer-bound intersections at 25/50/75/100%, with all existing keep-clear zones still unobstructed. Modify only the generator editor implementation/test as needed; do not alter saved scenes, source models, packages or unrelated project settings. Preserve all pre-existing local changes and use exact-path Git staging only.
+
+## 30. Phase 8A Test 2 — generator fix and full regression passed (2026-11-26)
+
+Codex fixed the confirmed level-index bug in the local working copy of `Assets/Editor/WarehouseStockGeneratorEditor.cs` only (reported diff +103/-8). Pallet is positioned at local Y=0 and cargo at local Y=0.2 relative to its generated load root, replacing the impossible `slot.level == 0` test against one-based shelf levels. The validation now combines renderer bounds per load and compares bounds between distinct loads on all three axes, in addition to the existing rack-zone and operational-zone checks.
+
+The isolated unsaved-fixture regression then passed:
+- Seed 12345 repeatability: PASS. Two runs produced identical signatures for 30 loads, including types, world positions, rotations and descendant transforms.
+- Seed 67890 variation: PASS. Different signature and 30 loads.
+- 25%: PASS — 15 loads, 0 renderer-bound overlaps, 0 rack/operational-zone violations.
+- 50%: PASS — 30 loads, 0 overlaps, 0 violations.
+- 75%: PASS — 45 loads, 0 overlaps, 0 violations.
+- 100%: PASS — 60 loads, 0 overlaps, 0 violations.
+- Clear: PASS — all generated loads removed; all 10 cloned rack modules and fixture structure remained intact.
+- Regenerate: PASS — 30 loads restored with seed-12345 signature and 0 overlaps.
+- Saved scene safety: PASS — `Warehouse_Final` remained active in Edit Mode and not dirty; its hierarchy snapshot matched the pre-test snapshot, retaining 30 generated loads and 21 storage children.
+
+Unity compilation completed with no errors; one MCP WebSocket “not initialised” warning appeared. No scenes were saved. No commit or push was made. The local `main` was reported 2 commits behind `origin/main`; pre-existing local LED material, settings and Build Profiles changes remain untouched. The generator fix is an uncommitted local change and must be preserved. Do not pull/rebase/reset/clean/stash/discard/blanket-stage.
+
+Next: Phase 8A Test 3 — actual Play Mode animation regression:
+1. Verify four carton flaps animate.
+2. Verify both office locker doors animate.
+3. Verify all 100 conveyor rollers rotate.
+4. Sample actual transforms at multiple time points to confirm movement.
+5. Verify authored parent/placement transforms are stable (no drift or accumulating offsets).
+6. Exit Play Mode and verify `Warehouse_Final` is not dirty and the serialized baseline is unchanged.
+No animation code changes, no layout modifications, no generated objects or file deletions. Report per-feature PASS/FAIL/BLOCKED and evidence. Then Test 4 audio/lighting/Console/performance, followed by Phase 8B build/archive checks.
