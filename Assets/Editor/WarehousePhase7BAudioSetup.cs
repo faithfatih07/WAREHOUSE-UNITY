@@ -15,6 +15,10 @@ public static class WarehousePhase7BAudioSetup
     private const string ConveyorPath = OutputFolder + "/Conveyor_Operation_Original.wav";
     private const string RootName = "WAREHOUSE_PHASE7B_AUDIO_ROOT";
     private const string ControllerName = "Warehouse_Phase7B_Audio_Controller";
+    private static WarehousePhase7BAudioController gateTestController;
+    private static bool gateTestInitialEnabled;
+    private static int gateTestStage;
+    private static int gateTestFrame;
 
     [MenuItem("Warehouse/Phase 7B/Generate Original WAV Clips")]
     public static void GenerateOriginalWavs()
@@ -119,6 +123,61 @@ public static class WarehousePhase7BAudioSetup
             Debug.LogError("Phase 7B playback check failed: ambience isPlaying=" + ambiencePlaying + "; conveyor isPlaying=" + conveyorPlaying + "; Phase 7A operating=" + operationRunning + ".");
         else
             Debug.Log("Phase 7B playback state passed: ambience clip loaded/playing; spatial conveyor clip loaded/" + (conveyorPlaying ? "playing" : "stopped") + " matches Phase 7A operating=" + operationRunning + ". This check does not verify audible output; use the manual listening checklist.");
+    }
+
+    [MenuItem("Warehouse/Phase 7B/Verify Conveyor Operation Gate (Play Mode)")]
+    public static void VerifyConveyorOperationGate()
+    {
+        if (!EditorApplication.isPlaying)
+            throw new InvalidOperationException("Enter Play Mode before testing the conveyor audio operation gate.");
+
+        GameObject root = FindUnique(SceneManager.GetActiveScene(), RootName);
+        gateTestController = root == null ? null : root.GetComponent<WarehousePhase7BAudioController>();
+        if (gateTestController == null || gateTestController.conveyorOperation == null || gateTestController.conveyorSource == null)
+            throw new InvalidOperationException("The Phase 7B conveyor source or Phase 7A operation binding is missing.");
+        if (!gateTestController.conveyorOperation.isActiveAndEnabled || !gateTestController.conveyorOperation.gameObject.activeInHierarchy)
+            throw new InvalidOperationException("The conveyor operation must be active before this state-gate check.");
+
+        gateTestInitialEnabled = gateTestController.conveyorOperation.enabled;
+        gateTestStage = 0;
+        gateTestFrame = Time.frameCount;
+        gateTestController.conveyorOperation.enabled = false;
+        EditorApplication.update -= CheckConveyorOperationGate;
+        EditorApplication.update += CheckConveyorOperationGate;
+        Debug.Log("Phase 7B conveyor gate test started: temporarily pausing the Phase 7A operation, then restoring it.");
+    }
+
+    private static void CheckConveyorOperationGate()
+    {
+        if (!EditorApplication.isPlaying || gateTestController == null)
+        {
+            EditorApplication.update -= CheckConveyorOperationGate;
+            gateTestController = null;
+            return;
+        }
+        if (Time.frameCount <= gateTestFrame) return;
+
+        if (gateTestStage == 0)
+        {
+            bool stopped = !gateTestController.conveyorSource.isPlaying;
+            gateTestController.conveyorOperation.enabled = gateTestInitialEnabled;
+            gateTestStage = 1;
+            gateTestFrame = Time.frameCount;
+            if (!stopped)
+                Debug.LogError("Phase 7B conveyor gate test failed: spatial conveyor audio continued after the Phase 7A operation was disabled.");
+            return;
+        }
+
+        bool expectedPlaying = gateTestInitialEnabled;
+        bool restored = gateTestController.conveyorOperation.enabled == gateTestInitialEnabled &&
+                        gateTestController.conveyorSource.isPlaying == expectedPlaying;
+        if (restored)
+            Debug.Log("Phase 7B conveyor gate test passed: audio stopped while Phase 7A operation was disabled and resumed after it was restored.");
+        else
+            Debug.LogError("Phase 7B conveyor gate test failed after restoring operation: enabled=" + gateTestController.conveyorOperation.enabled + "; audio playing=" + gateTestController.conveyorSource.isPlaying + ".");
+
+        EditorApplication.update -= CheckConveyorOperationGate;
+        gateTestController = null;
     }
 
     private static void ConfigureSource(AudioSource source, AudioClip clip, bool loop, float spatialBlend, float volume, float minDistance, float maxDistance)
