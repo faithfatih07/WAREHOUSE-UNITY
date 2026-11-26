@@ -111,3 +111,15 @@ At the end, report the real scene path, created scripts/materials, screenshots o
 - Commit on main: c5a387d (feat: add Phase 1 warehouse blockout)
 - Verified through Codex/Unity MCP: two consecutive builder runs left one WAREHOUSE_ROOT and five rack rows; scene saved; SampleScene unchanged; URPProjectSettings had no diff; Unity Console reported no errors and one MCP WebSocket warning.
 - Note: the blockout uses primitive geometry and coloured zones intentionally. Phase 2/3 will replace major placeholders with selected licensed assets.
+
+## 10. Vehicle apron fit check — pending asset verification
+
+The 2026-11-26 static review of the candidate `Semi_Truck_L0.glb` records a source-reported overall length of about 20.03 m. The current truck apron was planned at approximately 14–15 m deep (south of the dock facade), so the source-reported truck length appears to exceed the current apron depth.
+
+This is a planning warning only:
+- The rack, forklift and truck source pages contain mismatches between prose dimensions and dimension fields.
+- The downloaded GLB has not yet been imported into Unity and its actual bounds/orientation are not measured.
+- Do not scale down the truck or change the warehouse blockout based on source-page dimensions alone.
+- After GLB importer validation, measure the truck's actual Unity bounds and placement orientation.
+- If approximately 20 m overall length is confirmed, revise the external apron to approximately 23–24 m clear depth or otherwise revise the dock/truck arrangement before updating the main scene.
+- Keep the 60 × 40 m internal warehouse footprint unchanged unless another verified constraint requires a separately reviewed change.
