@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Authoritative Project Brief
 
-Version: 1.8  
+Version: 1.9  
 Status: Active project specification  
 Unity project: WAREHOUSE-UNITY  
 Unity pipeline: Universal Render Pipeline (URP)  
@@ -196,7 +196,7 @@ Do not mark a phase complete based only on generated code or a successful MCP to
 
 ## 11. Current Phase 2 status and next requirement
 
-Phase 2 asset import and validation is complete for all categories with a known meaning under the EUR 0 budget. The project contains 14 selected CC0 Warehouse Essentials interactive FBX props, 17 separate Legacy animation samples, and eight CC0 GLB gap models. Added assets and clips were verified in the live Unity 6000.6.10f1 URP 17.6.0 Editor; see `ASSET_RESEARCH.md` section 23 and the imported asset reports. The installed official importer dependencies remain glTFast 6.21.0, KTX 3.8.0 and Meshopt Decompressor 0.3.0-exp.1. No downloaded code was executed and no antivirus scan was performed. The exact instructor word “lizards” remains unresolved and blocks a final Phase 2 coverage sign-off; do not begin Phase 3 until its meaning is clarified or explicitly resolved with the instructor.
+Phase 2 asset import and validation is complete for all categories with a known meaning under the EUR 0 budget. The project contains 14 selected CC0 Warehouse Essentials interactive FBX props, 17 separate Legacy animation samples, and eight CC0 GLB gap models. Added assets and clips were verified in the live Unity 6000.6.10f1 URP 17.6.0 Editor; see `ASSET_RESEARCH.md` section 23 and the imported asset reports. The installed official importer dependencies remain glTFast 6.21.0, KTX 3.8.0 and Meshopt Decompressor 0.3.0-exp.1. No downloaded code was executed and no antivirus scan was performed. The exact instructor word “lizards” remains unresolved. On 2026-11-26 the user explicitly approved proceeding with Phase 3 while carrying this one item forward as an unresolved requirement. Do not guess its meaning or silently substitute ladders/another model. Build all known warehouse categories now; keep a documented gap for “lizards” and ask the lecturer for clarification before final submission. The user has also approved original procedural modelling at EUR 0 for the remaining general storage cabinet and dedicated assembly table.
 
 ## 12. Phase 2 — GLB importer and gap assets (2026-11-26)
 
@@ -214,4 +214,31 @@ Phase 2 asset import and validation is complete for all categories with a known 
 - Retained all 17 separate Warehouse Essentials animation FBXs. In Play Mode every Legacy clip reported as playing; 13 changed transforms over the sampled interval, while `Industrial_Trash_Can`, `Lidded_Transit_Tote`, `Plastic_Barrel` and `Workbench_Vise` showed no pose change. The five moving priority clips and Toolbox have matching transform paths on their static imported FBX counterparts. Root transforms are keyed, so later instances need an unanimated placement parent.
 - The added curve, transfer and eight FBX props rendered with resolved material/texture references in the actual Editor. No raw FBX/GLB instances had Unity colliders or `LODGroup` components. The temporary preview scenes were deleted; `Warehouse_Blockout.unity`, `SampleScene`, packages and project settings were preserved.
 - Phase 2 is complete for identified model categories, but final sign-off is pending because the source PDF's exact term “lizards” is ambiguous. Do not guess. Also document a later original-modelling choice for a general storage cabinet and dedicated assembly table before assembly. Audio, final high-bay lighting, generator implementation and camera modes remain in their scheduled later phases.
-- Concrete decision: keep Phase 3 on hold pending instructor clarification of “lizards” (or an explicit instructor-approved resolution). Do not modify the blockout or start assembly from this report alone.
+- Concrete decision superseded on 2026-11-26: the user explicitly approved starting Phase 3 without waiting for “lizards” clarification. Carry the term as unresolved; do not interpret it. Proceed with known requirements, and add an original procedural general cabinet and dedicated assembly/production table using free in-project geometry. Do not mark the ambiguous requirement complete until the lecturer clarifies it.
+
+
+## 14. Phase 3 authorization and implementation constraints (2026-11-26)
+
+The user explicitly authorized starting Phase 3 even though the instructor's exact term "lizards" remains unresolved. This authorization means: proceed with all known requirements, keep the unknown item visible as a pending requirement, do not guess its meaning, and do not let it block construction of the rest of the warehouse. It does not mean "lizards" has been satisfied.
+
+Original modelling decisions under the EUR 0 budget:
+- Create a coherent general warehouse storage cabinet using original procedural geometry in the project.
+- Create dedicated assembly / production worktables using original procedural geometry, supplemented by the imported Wooden_Spool_Table and Workbench_Vise where appropriate.
+- Do not purchase or import paid content.
+
+Phase 3 scope:
+- Build the final warehouse environment in a new dedicated scene Assets/Scenes/Warehouse_Final.unity, initially copied from Warehouse_Blockout.unity.
+- Keep Warehouse_Blockout.unity and SampleScene unchanged as safe baselines.
+- Use the verified imported FBX/GLB models already present in the repository. Do not perform another broad asset search.
+- Replace the visible blockout placeholders with actual building architecture, industrial pallet racking, stock, office/control, receiving, sorting/conveyor, packing/assembly, dispatch, loading docks, trucks and exterior apron.
+- Preserve the 60 × 40 m internal footprint and 9 m approximate clear height. Extend clear south apron depth to 23–24 m (Z approximately -24 to -1) to fit the measured 20.026 m truck.
+- Racking: five north-south rows with two 8.7 m rack modules per row; use measured asset orientation, centre the model pivot correctly and place the rack base on the floor (the verified rack requires +2.5 m Y when its imported root is unrotated; verify after the 90-degree Y row rotation).
+- Place dock/truck instances using verified pivots and orientations: loading docks face south; truck rear doors face north toward the dock when reversing from the south apron. Verify clearances; do not scale the truck down.
+- Use the straight, curve and belt-transfer conveyor modules in a coherent sorting line. Preserve the main forklift spine and accessible pedestrian paths.
+- Build the exterior shell/roof structure as actual warehouse architecture; keep roof elements grouped separately so the overview presentation can use a cutaway/hidden-roof view without permanently deleting the roof.
+- Keep procedural cabinets and worktables visually detailed and consistent with the imported asset palette; avoid bare placeholder cubes.
+- Phase 3 is assembly only. Do not implement the configurable C# Warehouse Generator (Phase 6), finished camera controller (Phase 5), final lighting pass (Phase 4), or sound/animation system (Phase 7) yet. Basic scene lighting needed to inspect the assembly is allowed, but do not claim final lighting/audio/animation completion.
+- Preserve clear aisles, dock alignment and first-person navigation routes.
+- Build through a new idempotent Editor assembly script that only regenerates its own WAREHOUSE_FINAL_ROOT; do not reuse the Phase 1 blockout builder in a way that modifies the baseline scene.
+- Generate/save screenshots from the actual Unity Editor. Verify the scene, hierarchy, Console and Git diff. Test the assembly builder twice for idempotency.
+- Commit and push only the verified Phase 3 scene, assembly script, project-owned materials and documentation. Never commit temp folders or unrelated Unity generated caches.
