@@ -475,3 +475,40 @@ The user explicitly excluded “lizards” from scope. In the coverage report sh
 10. **Final report.** Provide a PDF requirement coverage table, actual tests performed, Console state, build result/target, GitHub commit and remote parity, local uncommitted changes preserved, source archive path, and academic items still awaiting user action. Be explicit about tests not performed.
 
 Do not add features during Phase 8. Do not reopen the excluded “lizards” term. Keep the EUR 0 budget.
+
+## 26. Phase 8 partial QA results — 2026-11-26
+
+### Verified GitHub change
+Remote `main` was checked directly after the Phase 8 Codex run. The latest commit is `6f3d91c3000d21d5e2d2d32abc99a483d5d87bd9` (`fix: launch warehouse scene from player builds`); it modifies only `ProjectSettings/EditorBuildSettings.asset`. That file now contains two enabled scenes in the required order:
+1. `Assets/Scenes/Warehouse_Final.unity` (GUID `1666c90be4ecf4182b7d0e349f7b08b2`)
+2. `Assets/Scenes/SampleScene.unity` (GUID `99c9720ab356a0642a771bea13969a05`)
+
+This resolves the previous build-scene-list omission. Do not repeat or revert this change.
+
+### Tests actually reported by Codex in its Phase 8 run
+- Scene/build configuration: passed; both scenes enabled in the required order.
+- Static scene reference scan: 65 unique GUID references in `Warehouse_Final` resolved against Assets, Packages, PackageCache or Unity built-ins; no null script references or “Missing” markers were found.
+- Play Mode camera: partial. Overview rendered; `V` switched to first person and the full roof was visible; `Escape` returned the UI to “Click to look”. Mouse look, WASD movement and collisions were not tested.
+- Audio controls: partial. `M` visibly toggled Off/On. Codex did not repeat a listening test in that session. The user had separately reported on the Mac that warehouse ambience and the spatial conveyor sound were audible, so retain that user-confirmed result; do not misreport it as freshly re-tested in the Phase 8 run.
+- Generator: not rerun during Phase 8; the seed/density/clear matrix was not executed in a temporary scene copy during that run. Previous actual Play Mode validation remains documented in sections 20, 23 and 24.
+- Animation: not rerun during Phase 8; carton flaps, locker doors, rollers and placement drift were not rechecked in that session. Previous actual Play Mode validation remains documented in section 23.
+- Lighting: overview and first-person views reportedly showed high-bay and dock lighting; no separate measurement was made.
+- Performance: no FPS or numeric measurement was captured.
+- macOS: Build Support is installed, but no standalone QA build was produced or launched. Unity stopped responding while the scene picker was open, and the run deliberately avoided a concurrent batch build against the open project.
+- Console: 0 errors and 4 existing obsolete `MaterialLocation.External` FBX metadata warnings were reported. Two Phase 7B mute/unmute informational logs also appeared.
+- Requirement coverage: the PDF categories were reviewed, but the model-category and generator final QA rows remain partial/not re-run.
+
+### Source archive status
+Codex reports that a source-only archive was created at `/private/tmp/WAREHOUSE-UNITY-Phase8-Source-6f3d91c.zip`, with `README_PHASE8.md`, required project files and .meta files, and a passing ZIP integrity check. Reported SHA-256: `936ca3fc064297df855e56ac5301e2ed978a74e65221ea838c1bb6f213f767aa`. This path is local to the Mac/Codex environment, not a GitHub release or a downloadable attachment in this chat. The user must confirm that the file exists at that path and copy it to a convenient delivery location. Do not claim that it was uploaded or attached here.
+
+### Current phase 8 remaining work — do not claim final delivery yet
+1. Complete manual Unity Play Mode checks for WASD, mouse look, Escape cursor release, wall/rack collisions and roof switching.
+2. Rerun the generator matrix in a temporary scene copy: seeds 12345 and 67890; 25/50/75/100% density; clear/regenerate; no duplicates or blocked aisles. Restore/delete only the temporary test copy, never destructively clean user files or the final scene.
+3. Rerun Phase 7A animation checks and stable placement in Play Mode.
+4. Confirm lighting and the two audio controls in both camera modes; retain the separate user-confirmed Mac listening test. Ask the user to listen again only if a change/regression occurs.
+5. Measure actual performance on the M4 Mac if available; otherwise mark unmeasured.
+6. Resolve the macOS build QA safely. Since Build Support exists but the Editor became unresponsive with the scene picker open, first recover the active Editor normally and inspect process/Editor state. Do not launch a concurrent batch build against the open project. If safe, create a build outside the repo, launch it, verify Warehouse_Final and basic controls. If it remains unstable, report that build testing is blocked.
+7. Inspect the source ZIP at its reported local path, verify contents and hash, then copy it to Desktop or another user-accessible location. Never infer a sandbox download link from this path.
+8. Preserve existing local-only LED material, settings and Build Profiles modifications. Do not commit them without exact review. Confirm local Git status and remote parity before any further commit.
+
+Final delivery is incomplete until the remaining critical checks and build/archive handoff are either completed or explicitly reported as blocked. Keep Roll-a-Ball and the lecturer's individual/group email reply separate from Unity completion. Do not reopen the user-excluded “lizards” item. No added features; EUR 0 budget.
