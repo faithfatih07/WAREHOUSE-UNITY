@@ -529,3 +529,28 @@ Next action is to restore Unity access manually before more automated work:
 5. Resume Phase 8A in small, independent batches only after the live Unity MCP connection is visible. Do not repeatedly retry the same failing CUA UI path or claim tests passed without actual Play Mode evidence.
 
 Phase 8B build and archive verification must wait until Phase 8A is completed or its remaining blockers are explicitly documented.
+
+## 28. Phase 8A Test 1 — camera and movement manually confirmed (2026-11-26)
+
+Codex's live Unity MCP inspection confirmed the active scene was `Assets/Scenes/Warehouse_Final.unity` in Unity 6000.6.10f1, Edit Mode, loaded and not dirty. Overview camera rendered successfully in Play Mode. Codex could not inject physical desktop input for V/WASD/mouse/Escape or collision tests. The user then manually tested the game and reported that it works and there was no meaningful difference from before. Record the previously blocked user-input/collision checks as **user-confirmed PASS**: V camera switching, WASD movement, mouse look, Escape cursor release, and wall/rack collisions. Do not misrepresent these as Codex-injected tests. No scene or project files were changed during Test 1.
+
+### Next test — Phase 8A Test 2: Warehouse Stock Generator
+
+Inspect the real implementation and serialized configuration before testing:
+- `Assets/Scripts/WarehouseStockGenerator.cs`
+- `Assets/Editor/WarehouseStockGeneratorEditor.cs`
+- the generator component and `WAREHOUSE_GENERATED_STOCK_ROOT` in `Warehouse_Final`.
+
+Run the generator regression in an isolated temporary scene/test fixture, not the saved final scene. Prefer in-memory scene cloning if it can preserve all required generator dependencies; otherwise use one explicitly named temporary QA scene/folder under a dedicated temporary path. Do not alter or save `Warehouse_Final.unity`, `SampleScene.unity`, or `Warehouse_Blockout.unity`.
+
+Test:
+1. Seed 12345 twice; capture counts/transforms/order and compare for deterministic equality.
+2. Seed 67890; verify arrangement differs.
+3. Density 25%, 50%, 75%, 100%; record actual generated counts.
+4. Clear; verify generated contents are removed but authored warehouse objects remain.
+5. Regenerate; verify no duplicates.
+6. Verify generated bounds do not obstruct defined aisles, pedestrian lane, dock/apron clearances or keep-clear zones.
+
+Read generator code for density semantics and expected count formula before judging results. Do not assume default stock count or density output from old reports. Record the component's actual serialized settings and any deterministic ordering/hashing method used. Clean up only test artifacts created in this run, using exact known paths/instance IDs. No blanket asset/folder cleanup. Preserve local user changes and do not commit unless a test fix is explicitly requested after the report.
+
+After Test 2, proceed separately to Test 3 animations, then Test 4 audio/lighting/Console/performance. Phase 8B build remains last.
