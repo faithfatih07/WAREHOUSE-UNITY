@@ -17,6 +17,16 @@ public static class WarehousePhase4VisualBuilder
     private const string TextureFolder = AssetFolder + "/Textures";
     private static Material concrete, cladding, steel, wood, joint, yellow, white, fixture, diffuser, skylight;
 
+    [MenuItem("Warehouse/Phase 4/Regenerate Source Textures Only")]
+    public static void RegenerateSourceTexturesOnly()
+    {
+        EnsureFolder("Assets/Materials", "WarehousePhase4");
+        EnsureFolder(AssetFolder, "Textures");
+        EnsureTextures(true);
+        AssetDatabase.SaveAssets();
+        Debug.Log("WarehousePhase4VisualBuilder: deterministically regenerated six named source PNGs in place; existing Unity GUIDs were preserved.");
+    }
+
     [MenuItem("Warehouse/Phase 4/Regenerate Visual Transformation")]
     public static void Regenerate()
     {
@@ -24,7 +34,7 @@ public static class WarehousePhase4VisualBuilder
         if (scene.path != ScenePath) throw new System.InvalidOperationException("Open Warehouse_Final.unity before running the Phase 4 builder.");
         EnsureFolder("Assets/Materials", "WarehousePhase4");
         EnsureFolder(AssetFolder, "Textures");
-        EnsureTextures();
+        EnsureTextures(false);
         CreateMaterials();
         Transform final = FindRoot(scene, "WAREHOUSE_FINAL_ROOT");
         if (final == null) throw new System.InvalidOperationException("WAREHOUSE_FINAL_ROOT was not found; refusing to modify the scene.");
@@ -57,29 +67,26 @@ public static class WarehousePhase4VisualBuilder
         if (!AssetDatabase.IsValidFolder(path)) AssetDatabase.CreateFolder(parent, child);
     }
 
-    private static void EnsureTextures()
+    private static void EnsureTextures(bool forceRegenerate)
     {
-        MakeTexture("Concrete_Albedo", 512, 512, 1, false);
-        MakeTexture("Cladding_Albedo", 512, 512, 2, false);
-        MakeTexture("Timber_Albedo", 512, 512, 3, false);
-        MakeTexture("Steel_Normal", 256, 256, 4, true);
-        MakeTexture("Concrete_Normal", 256, 256, 5, true);
-        MakeTexture("Steel_MetallicSmoothness", 256, 256, 6, false);
+        MakeTexture("Concrete_Albedo", 2048, 2048, 1, false, forceRegenerate);
+        MakeTexture("Cladding_Albedo", 1024, 1024, 2, false, forceRegenerate);
+        MakeTexture("Timber_Albedo", 1024, 1024, 3, false, forceRegenerate);
+        MakeTexture("Steel_Normal", 1024, 1024, 4, true, forceRegenerate);
+        MakeTexture("Concrete_Normal", 1024, 1024, 5, true, forceRegenerate);
+        MakeTexture("Steel_MetallicSmoothness", 1024, 1024, 6, false, forceRegenerate);
         AssetDatabase.Refresh();
     }
 
-    private static void MakeTexture(string name, int width, int height, int kind, bool normal)
+    private static void MakeTexture(string name, int width, int height, int kind, bool normal, bool forceRegenerate)
     {
         string path = TextureFolder + "/" + name + ".png";
-        if (File.Exists(path))
+        if (File.Exists(path) && !forceRegenerate)
         {
             TextureImporter existing = AssetImporter.GetAtPath(path) as TextureImporter;
             if (existing != null)
             {
-                existing.textureType = normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
-                existing.sRGBTexture = !normal && kind != 6;
-                existing.wrapMode = TextureWrapMode.Repeat;
-                existing.SaveAndReimport();
+                ConfigureTextureImporter(existing, width, normal, kind);
             }
             return;
         }
@@ -89,11 +96,13 @@ public static class WarehousePhase4VisualBuilder
         for (int y = 0; y < height; y++) for (int x = 0; x < width; x++)
         {
             float u = (float)x / width, v = (float)y / height;
-            float n = Mathf.PerlinNoise(u * 31f + 3.7f, v * 31f + 8.1f) * 0.62f + Mathf.PerlinNoise(u * 113f, v * 113f) * 0.25f + Mathf.PerlinNoise(u * 7f, v * 7f) * 0.13f;
+            float n = Mathf.PerlinNoise(u * 31f + 3.7f, v * 31f + 8.1f) * 0.55f + Mathf.PerlinNoise(u * 113f, v * 113f) * 0.24f + Mathf.PerlinNoise(u * 7f, v * 7f) * 0.13f + Mathf.PerlinNoise(u * 317f + 19f, v * 317f + 41f) * 0.08f;
             if (normal)
             {
-                float du = (Mathf.PerlinNoise((u + 0.004f) * 31f, v * 31f) - Mathf.PerlinNoise((u - 0.004f) * 31f, v * 31f)) * (kind == 4 ? 2.8f : 0.9f);
-                float dv = (Mathf.PerlinNoise(u * 31f, (v + 0.004f) * 31f) - Mathf.PerlinNoise(u * 31f, (v - 0.004f) * 31f)) * 1.8f;
+                float du = (Mathf.PerlinNoise((u + 0.001f) * 31f, v * 31f) - Mathf.PerlinNoise((u - 0.001f) * 31f, v * 31f)) * (kind == 4 ? 2.8f : 0.9f);
+                float dv = (Mathf.PerlinNoise(u * 31f, (v + 0.001f) * 31f) - Mathf.PerlinNoise(u * 31f, (v - 0.001f) * 31f)) * 1.8f;
+                du += (Mathf.PerlinNoise(u * 251f + 5f, v * 251f + 7f) - Mathf.PerlinNoise(u * 251f - 5f, v * 251f - 7f)) * 0.18f;
+                dv += (Mathf.PerlinNoise(u * 251f + 7f, v * 251f + 5f) - Mathf.PerlinNoise(u * 251f - 7f, v * 251f - 5f)) * 0.18f;
                 Vector3 nrm = new Vector3(-du, -dv, 1f).normalized;
                 pixels[y * width + x] = new Color(nrm.x * 0.5f + 0.5f, nrm.y * 0.5f + 0.5f, nrm.z * 0.5f + 0.5f, 1f);
             }
@@ -107,13 +116,13 @@ public static class WarehousePhase4VisualBuilder
             else if (kind == 1)
             {
                 float fleck = (n - 0.5f) * 0.16f;
-                float aggregate = (Mathf.PerlinNoise(u * 137f, v * 137f) - 0.5f) * 0.065f;
+                float aggregate = (Mathf.PerlinNoise(u * 137f, v * 137f) - 0.5f) * 0.065f + (Mathf.PerlinNoise(u * 521f, v * 521f) - 0.5f) * 0.022f;
                 float c = 0.57f + fleck + aggregate;
                 pixels[y * width + x] = new Color(c * 0.98f, c, c * 1.01f, 1f);
             }
             else if (kind == 2)
             {
-                float corrugation = Mathf.Pow(Mathf.Abs(Mathf.Sin(u * Mathf.PI * 50f)), 8f) * 0.18f;
+                float corrugation = Mathf.Pow(Mathf.Abs(Mathf.Sin(u * Mathf.PI * 50f)), 8f) * 0.14f;
                 float c = 0.42f + (n - 0.5f) * 0.12f + corrugation;
                 pixels[y * width + x] = new Color(c * 0.82f, c * 0.89f, c * 0.9f, 1f);
             }
@@ -128,7 +137,20 @@ public static class WarehousePhase4VisualBuilder
         Object.DestroyImmediate(tex);
         AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
         TextureImporter importer = AssetImporter.GetAtPath(path) as TextureImporter;
-        if (importer != null) { importer.textureType = normal ? TextureImporterType.NormalMap : TextureImporterType.Default; importer.sRGBTexture = !normal && kind != 6; importer.wrapMode = TextureWrapMode.Repeat; importer.maxTextureSize = width; importer.SaveAndReimport(); }
+        if (importer != null) ConfigureTextureImporter(importer, width, normal, kind);
+    }
+
+    private static void ConfigureTextureImporter(TextureImporter importer, int width, bool normal, int kind)
+    {
+        importer.textureType = normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
+        importer.sRGBTexture = !normal && kind != 6;
+        importer.wrapMode = TextureWrapMode.Repeat;
+        importer.mipmapEnabled = true;
+        importer.filterMode = FilterMode.Trilinear;
+        importer.anisoLevel = kind == 1 || kind == 5 ? 4 : 2;
+        importer.maxTextureSize = width;
+        importer.textureCompression = TextureImporterCompression.CompressedHQ;
+        importer.SaveAndReimport();
     }
 
     private static Texture2D Tex(string name) => AssetDatabase.LoadAssetAtPath<Texture2D>(TextureFolder + "/" + name + ".png");
