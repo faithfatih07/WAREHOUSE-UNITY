@@ -254,3 +254,7 @@ Phase 7 is deliberately split into two small Codex tasks. First animate a matchi
 Phase 7B audio should stay minimal: low-volume warehouse ambience, one spatial conveyor loop and one restrained packing one-shot; no reversing alarm while vehicles are static, no music, no paid packages. Prefer original locally generated WAVs at EUR 0. Ask the user to confirm audible playback on the Mac rather than claiming audibility from configuration alone.
 
 The user has explicitly excluded “lizards”; it is not implemented and is not a blocker. Roll-a-Ball completion and the teacher's requested group/individual email reply are separate course handoff tasks, not warehouse-scene tasks.
+
+## 18. Phase 7A animation integration results (2026-11-26)
+
+Phase 7A adds animation behavior without changing the approved 60×40 m interior, 24 m truck apron, zone positions, rack rows, conveyor route, camera setup or stock layout. The existing packing carton and office double locker each use a root-keyed matching Legacy clip beneath a placement parent that retains its original world pose. The four existing straight conveyor modules expose 100 separate roller transforms controlled by one runtime component. Rollers rotate in place; conveyor loads are not translated and no conveyor models are replaced. Full Play Mode results are recorded in `PROJECT_BRIEF.md` section 23 and `Assets/Imported/FreeWarehouseEssentials/Documentation/AnimationPlaybackValidation.md`.

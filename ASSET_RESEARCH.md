@@ -736,3 +736,7 @@ Phase 7A should animate only one carton, one locker or electrical-cabinet door, 
 Phase 7B audio is separate. The repository contains no pre-existing WAV/MP3/OGG audio sources. Use a small original locally generated WAV soundscape or already-available verified CC0 audio only. Do not perform broad new asset research or use paid/unlicensed files. The user must listen in Play Mode to confirm audible output; source configuration alone is not audibility proof.
 
 The ambiguous “lizards” item is excluded by user decision; no further work is allowed on it.
+
+## 31. Phase 7A animation integration results (2026-11-26)
+
+No new assets were downloaded or imported for Phase 7A. The existing Warehouse Essentials `Open_Carton` and `Double_Locker` Legacy clips were applied only to matching existing scene models; the existing tevy GLB straight-conveyor roller transforms were driven procedurally. The Warehouse Essentials `Roller_Conveyor` clip was not applied to tevy models. In actual Unity Play Mode, carton flaps and double-locker doors changed transforms, and all 100 GLB rollers rotated during sampling. See `Assets/Imported/FreeWarehouseEssentials/Documentation/AnimationPlaybackValidation.md` for clip validation and `PROJECT_BRIEF.md` section 23 for final-scene bindings. No audio work was performed.

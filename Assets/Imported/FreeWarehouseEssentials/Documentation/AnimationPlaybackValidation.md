@@ -51,3 +51,11 @@ For future integration, retain the imported FBX sample and its clip, set the mod
 - `AnimationPriority_PlayMode.png` — focused view of the six requested priority samples in Play Mode.
 
 The preview scene lived in `Assets/__Phase2FinalPreview/` and was deleted after testing. No animation assets were modified beyond the Legacy import configuration. No downloaded code was executed, and no antivirus scan was performed.
+
+## Phase 7A final-scene integration check (2026-11-26)
+
+In the existing `Warehouse_Final` scene, only `Packing_Open_Carton_1` and `Office_Double_Locker` were assigned their matching clips. Each used its original `Warehouse_DAY` clip on an automatic Legacy `Animation` component with PingPong wrapping and 0.45 playback speed. Each model was placed under a separate unanimated transform parent. The editor setup and binding validator confirmed one instance of each selected prop animation and no duplicate controller after repeated configuration.
+
+The four existing straight tevy GLB conveyor modules contain 25 individual roller transforms each. A project runtime controller rotates all 100 transforms around local X at 135 degrees per second; no Warehouse Essentials conveyor clip was retargeted. Actual Play Mode sampling for 3.2 seconds observed all four carton flap transforms, both double-locker door transforms and all 100 roller rotations. The two placement-parent world positions and orientations stayed stable during the same sample. Conveyor load positions were not animated.
+
+The Phase 6 seed/density/clear/regenerate validation passed in the Editor during this pass and the final saved stock arrangement was restored to the baseline seed 12345 at 50% density. Console error count was zero. Unity showed pre-existing obsolete `MaterialLocation.External` import warnings during validation; no source importer settings were changed. No audio was added. The active Unity Editor's live Game View and Console were inspected, but no screenshot artifact was saved for this validation pass.
