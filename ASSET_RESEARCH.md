@@ -718,3 +718,10 @@ No further broad asset research is needed for the remaining scope. At the time t
 The configurable stock generator uses only already imported, reviewed Warehouse Essentials assets: `Pallet.fbx`, `Box_Small.fbx`, `Box_Medium.fbx`, `Crate_Small.fbx` and `Crate_Large.fbx`. It keeps their importer assets unchanged and uses them as model prefab sources in scene instances. No additional assets, licences, attribution records or packages were introduced. Existing raw assets remain under `Assets/Imported/FreeWarehouseEssentials/Models/` and retain the previously documented CC0 provenance.
 
 Unity editor validation placed mixed pallet-only, box and crate loads in unique rack positions with repeatable seed behavior. The generator does not add collider, LOD or animation claims to these assets. Source importer warnings about obsolete `MaterialLocation.External` metadata remain an existing Unity-version compatibility notice and were not addressed by changing import settings.
+
+
+## 29. Phase 7 animation/audio handoff (2026-11-26)
+
+The asset research phase is closed. Do not perform another broad asset search. The existing Legacy animation samples are retained in `Assets/Imported/FreeWarehouseEssentials/Animations/`; their detailed 17-clip Play Mode evidence and exact matching-hierarchy limitations are in `Documentation/AnimationPlaybackValidation.md`. Use only matching clip/model hierarchy combinations. The tested `Roller_Conveyor` clip maps to the Warehouse Essentials FBX hierarchy, not the separate tevy GLB conveyor modules.
+
+No audio source files are currently present in the repository tree. For Phase 7 use a legally free CC0 audio source only if already available without signup/payment; otherwise author small original procedural WAVs locally with an Editor utility. Do not install audio packages or use paid/unlicensed content. The next phase after animation/audio is Phase 8 final QA and delivery.
