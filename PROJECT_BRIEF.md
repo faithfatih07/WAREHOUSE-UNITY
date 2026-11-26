@@ -626,3 +626,26 @@ Conclusion: the isolated reproduction proves the source clip and Legacy playback
 Run a live Play Mode sample against the exact saved scene instance `P7A_Placement_Packing_Open_Carton_1` in `Warehouse_Final`, with Game View focused and Editor actively advancing. Capture exact instance ID/hierarchy path, active clip, Animation component/state (`isPlaying`, enabled, state.time, normalized time, speed, wrapMode), and four flap local rotations at t0 then ~0.5, 1, 1.5, 2, 2.5 seconds. If it moves, classify the earlier fail as non-reproduced/test instrumentation mismatch and close it. If it still does not move, compare that exact instance to the passing isolated clone including prefab overrides, parent chain, effective clip/state and exact flap paths. Any reproduction must be an unsaved isolated scene/clone; do not run Phase 7A setup, do not save/modify the production scene, and stop if Unity/MCP disconnects. No speculative fix.
 
 After resolving/carton result, proceed to Phase 8A Test 4: verify existing two audio sources/control, interior/dock lighting in both camera modes, fresh Console and actual performance measurement if available; then Phase 8B macOS build/archive checks.
+
+## 32. Phase 8A Test 3 — exact production carton retest PASS; previous failure not reproduced (2026-11-26)
+
+Codex retested the exact production instance `P7A_Placement_Packing_Open_Carton_1` (instance ID `23819:768`) in the actual `Warehouse_Final` Play Mode, with Game View focused. Its carton child was `Packing_Open_Carton_1` (instance ID `25463:768`). The parent transform was world position (47, 1, 15.4), rotation approximately (270.02, 0, 0), scale (1,1,1). The carton root used the enabled, autoplay Legacy Animation component with `Warehouse_DAY`, clip duration 2.5 seconds, speed 1, PingPong wrap.
+
+All four flap local rotations changed at every captured sample:
+- Requested 0.0s: state time 0.000, normalized 0.000.
+- Requested 0.5s: measured elapsed 0.562s, state time 0.420, normalized 0.168.
+- Requested 1.0s: measured elapsed 1.061s, state time 0.920, normalized 0.368.
+- Requested 1.5s: measured elapsed 1.562s, state time 1.421, normalized 0.568.
+- Requested 2.0s: measured elapsed 2.062s, state time 1.920, normalized 0.768.
+- Requested 2.5s: measured elapsed 3.161s, state time 2.220, normalized 0.888. This final sample arrived late; report measured elapsed and state time rather than calling it an exact 2.5-second sample. Earlier samples already confirm movement on all four flaps.
+
+Conclusion: PASS — previous production carton failure not reproduced. Close this investigation. No production fix is warranted; do not modify animation code, clips, FBX assets or importer settings.
+
+After testing, Play Mode was exited; `Warehouse_Final` was active in Edit Mode and clean. Console showed 0 errors and 4 existing obsolete material-location warnings for `Pallet.fbx`, `Crate_Large.fbx`, `Workbench_Vise.fbx` and `Pallet_Jack.fbx`. No project files were changed; no commit or push occurred. Local changes including the uncommitted generator fix remain untouched; local branch remained reported two commits behind `origin/main`.
+
+Phase 7A animation regression status is now:
+- Packing carton four flaps: PASS (earlier failure not reproduced)
+- Office Double Locker two doors: PASS
+- Conveyor rollers: PASS (100/100, no positional drift)
+
+Next: Phase 8A Test 4 — verify the existing two audio sources and M toggle, ambience and spatial conveyor sound in both camera modes, high-bay and dock lighting in overview and first-person, current Console (separate pre-existing FBX warnings), and actual FPS/frame time if available. Do not invent performance measurements. Do not add audio, lights or features. Use actual Play Mode evidence; ask the user to listen/observe any checks that cannot be verified from MCP. Do not modify project files or scenes. Exit Play Mode and confirm scene clean. Then Phase 8B macOS build and source archive verification.
