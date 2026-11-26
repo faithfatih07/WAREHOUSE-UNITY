@@ -693,3 +693,16 @@ The editor builder `Assets/Editor/WarehousePhase4VisualBuilder.cs` operates only
 Unity 6000.6.10f1 / URP 17.6.0 actual Editor verification: the final scene had 1,279 renderers and zero missing material/shader slots; 543 renderer material slots use Phase 4 materials and 302 assignments reference generated textures. The visual builder generated URP Lit materials with concrete, cladding, steel and timber maps. Full roof panels and translucent tinted skylights were temporarily shown, captured, then returned to the saved cutaway state. Local high-bay and dock spots are non-shadow-casting; existing soft directional shadows remain. The final project settings diff is empty after restoring Unity's unrelated auto-added URP folder path. Neither `Warehouse_Blockout.unity` nor `SampleScene` was changed. Final Console check returned zero errors and four existing obsolete `MaterialLocation.External` warnings from `Pallet.fbx`, `Pallet_Jack.fbx`, `Workbench_Vise.fbx` and `Crate_Large.fbx`; their importer settings were left unchanged. An earlier builder compilation warning from the obsolete object-finding API was fixed and the script recompiled successfully.
 
 Visual evidence from the Unity Editor: `Assets/Screenshots/WarehouseFinal_Phase4_Overview.png`, `WarehouseFinal_Phase4_Storage_Closeup.png`, `WarehouseFinal_Phase4_Operations_Closeup.png`, and `WarehouseFinal_Phase4_Roof_Complete.png`. Compare with the retained Phase 3 overview and operations images for the before state. No before image was altered. The 60×40 m interior, layout, rack rows, truck positions and 24 m apron remain as approved. No camera controller, generator, animation or audio implementation was started. The unresolved instructor term “lizards” remains pending clarification.
+
+
+## 27. Image-quality diagnosis from Phase 4 screenshots (2026-11-26)
+
+The user's close-up screenshot has the Unity Game view Scale slider set to 7x. Unity's Game view documentation defines this slider as zooming into the Game screen to examine areas; do not mistake enlarged on-screen pixels for native output quality. Use 1x Game view scale for visual verification captures.
+
+The actual source assets also have modest resolution:
+- Phase 4 builder creates concrete/cladding/timber albedo maps at 512×512 and steel/concrete normal plus metallic-smoothness maps at 256×256.
+- Their current importer metadata enables mipmaps, uses bilinear filtering, and Aniso Level 1.
+- The original Warehouse Essentials atlases are 128×128.
+This combination can look soft/blocky in extreme close-up even when the geometry/materials are correctly assigned.
+
+For a bounded correction, assess native 1x captures, regenerate Phase 4 source maps at higher genuine source resolution if needed (do not only increase importer Max Size), use mipmaps/trilinear and moderate anisotropy for floor textures, and test geometry anti-aliasing independently. Do not assume MSAA fixes texture aliasing. Keep the art style and M4 performance.
