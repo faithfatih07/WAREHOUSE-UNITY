@@ -649,3 +649,41 @@ Phase 7A animation regression status is now:
 - Conveyor rollers: PASS (100/100, no positional drift)
 
 Next: Phase 8A Test 4 — verify the existing two audio sources and M toggle, ambience and spatial conveyor sound in both camera modes, high-bay and dock lighting in overview and first-person, current Console (separate pre-existing FBX warnings), and actual FPS/frame time if available. Do not invent performance measurements. Do not add audio, lights or features. Use actual Play Mode evidence; ask the user to listen/observe any checks that cannot be verified from MCP. Do not modify project files or scenes. Exit Play Mode and confirm scene clean. Then Phase 8B macOS build and source archive verification.
+
+## 33. Phase 8A Test 4 — audio PASS, lighting FAIL, performance unmeasured (2026-11-27)
+
+### Audio setup and mute toggle — PASS
+- Exactly 2 AudioSources and 1 audio controller found.
+- Ambience source is 2D at (30, 4, 20), volume 0.12.
+- Conveyor source is spatial at (49, 1.35, 24), volume 0.18, logarithmic rolloff, min/max distance 2.5/24.
+- Genuine `M` keypresses toggled both sources' mute flags and HUD Off/On state; Console logged mute and unmute.
+- User's prior confirmation that both sounds were audible on their Mac remains accepted.
+
+### Camera/audio independence — PASS
+- Genuine `V` presses switched overview/first-person and back.
+- Same audio controller and two sources remained; one active camera and one active AudioListener.
+- Listener belongs to inactive camera; camera controller did not disable or duplicate audio objects.
+
+### Background audio observation — BLOCKED, not FAIL
+During MCP profiling Unity lost focus. Both sources reported `isPlaying=false` while Editor was in Play Focused mode and `runInBackground=false`. This does not establish that camera switching stopped playback. Keep the user's prior listening confirmation; only recheck in foreground runtime or with a user listening test if necessary.
+
+### Lighting — FAIL
+- All 15 high-bay spotlights were enabled and located at y=9.86, but their world direction was `(0,0,1)` (horizontal toward +Z), not downward. Interior illumination was visible but coverage was uneven.
+- Three dock wallpacks were enabled at y=6.8, pointing downward and outward; docks/apron appeared brightly lit.
+- Legacy blockout directional light was disabled; a separate provisional directional light remained active.
+- No lighting changes were made in Test 4.
+
+### Performance — UNMEASURED
+Ten FrameTimingManager samples were inconsistent. Reported CPU frame values varied around 100–200 ms while main-thread values were near zero and render/GPU/present fields were zero. These records do not support reliable FPS or frame-time conclusions. Do not invent a measurement. Try a genuine standalone profiling method during Phase 8B on the M4; otherwise retain UNMEASURED.
+
+### Console and scene preservation — PASS
+- 0 errors.
+- 4 existing obsolete `MaterialLocation.External` warnings for `Crate_Large.fbx`, `Pallet.fbx`, `Pallet_Jack.fbx`, and `Workbench_Vise.fbx`.
+- No audio or rendering errors.
+- Play Mode exited; `Warehouse_Final` remained active and not dirty, with four root objects.
+- No files, scene objects, settings or packages were changed in Test 4. Existing local changes, including uncommitted `WarehouseStockGeneratorEditor.cs`, remain preserved. No Git operations were performed.
+
+### Next: focused lighting correction only
+Inspect the exact 15 high-bay spotlight transforms/hierarchy, Light ranges/spot angles/intensities/colors/shadows, ceiling geometry, and directional-light roles. Correct only the high-bay orientations to illuminate the warehouse downward, verifying each fixture's actual forward direction before changing it. Keep their positions and other intentional properties unchanged unless evidence demands otherwise. Do not change the dock wallpacks, provisional directional light, post-processing, URP, project settings, materials or unrelated objects. Prefer a reversible/in-memory test first; compare coverage in overview and first-person and preserve current dock/apron lighting. Capture before/after evidence and Console. If a fixture or directional-light role is ambiguous, stop and report rather than toggle it.
+
+After the lighting check passes, repeat relevant Test 4 checks, then proceed to Phase 8B macOS standalone build and archive QA. Performance remains unmeasured until reliably profiled.
