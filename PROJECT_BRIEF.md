@@ -688,14 +688,42 @@ Inspect the exact 15 high-bay spotlight transforms/hierarchy, Light ranges/spot 
 
 After the lighting check passes, repeat relevant Test 4 checks. Do not make a macOS build; the user can inspect the project in Unity Editor and the instructor uses Windows. A Windows standalone build (.exe) is optional and should be attempted only as a final delivery step if time/budget permits. Performance remains unmeasured unless a reliable genuine measurement is obtained. Then consider the one user-preferred low-cost automatic conveyor package-flow visual described in AGENTS.md; do not start it until the user approves after lighting.
 
-## 34. Delivery platform and optional feature decision (2026-11-27)
+## 34. Delivery platform and QA boundary (2026-11-27)
 
-The instructor uses Windows. The user does not need a macOS build because they can already inspect the running project in Unity Editor. Replace the previous tentative macOS delivery path with a Windows standalone build (.exe) for the instructor. A clean Windows-compatible Unity source project/archive may accompany it if requested. Preserve the project's current Unity version and package setup; verify Windows build support before attempting the build. Do not claim a Windows build exists until it has actually been built and launched.
+The instructor uses Windows. Do not create a macOS build. The user can inspect the project in Unity Editor. A Windows standalone build (.exe) is optional only if needed for teacher handoff and sufficient budget/time remains. Phase 8 is QA/delivery and prohibits feature development; any additional feature must be explicitly separated into Phase 9 after Phase 8A QA closure. Do not report blocked or unmeasured checks as passed.
 
-The user has limited remaining Codex/token budget and is interested in one or a few extra features, not a large expansion. The actual DPVR specification requires a 3D warehouse environment, equipment models, suitable sounds, animation of some elements, interior lighting, and gives a C# warehouse stock generator as an optional example. Current project scope already covers those categories except the known high-bay lighting issue. The ambiguous "lizards" item is explicitly excluded by user decision. Do not add new systems just to inflate scope.
+## 35. User-selected optional feature direction — automatic package movement (2026-11-27)
 
-Complete the high-bay lighting correction and final QA first. Then offer one low-risk optional presentation enhancement and wait for the user's choice. Preferred candidate: a compact guided warehouse tour/presentation mode with 3–4 fixed camera stops (storage racks, receiving/inspection, sorting/conveyor, packing/dispatch) and short readable labels. Reuse existing geometry, zones and cameras; avoid paid assets, large new systems or unnecessary imports. Other possible candidates only if explicitly selected: interactive zone information panels, or one short package-on-conveyor motion demo. Do not implement all options. Roll-a-Ball remains a separate course task from the warehouse semester project.
+The user prefers automatic warehouse activity over manual placement or a guided tour, and has limited remaining Codex token budget. The selected candidate is a single lightweight automatic package-flow demonstration using the existing straight conveyor and four existing packages. Implement only as a separate Phase 9 after Phase 8A QA is closed; do not violate the Phase 8 QA/delivery freeze.
 
-## 35. User-selected optional feature direction — automatic warehouse activity (2026-11-27)
+## 36. Read-only conveyor inspection — confirmed route and limitations (2026-11-27)
 
-The user prefers automatic activity inside the warehouse over manual box placement or a guided tour. Remaining Codex/token budget is limited, so do not propose a broad feature expansion. After fixing and retesting the high-bay lights, the preferred single optional enhancement is a compact automatic package-flow demonstration on an existing conveyor: a few existing carton/box assets move continuously along a small, explicit waypoint path through sorting/packing, keep consistent spacing, pause briefly where visually useful, and loop smoothly. Reuse the existing conveyor geometry, roller animation and current assets. Keep it a visual operational demonstration, not a game, inventory system or full physics simulation. Avoid paid/new assets, rigidbody/physics complexity, forklift AI, manual placement UI, extra UI and major architecture. Implement only after user approval and only if the remaining budget allows a complete, verified feature. If not, finish lighting and deliver the current project cleanly rather than leave a partial feature. Instructor platform remains Windows; macOS build removed from plan. A Windows .exe is an optional final packaging step, not a prerequisite for continuing project work.
+Unity MCP read-only inspection found:
+- All conveyor modules are under `WAREHOUSE_FINAL_ROOT/SORTING_AND_CONVEYOR`.
+- `Sort_Belt_Transfer` bounds X 39.95–41.47, Z 23.60–24.57, at approximately (40.7,0,24), Y rotation 90°.
+- `Sort_Conveyor_Straight_A`: X 41–45, Z 23.53–24.41, at (43,0,24), Y rotation 90°.
+- `Sort_Conveyor_Straight_B`: X 45–49, same Z bounds, at (47,0,24), Y rotation 90°.
+- `Sort_Conveyor_Straight_C`: X 49–53, same Z bounds, at (51,0,24), Y rotation 90°.
+- `Sort_Conveyor_Straight_D`: X 53–57, same Z bounds, at (55,0,24), Y rotation 90°.
+- `Sort_Conveyor_Curve` bounds X 55.53–57.01, Z 23.33–24.81, at approximately (57,0,24.8), Y rotation 90°.
+The transfer overlaps Straight A and A-D meet edge-to-edge. They form a connected straight conveyor run along +X from about X=41 to X=57, at Z≈24. The curve is at the far end; no conveyor continues beyond it or returns to the start. There is no physical closed loop.
+
+Four existing package objects are already on the straight conveyor at Y=1, Z=24, each spaced by 4m:
+- `Conveyor_Load_01` — `Box_Medium.fbx`, X=43.
+- `Conveyor_Load_02` — `Box_Small.fbx`, X=47.
+- `Conveyor_Load_03` — `Crate_Small.fbx`, X=51.
+- `Conveyor_Load_04` — `Open_Carton.fbx`, X=55.
+They are scene instances of imported FBX model assets, not separate prefab files.
+
+The existing `WarehousePhase7AAnimationController.cs` has 100 unique roller references (25 per straight module), rotating rollers at 135°/s. It rotates rollers only and does not move packages. Do not retarget it to package transforms.
+
+Other nearby work areas are not connected to this belt:
+- Sorting inspection table center: (44,0.92,20), ~4m south; `Sort_Open_Carton` and `Sort_Small_Box` are on the table, not the belt.
+- Packing tables center at X=41,47,53, Z=15.4, ~8.6m south; no conveyor connects to them.
+- Receiving inspection bench at (22,0.92,31.8), also separate.
+
+### Smallest bounded Phase 9 implementation proposal
+
+One lightweight C# package-flow controller attached to/referenced from the existing `SORTING_AND_CONVEYOR` parent, with references to the four existing `Conveyor_Load_0*` transforms. Move all four at the same speed along +X over the actual 16m straight run X≈41–57, preserving their Y, Z, rotation and scale. Use a shared route phase/modulo so the existing 4m spacing is maintained as each package visually wraps to X≈41 after reaching the endpoint. This is a visual reset, not a physically closed-loop conveyor. It demonstrates automatic motion only on the straight belt; do not claim that packages reach the unconnected sorting or packing tables.
+
+No Rigidbody/physics, new assets or GameObjects, manual placement UI, additional UI, forklift AI, inventory system, sorting logic, fictional conveyor segments or broad architecture changes. Inspect exact current scene references and controller setup before implementation; implement only if the feature can be fully tested and verified within the remaining token budget. Otherwise leave it as-is and deliver the current project cleanly.
