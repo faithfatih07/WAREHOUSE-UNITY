@@ -554,3 +554,25 @@ Test:
 Read generator code for density semantics and expected count formula before judging results. Do not assume default stock count or density output from old reports. Record the component's actual serialized settings and any deterministic ordering/hashing method used. Clean up only test artifacts created in this run, using exact known paths/instance IDs. No blanket asset/folder cleanup. Preserve local user changes and do not commit unless a test fix is explicitly requested after the report.
 
 After Test 2, proceed separately to Test 3 animations, then Test 4 audio/lighting/Console/performance. Phase 8B build remains last.
+
+## 29. Phase 8A Test 2 — generator regression and confirmed vertical overlap defect (2026-11-26)
+
+Codex tested the actual generator against an isolated in-memory fixture cloned from the production rack modules and FBX dependencies; the temporary fixture was closed after testing. `Warehouse_Final` remained active in Edit Mode and not dirty; four scene roots, 21 existing storage children, 30 generated loads and generator settings were unchanged. Nothing was committed or pushed during the test.
+
+Results:
+- Seed 12345 determinism: PASS. Two 50% runs each produced 30 loads with identical full signatures (SHA-256 prefix `285A42AB…C3290D5`).
+- Seed 67890 variation: PASS. It produced a different signature (`5997218C…AFAA94E`).
+- Density: PASS. 25%=15 loads/27 model instances; 50%=30/55; 75%=45/85; 100%=60/113. Configured rack capacity is 60 positions.
+- Clear Generated: PASS. It removed all generated loads while all 10 cloned rack modules and fixture objects remained.
+- Regenerate: deterministic signature restored and 30 unique load-root positions, but FAIL due to renderer-bounds overlaps. Detected intersecting load pairs: 25%=3; 50%=5; 75%=13; 100%=25.
+- Warehouse operational zones: PASS with overlap finding above. Generated load bounds did not intersect the defined pedestrian route, forklift spine, conveyor, packing, dispatch, dock/apron, office or receiving zones.
+- Console: 0 errors and the four known obsolete `MaterialLocation.External` warnings for imported FBXs.
+
+Confirmed source defect in `Assets/Editor/WarehouseStockGeneratorEditor.cs`:
+- `GetSlots` loops `level = 0..shelfLevels-1`, then creates `Slot(..., level + 1, ..., LevelOffsets[level], ...)` (one-based slot.level).
+- `LevelOffsets = { 0f, 2.55f }`.
+- `Generate` uses `slot.level == 0 ? 0.2f : 2.75f` to choose cargo offset.
+- The lower-level condition is impossible because all generated slots have level 1 or 2. Therefore both shelf levels receive the upper-level cargo offset; renderer bounds overlap vertically.
+- Existing `VerifySlotsAreUniqueAndInsideRackZone` checks root-position uniqueness and broad X/Z extents only; it does not check renderer bounds between loads, so extend it or add a dedicated validator.
+
+Next: minimally correct cargo placement using the real one-based level or, preferably, an explicit per-slot local cargo offset derived from the actual slot height. Add robust per-load combined renderer-bounds intersection verification to `RunGeneratorValidation`. Rerun determinism, changed seed, density, Clear, Regenerate, renderer overlap and operational-zone tests in the isolated fixture. Expected acceptance is zero distinct-load renderer-bound intersections at 25/50/75/100%, with all existing keep-clear zones still unobstructed. Modify only the generator editor implementation/test as needed; do not alter saved scenes, source models, packages or unrelated project settings. Preserve all pre-existing local changes and use exact-path Git staging only.
