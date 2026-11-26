@@ -12,7 +12,7 @@ Non-negotiable project decisions:
 - Both camera modes are in scope: isometric overview and first-person exploration.
 - A configurable C# Warehouse Generator is in scope.
 - Preserve the existing Unity URP project and current package configuration.
-- Keep the work aligned with the phase sequence in `PROJECT_BRIEF.md`; do not jump ahead or silently omit requirements.
+- Keep the work aligned with the phase sequence in `PROJECT_BRIEF.md`; do not jump ahead or silently omit requirements. The user has explicitly excluded the ambiguous “lizards” source-PDF item from scope; do not reopen it.
 
 Working rules:
 - Use Unity MCP to inspect and modify the running Unity Editor where available. Do not assume access; verify the MCP tools and active project first.
@@ -25,4 +25,4 @@ Working rules:
 - Do not overwrite remote Git history. Check branch/status and remote state before pushing.
 - At the end of each task, report files changed, Unity verification performed, Console errors (if checked), remaining blockers, and Git commit/push status.
 
-Current phase: Phase 5 — camera modes and texture source calibration are implemented and Play Mode checked in `Assets/Scenes/Warehouse_Final.unity`. Texture sizes, deterministic regeneration, and import filtering are recorded in `PROJECT_BRIEF.md` section 18. The default overview reuses the active camera; first person uses a CharacterController and grouped collision proxies. The Phase 1 blockout reference and SampleScene remain untouched, as do ProjectSettings and package versions. The required matched 1× before/after image comparison is still pending because the Retina Game View reports 2× as its minimum. Do not start Phase 6 C# Generator or Phase 7 audio/animation integration until that Phase 5 visual check is complete. Keep “lizards” unresolved until clarified by the lecturer.
+Current phase: Phase 6 — implement the configurable C# Warehouse Generator. Phase 5 camera modes and texture source calibration are implemented and Play Mode checked in `Assets/Scenes/Warehouse_Final.unity`; texture details are in `PROJECT_BRIEF.md` section 18. The strict matched 1× before/after comparison is an evidence limitation because the Retina Game View reported 2× minimum; do not block Phase 6 on this. The user explicitly excluded the PDF's ambiguous “lizards” item on 2026-11-26. Do not research, clarify, substitute, model or spend further tokens on it; if needed in a final coverage table, label it “excluded by user decision / not implemented”, never “complete”. Next implement the deterministic, configurable rack/shelf stock population tool specified in PROJECT_BRIEF.md section 6. After Phase 6, continue Phase 7 animation/audio and Phase 8 final QA. EUR 0 and all other project decisions remain non-negotiable.
