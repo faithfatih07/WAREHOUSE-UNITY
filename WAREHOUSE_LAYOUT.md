@@ -171,9 +171,7 @@ These are inventory and fit notes only. The Phase 1 blockout scene and builder w
 - Include an overview camera for Phase 3 visual review. Final isometric/first-person controller and toggle are still Phase 5 tasks.
 
 ### Deferred instructor term
-- The user approved Phase 3 proceeding while the PDF's exact term “lizards” remains unresolved.
-- Do not substitute ladders or any other item without source evidence or lecturer clarification.
-- Keep the requirement in project documentation as “pending clarification”; do not claim full instructor-category coverage or Phase 2 final sign-off until it is answered.
+- Historical Phase 3 note: the term “lizards” was carried as unresolved at the time. This was superseded by the user's later explicit scope decision: the item is excluded, must not be interpreted or researched, and is not a blocker.
 
 ### Phase 3 boundaries
 - Build the assembled architecture and all known functional zones.
@@ -191,7 +189,7 @@ These are inventory and fit notes only. The Phase 1 blockout scene and builder w
 - `WAREHOUSE_FINAL_ROOT` groups architecture, active roof structure, separate inactive `ROOF_PANELS_AND_SKYLIGHTS` cutaway, floor markings/signage, storage, operations, office, receiving, packing, dispatch, docks/vehicles, exterior, camera and provisional lighting. Roof panels/skylights are retained in the scene but disabled for the Phase 3 overview. The overview camera and directional light are provisional only.
 - Unity 6000.6.10f1 / URP 17.6.0 checks: all 996 scene renderers had non-null material slots; major model bounds and orientations were queried in Editor; rack bottoms, truck apron placement and scene hierarchy were checked. Builder idempotency was checked with two consecutive final runs. Captures: `Assets/Screenshots/WarehouseFinal_Phase3_Overview.png` and `Assets/Screenshots/WarehouseFinal_Phase3_Operations.png`.
 - Final Console check found zero errors and eight warning entries: four duplicated `MaterialLocation.External` obsolete-setting warnings from existing FBX imports (`Crate_Large`, `Pallet`, `Pallet_Jack`, `Workbench_Vise`). Their importer metadata was left unchanged. Baseline scene files, Packages and ProjectSettings had no Git diff at review time.
-- Known remaining items: instructor term “lizards” is still pending clarification; do not guess. Final lighting is Phase 4, camera controls Phase 5, the configurable Warehouse Generator Phase 6, and sound/animation integration Phase 7. Imported models have no verified colliders or LODGroups; no colliders were invented here. Phase 3 scene assembly is complete; final Git delivery status is reported with the task results.
+- Historical Phase 3 status: at that time “lizards” was pending; the user later excluded it from scope. Final lighting is Phase 4, camera controls Phase 5, the configurable Warehouse Generator Phase 6, and sound/animation integration Phase 7. Imported models have no verified colliders or LODGroups; no colliders were invented here. Phase 3 scene assembly is complete; final Git delivery status is reported with the task results.
 
 ## 14. Phase 4 visual treatment (2026-11-26)
 
@@ -201,7 +199,7 @@ These are inventory and fit notes only. The Phase 1 blockout scene and builder w
 - Corrugated wall skins use a project-generated industrial metal map; the existing steel framing receives matching coated-steel material. Column bases have plates and visible anchor points. The existing roof structure stays active; complete roof panels and tinted skylight panels remain grouped in `ROOF_PANELS_AND_SKYLIGHTS` and disabled for cutaway screenshots.
 - High-bay spots and dock wall packs provide interior/exterior accents. The existing directional light is reduced to a neutral warm daylight level and remains the only soft-shadow source. Added local lights do not cast shadows to limit cost on the MacBook Air M4. Presentation cameras are still static; first-person/isometric switching remains Phase 5.
 - Screenshots from the actual Unity Editor: `Assets/Screenshots/WarehouseFinal_Phase4_Overview.png`, `WarehouseFinal_Phase4_Storage_Closeup.png`, `WarehouseFinal_Phase4_Operations_Closeup.png`, and `WarehouseFinal_Phase4_Roof_Complete.png`. The before captures remain the Phase 3 screenshots.
-- No layout, blockout or SampleScene changes are authorized by this visual pass. Keep “lizards” pending instructor clarification; camera controls, generator and animation/audio are still later phases.
+- No layout, blockout or SampleScene changes are authorized by this visual pass. Historical status: “lizards” was pending then but is now excluded by user decision; camera controls, generator and animation/audio were still later phases.
 
 
 ## 13. Phase 5 camera and navigation decisions (2026-11-26)
