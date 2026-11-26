@@ -1,6 +1,6 @@
 # WAREHOUSE-UNITY — Authoritative Project Brief
 
-Version: 1.9  
+Version: 1.10  
 Status: Active project specification  
 Unity project: WAREHOUSE-UNITY  
 Unity pipeline: Universal Render Pipeline (URP)  
@@ -262,3 +262,25 @@ The builder creates project-owned URP Lit materials and deterministic local text
 The full roof structure, roof panels and skylight material remain in the scene. `ROOF_PANELS_AND_SKYLIGHTS` stays disabled for the cutaway overview. It was temporarily enabled for the retained full-roof verification capture and restored to disabled before saving. The overview camera framing and scene ambient/directional lighting were tuned; no camera-mode controller was added. High-bay/dock lights are non-shadow-casting to limit render cost; the existing directional light retains soft shadows. The project settings and packages were not intentionally changed; `ProjectSettings/URPProjectSettings.asset` was restored byte-for-byte after Unity added an unrelated path field.
 
 Actual Editor captures are `Assets/Screenshots/WarehouseFinal_Phase4_Overview.png`, `WarehouseFinal_Phase4_Storage_Closeup.png`, `WarehouseFinal_Phase4_Operations_Closeup.png` and `WarehouseFinal_Phase4_Roof_Complete.png`. The first three show the saved cutaway state; the final image documents the retained roof option. The Phase 3 overview/operations captures remain the before images. The final live scene query found 1,279 renderers, zero missing material/shader slots, 543 assigned Phase 4 material slots with 302 texture-backed assignments, and one 331-transform detail root. The final Console query returned zero errors and four existing obsolete `MaterialLocation.External` warnings from `Pallet.fbx`, `Pallet_Jack.fbx`, `Workbench_Vise.fbx` and `Crate_Large.fbx`; their importer settings were not changed. “Lizards” remains an unresolved instructor term. Phase 5 camera modes, Phase 6 generator and Phase 7 animation/audio remain future work.
+
+
+## 17. Close-up pixelation finding and camera-phase handoff (2026-11-26)
+
+The user's Phase 4 Unity screenshots show the Game view Scale slider at 2x for the overview capture and 7x for the close-up crop. Unity's Game View Scale slider zooms into the rendered Game view to inspect areas; it magnifies the existing displayed pixels rather than creating a higher-resolution render. Do not use a 7x Game view screenshot as the final evidence of texture quality. Re-capture comparisons at 1x/native display scale with a fixed Game view resolution.
+
+The project also has objectively modest source texture sizes:
+- Phase 4 builder source `Assets/Editor/WarehousePhase4VisualBuilder.cs` creates albedo maps at 512×512 and normal/metallic maps at 256×256.
+- Phase 4 generated texture importer metadata currently uses bilinear filtering (`filterMode: 1`) and anisotropic level 1. Mipmaps are enabled.
+- The original Warehouse Essentials FBX atlases are 128×128 according to the asset import report.
+- Phase 4 textures are generated procedurally by code, so source resolution and noise-frequency settings—not the Warehouse layout algorithm—are the relevant code-controlled quality variables.
+- URP anti-aliasing can improve geometry edge aliasing; MSAA does not solve shader/texture aliasing. Anisotropic filtering is useful for ground textures viewed at steep angles but has a performance cost. Tune these independently.
+
+Required bounded correction during the next task:
+1. First compare the same overview/close-up framing at Game view Scale 1x and 7x. Use 1x for quality decisions and saved screenshots.
+2. Inspect texture source dimensions and import settings. Do not merely increase Max Size for an existing low-resolution source; regenerate source textures at a genuinely higher resolution if the texture is the confirmed limitation.
+3. For Phase 4 generated materials, evaluate 1024–2048 albedo and at least 1024 normal/metallic maps for the largest surfaces, with sensible source noise detail, mipmaps, trilinear filtering and moderate anisotropic filtering on the floor. Preserve the existing coherent art style and avoid obvious noisy/high-frequency speckle.
+4. Keep original low-res imported atlases for their asset use unless a visually consistent replacement is authored and verified; do not blindly upscale a 128×128 atlas and claim added detail.
+5. Test modest URP edge anti-aliasing (e.g. 2x/4x MSAA or a suitable low-cost camera post-AA option) separately from texture filtering. Prefer the lightest result that visibly improves edges on the M4 MacBook Air. Do not change render pipeline or unrelated package versions.
+6. Capture before/after images at identical 1x display scale and comparable scene framing. If the remaining pixelation appears only at 7x, document it as Game View magnification rather than a project defect.
+
+Next phase remains Phase 5 camera modes. Complete the bounded image-quality calibration as a preflight, then implement both approved modes: default isometric overview and switchable first-person exploration (V key, with a clear on-screen hint/button). Include WASD + mouse-look, cursor escape/unlock, sensible speed, CharacterController movement and simple collision proxies for major walls/racks/large equipment while keeping the pedestrian route and forklift aisles traversable. Show the complete roof in first-person and retain the roof-panel cutaway for overview. Keep the new controller/collision objects grouped and the builder idempotent. Do not begin Phase 6 Warehouse Generator or Phase 7 audio/animation integration.
