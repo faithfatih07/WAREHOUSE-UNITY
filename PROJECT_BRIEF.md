@@ -512,3 +512,20 @@ Codex reports that a source-only archive was created at `/private/tmp/WAREHOUSE-
 8. Preserve existing local-only LED material, settings and Build Profiles modifications. Do not commit them without exact review. Confirm local Git status and remote parity before any further commit.
 
 Final delivery is incomplete until the remaining critical checks and build/archive handoff are either completed or explicitly reported as blocked. Keep Roll-a-Ball and the lecturer's individual/group email reply separate from Unity completion. Do not reopen the user-excluded “lizards” item. No added features; EUR 0 budget.
+
+## 27. Phase 8A attempt blocked by Unity access — 2026-11-26
+
+The latest Phase 8A Codex attempt ran **zero Unity regression tests**. Unity was listed as running, but CUA timed out on both attempts to connect to its window and no Unity MCP tools were available. This is an access/tooling blocker, not a test failure and not a passing test. No files were edited or staged.
+
+Reported statuses: WASD/mouse/Escape, collision/V/roof, generator seed/density/Clear/Regenerate, animation playback/placement, fresh audio runtime check, lighting two-mode inspection, and fresh Console inspection were blocked. Mute/unmute had only prior checks; the user had separately confirmed audio was audible on the Mac. Performance remains unmeasured.
+
+Git preservation: remote `origin/main` was reported at `729f142a509a954975cb8c972e22cb9848244228`; local `HEAD` remained `6f3d91c3000d21d5e2d2d32abc99a483d5d87bd9`. Existing local user changes were left untouched. Do not force-pull, reset, clean, stash or discard to synchronize this state.
+
+Next action is to restore Unity access manually before more automated work:
+1. Bring the existing Unity Editor to front and ensure `Warehouse_Final` is loaded, compilation/import is finished and no modal dialog blocks it.
+2. Open `Window > MCP for Unity > Toggle MCP Window` and inspect connection/server status.
+3. Verify the `unityMCP` server is enabled in Codex and reconnect/reload it.
+4. If still unavailable, restart the existing Unity Editor/project (do not create a new project), wait until fully loaded, then reconnect.
+5. Resume Phase 8A in small, independent batches only after the live Unity MCP connection is visible. Do not repeatedly retry the same failing CUA UI path or claim tests passed without actual Play Mode evidence.
+
+Phase 8B build and archive verification must wait until Phase 8A is completed or its remaining blockers are explicitly documented.
