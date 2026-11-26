@@ -670,3 +670,8 @@ The instructor PDF's example also depicts a forklift, loading dock and delivery 
 ### Phase completion decision
 
 Asset acquisition and technical verification are complete for the known warehouse model categories at zero expenditure. Overall Phase 2 coverage sign-off remains **pending instructor clarification of “lizards.”** General cabinet and dedicated assembly-table gaps are explicitly assigned to original procedural modelling if needed. Sound and final interior lighting remain later scheduled phases. Do not begin Phase 3 until the ambiguous instructor requirement has been clarified or otherwise explicitly resolved with the instructor. `Warehouse_Blockout.unity` remains untouched.
+
+
+## 24. Phase 3 handoff — approved to assemble known requirements (2026-11-26)
+
+The user explicitly approved starting Phase 3 while the instructor PDF's exact word "lizards" remains unresolved. Keep it pending; do not guess or substitute another item. The known requirements and model categories are sufficiently covered to assemble the main warehouse. General storage cabinet and dedicated assembly table are approved as original procedural geometry under the EUR 0 budget. Do not perform another broad asset search. Follow WAREHOUSE_LAYOUT.md section 12 and PROJECT_BRIEF.md section 14. Build in a new Warehouse_Final.unity scene, preserve the Phase 1 blockout baseline, use only verified imported assets already in the repository, and implement Phase 3 assembly only. Do not start camera controller, C# generator, final lighting, or audio/animation integration yet.
