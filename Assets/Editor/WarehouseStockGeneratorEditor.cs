@@ -115,11 +115,13 @@ public sealed class WarehouseStockGeneratorEditor : Editor
             string seedARepeat = BuildSignature(g.generatedStockRoot);
             if (firstCount != 30 || seedA != seedARepeat)
                 throw new InvalidOperationException("Seed 12345 did not regenerate the same 30 distinct rack positions.");
+            VerifySlotsAreUniqueAndInsideRackZone(g.generatedStockRoot);
 
             g.randomSeed = 67890;
             Generate(g);
             if (BuildSignature(g.generatedStockRoot) == seedA)
                 throw new InvalidOperationException("Changing the seed did not change the arrangement.");
+            VerifySlotsAreUniqueAndInsideRackZone(g.generatedStockRoot);
 
             int[] expected = { 15, 30, 45, 60 };
             int[] densities = { 25, 50, 75, 100 };
@@ -139,6 +141,7 @@ public sealed class WarehouseStockGeneratorEditor : Editor
             Generate(g);
             if (g.generatedStockRoot.childCount != 30)
                 throw new InvalidOperationException("Regeneration after clear did not restore 30 loads.");
+            VerifySlotsAreUniqueAndInsideRackZone(g.generatedStockRoot);
             Debug.Log("WarehouseStockGenerator validation passed: seed 12345 stable; changed seed differs; densities 25/50/75/100 produced 15/30/45/60 unique rack loads; clear and regenerate produced no duplicates.");
         }
         catch (Exception e)
@@ -157,9 +160,9 @@ public sealed class WarehouseStockGeneratorEditor : Editor
     private static string BuildSignature(Transform root)
     {
         return string.Join("|", root.Cast<Transform>().OrderBy(t => t.name, StringComparer.Ordinal).Select(t =>
-            t.name + "@" + t.localPosition.x.ToString("R", CultureInfo.InvariantCulture) + "," +
-            t.localPosition.y.ToString("R", CultureInfo.InvariantCulture) + "," +
-            t.localPosition.z.ToString("R", CultureInfo.InvariantCulture)));
+            t.name + "@" + VectorSignature(t.position) + "/" + QuaternionSignature(t.rotation) + "[" +
+            string.Join(",", t.GetComponentsInChildren<Transform>(true).Skip(1).OrderBy(child => child.name, StringComparer.Ordinal).Select(child =>
+                child.name + ":" + VectorSignature(child.position) + "/" + QuaternionSignature(child.rotation) + "/" + VectorSignature(child.lossyScale))) + "]"));
     }
 
     private static void VerifySlotsAreUniqueAndInsideRackZone(Transform root)
@@ -172,6 +175,98 @@ public sealed class WarehouseStockGeneratorEditor : Editor
             if (!occupied.Add(key)) throw new InvalidOperationException("Duplicate generated rack slot: " + key);
             if (p.x < 4f || p.x > 27f || p.z < 9f || p.z > 30f)
                 throw new InvalidOperationException("Generated load is outside the rack structure: " + key);
+        }
+
+        List<string> overlaps = FindRendererBoundOverlaps(root);
+        if (overlaps.Count > 0)
+            throw new InvalidOperationException("Generated loads have renderer-bound intersections: " + string.Join("; ", overlaps));
+
+        VerifyNoOperationalZoneOverlaps(root);
+    }
+
+    private static List<string> FindRendererBoundOverlaps(Transform root)
+    {
+        Transform[] loads = root.Cast<Transform>().ToArray();
+        var bounds = new Bounds[loads.Length];
+        for (int i = 0; i < loads.Length; i++) bounds[i] = GetCombinedRendererBounds(loads[i]);
+
+        var overlaps = new List<string>();
+        for (int i = 0; i < loads.Length; i++)
+        {
+            for (int j = i + 1; j < loads.Length; j++)
+            {
+                Vector3 overlap = Vector3.Min(bounds[i].max, bounds[j].max) - Vector3.Max(bounds[i].min, bounds[j].min);
+                // Positive extent on all three axes is a true 3D bounds intersection;
+                // touching faces and edges do not count as overlapping volume.
+                if (overlap.x > 0f && overlap.y > 0f && overlap.z > 0f)
+                {
+                    overlaps.Add(loads[i].name + " at " + VectorSignature(loads[i].position) + " intersects " +
+                        loads[j].name + " at " + VectorSignature(loads[j].position) + " (overlap " + VectorSignature(overlap) + ")");
+                }
+            }
+        }
+        return overlaps;
+    }
+
+    private static Bounds GetCombinedRendererBounds(Transform load)
+    {
+        Renderer[] renderers = load.GetComponentsInChildren<Renderer>(true);
+        if (renderers.Length == 0)
+            throw new InvalidOperationException("Generated load has no renderers to validate: " + load.name + " at " + VectorSignature(load.position));
+
+        Bounds combined = renderers[0].bounds;
+        for (int i = 1; i < renderers.Length; i++) combined.Encapsulate(renderers[i].bounds);
+        return combined;
+    }
+
+    private static void VerifyNoOperationalZoneOverlaps(Transform root)
+    {
+        // X/Z bounds follow the warehouse routes and zones documented in WAREHOUSE_LAYOUT.md.
+        var zones = new[]
+        {
+            new KeepClearZone("west pedestrian route", 0.8f, 2.6f, 0f, 37f),
+            new KeepClearZone("main forklift spine", 32f, 36f, 3f, 37f),
+            new KeepClearZone("sorting/conveyor", 38f, 56f, 19f, 29f),
+            new KeepClearZone("packing/assembly", 38f, 56f, 12f, 18f),
+            new KeepClearZone("dispatch/outbound", 37f, 58f, 3f, 11f),
+            new KeepClearZone("loading docks and truck apron", 34f, 60f, -24f, 3f),
+            new KeepClearZone("office/control", 2f, 13f, 31f, 38f),
+            new KeepClearZone("receiving/inspection", 14f, 30f, 31f, 38f),
+            new KeepClearZone("south rack cross-aisle", 3f, 31f, 7f, 10.5f),
+            new KeepClearZone("north rack cross-aisle", 3f, 31f, 28f, 31f)
+        };
+
+        foreach (Transform load in root)
+        {
+            Bounds bounds = GetCombinedRendererBounds(load);
+            foreach (KeepClearZone zone in zones)
+            {
+                if (bounds.max.x > zone.minX && bounds.min.x < zone.maxX && bounds.max.z > zone.minZ && bounds.min.z < zone.maxZ)
+                    throw new InvalidOperationException("Generated load " + load.name + " at " + VectorSignature(load.position) +
+                        " intersects keep-clear zone '" + zone.name + "'.");
+            }
+        }
+    }
+
+    private static string VectorSignature(Vector3 value)
+    {
+        return value.x.ToString("R", CultureInfo.InvariantCulture) + "," + value.y.ToString("R", CultureInfo.InvariantCulture) + "," + value.z.ToString("R", CultureInfo.InvariantCulture);
+    }
+
+    private static string QuaternionSignature(Quaternion value)
+    {
+        return value.x.ToString("R", CultureInfo.InvariantCulture) + "," + value.y.ToString("R", CultureInfo.InvariantCulture) + "," +
+            value.z.ToString("R", CultureInfo.InvariantCulture) + "," + value.w.ToString("R", CultureInfo.InvariantCulture);
+    }
+
+    private struct KeepClearZone
+    {
+        public readonly string name;
+        public readonly float minX, maxX, minZ, maxZ;
+
+        public KeepClearZone(string name, float minX, float maxX, float minZ, float maxZ)
+        {
+            this.name = name; this.minX = minX; this.maxX = maxX; this.minZ = minZ; this.maxZ = maxZ;
         }
     }
 
@@ -211,12 +306,12 @@ public sealed class WarehouseStockGeneratorEditor : Editor
             Undo.RegisterCreatedObjectUndo(load, "Generate warehouse stock");
             load.transform.SetParent(g.generatedStockRoot, false);
             load.transform.position = new Vector3(slot.x, slot.y, slot.z);
-            SpawnModel(g.palletModel, load.transform, "Pallet", slot.y, 90f, scene);
+            SpawnModel(g.palletModel, load.transform, "Pallet", 0f, 90f, scene);
 
             int category = ChooseCategory(g, random);
             GameObject cargo = null;
             string cargoName = "PalletOnly";
-            float cargoOffset = slot.level == 0 ? 0.2f : 2.75f;
+            const float cargoLocalYOffset = 0.2f;
             if (category == 1)
             {
                 cargo = random.Next(2) == 0 ? g.smallBoxModel : g.mediumBoxModel;
@@ -227,7 +322,7 @@ public sealed class WarehouseStockGeneratorEditor : Editor
                 cargo = random.Next(2) == 0 ? g.smallCrateModel : g.largeCrateModel;
                 cargoName = cargo == g.smallCrateModel ? "CrateSmall" : "CrateLarge";
             }
-            if (cargo != null) SpawnModel(cargo, load.transform, cargoName, cargoOffset, 90f, scene);
+            if (cargo != null) SpawnModel(cargo, load.transform, cargoName, cargoLocalYOffset, 90f, scene);
             load.name += "_" + cargoName;
         }
 
@@ -258,7 +353,7 @@ public sealed class WarehouseStockGeneratorEditor : Editor
         for (int i = root.childCount - 1; i >= 0; i--) Undo.DestroyObjectImmediate(root.GetChild(i).gameObject);
     }
 
-    private static void SpawnModel(GameObject source, Transform parent, string label, float yOffset, float yaw, Scene scene)
+    private static void SpawnModel(GameObject source, Transform parent, string label, float localYOffset, float yaw, Scene scene)
     {
         GameObject instance = PrefabUtility.InstantiatePrefab(source, scene) as GameObject;
         if (instance == null) instance = Instantiate(source);
@@ -267,7 +362,7 @@ public sealed class WarehouseStockGeneratorEditor : Editor
         Vector3 sourceScale = source.transform.localScale;
         Quaternion sourceRotation = source.transform.localRotation;
         instance.transform.SetParent(parent, false);
-        instance.transform.localPosition = new Vector3(0f, yOffset - parent.localPosition.y, 0f);
+        instance.transform.localPosition = new Vector3(0f, localYOffset, 0f);
         instance.transform.localRotation = Quaternion.Euler(0f, yaw, 0f) * sourceRotation;
         instance.transform.localScale = sourceScale;
     }
